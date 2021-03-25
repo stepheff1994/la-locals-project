@@ -4,12 +4,11 @@ import {Navbar, Nav} from "react-bootstrap";
 function NavBarPage () {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="/">Home</Nav.Link>
-      <Nav.Link href="/Map">Map</Nav.Link>
+      <Nav.Link href="/">LA LOCALS</Nav.Link>
+     
       <Nav.Link href="/Matches">Matches</Nav.Link>
       <Nav.Link href="/MyLikes">MyLikes</Nav.Link>
       <Nav.Link href="/NewMembers">NewMembers</Nav.Link>
@@ -17,9 +16,9 @@ function NavBarPage () {
    
     </Nav>
     <Nav>
-      <Nav.Link href="#deets">More deets</Nav.Link>
+      <Nav.Link href="#deets">Register</Nav.Link>
       <Nav.Link eventKey={2} href="#memes">
-        Dank memes
+        Log In
       </Nav.Link>
     </Nav>
   </Navbar.Collapse>
