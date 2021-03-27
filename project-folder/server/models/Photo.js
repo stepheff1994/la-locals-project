@@ -1,32 +1,15 @@
-// const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
+//subdocoument instead of own schema
+const userPhotoSchema = new Schema({
+  photoId: {
+    default: () => new Types.ObjectId(),
+    type: Schema.Types.ObjectId
+  },
 
-const UserSchema = new Schema({
-  name: {
+  photoUrl: {
     type: String,
     required: true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: Number,
-    required: true,
-  },
-  birthday: {
-    type: String, 
-    required: true
-  },
-  location: {
-    type: String, 
-    required: true
-  },
-  gender: {
-    type: String, 
-    required: true
-  }
 });
 
-const User = model('User', UserSchema);
-
-// module.exports = Book;
+module.exports = userPhotoSchema;

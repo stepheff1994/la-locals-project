@@ -1,4 +1,5 @@
-// const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose');
+const userPhotoSchema = require('./Photo');
 
 const UserSchema = new Schema({
   name: {
@@ -24,9 +25,10 @@ const UserSchema = new Schema({
   gender: {
     type: String, 
     required: true
-  }
+  },
+  photos:[userPhotoSchema]
 });
 
 const User = model('User', UserSchema);
 
-// module.exports = User;
+module.exports = User;
