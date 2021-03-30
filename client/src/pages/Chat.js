@@ -1,10 +1,14 @@
 import React from 'react';
 
+// import the chat login form
+import ChatLogin from '../components/ChatLogin';
 
 function Chat () {
 
     return (
-        "Hello World"
+        <div>
+            <ChatLogin />
+        </div>
     )
 };
 
