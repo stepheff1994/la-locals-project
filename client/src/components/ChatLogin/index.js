@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useRef } from 'react';
+// import form components from 'react-bootstrap'
+import { Container, Form, Button } from 'react-bootstrap';
 
-function ChatLogin () {
+// take in the onIdSubmit from Chat.js useState id function
+function ChatLogin ({ onIdSubmit }) {
+    // use the useRef hook to handle all change events in the form
+    const idRef = useRef()
+    // function to handle the submit of the form
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        // call the onIdSubmit from Chat.js and pass it the current value of idRef
+        onIdSubmit(idRef.current.value)
+
+    }
 
     return (
-        "Hello World"
+        <Container className='align-items-center d-flex' style={{ height: '100vh' }}>
+            <Form onSubmit={handleSubmit} className='w-100'>
+                <Form.Group>
+                    <Form.Label>Enter Your Id</Form.Label>
+                    {/* .Control acts as form input */}
+                    <Form.Control type='text' ref={idRef} required />
+                </Form.Group>
+                <Button type="submit" className="mr-2">login</Button>
+            </Form>
+        </Container>
     )
 };
 
