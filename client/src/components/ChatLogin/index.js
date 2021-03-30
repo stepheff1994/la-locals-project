@@ -6,7 +6,7 @@ import { Container, Form, Button } from 'react-bootstrap';
 function ChatLogin ({ onIdSubmit }) {
     // use the useRef hook to handle all change events in the form
     const idRef = useRef()
-    // function to handle the submit of the form
+    // function to handle the submit of manually created id for the chat
     function handleSubmit(e) {
         e.preventDefault();
 
