@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 function Questionnaire () {
     const [area, setArea] = useState('');
-    const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029'], 'area': 'The Valley'}, {'zip': ['90401', '90265'], 'area': 'Beach Cities'}]
+    const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029','91309',  
+    '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}]
 
 
     function addressEntered (zip) {
