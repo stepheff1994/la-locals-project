@@ -11,13 +11,13 @@ const userSchema = new Schema({
     required: true,
   },
   email: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
     match: [/.+@.+\..+/, 'Must use a valid email address'],
   },
   age: {
-    type: String,
+    type: Number,
     required: true
   },
   // location: {

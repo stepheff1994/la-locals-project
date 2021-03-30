@@ -14,7 +14,7 @@ db.once('open', async () => {
         const email = faker.internet.email(name);
         const password = faker.internet.password();
         const age = faker.random.number({ min: 18, max: 90 });
-        const photos = faker.internet.avatar();
+        const photos = [{ photoUrl: faker.image.image() }]
         userData.push({ name, email, password, age, photos });
     }
 
