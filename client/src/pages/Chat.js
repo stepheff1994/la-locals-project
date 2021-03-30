@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // import the chat login form
 import ChatLogin from '../components/ChatLogin';
@@ -6,8 +6,8 @@ import ChatLogin from '../components/ChatLogin';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 function Chat () {
-    // useState to set the manually created id to the application
-    const [id, setId] = useState()
+    // useLocalStorage hook to set the manually created id to the application and save it to local storage
+    const [id, setId] = useLocalStorage('id') // ***** will have to use this to somehow get/set the token id for each user
 
     return (
         <div>
