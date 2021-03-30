@@ -1,11 +1,10 @@
 import React from 'react';
 
-
-function Chat () {
+function ChatLogin () {
 
     return (
         "Hello World"
     )
 };
 
-export default Chat;
+export default ChatLogin;
