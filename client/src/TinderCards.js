@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import TinderCard from "react-tinder-card"
 import "./TinderCards.css";
 
-function TinderCards() {
+const TinderCards= ()=> {
     const [people, setPeople] = useState([
         {
             name: 'Elon Musk',
@@ -12,7 +12,7 @@ function TinderCards() {
 
         {
             name: 'Jeff Bezos',
-            url: 'https://cdn.applianceretailer.com.au/wp-content/uploads/2018/02/31100057/Amazon-Jeff-Bezos-small-2.jpg',
+            url: 'https://techcentral.co.za/wp-content/uploads/2017/05/jeff-bezos-2156-1120.jpg',
         },
     ]);
         const swiped = (direction, nameToDelete) => {
@@ -28,7 +28,7 @@ function TinderCards() {
         <div className ="tinderCards">
             <div className=" tinderCards_cardContainer">  
 
-            {people.map ((person) => (
+            {people.map (person => (
                 <TinderCard
                   className ="swipe"
                   key={person.name}
