@@ -84,11 +84,25 @@ export function ConversationsProvider({ id, children }) {
             // return either the contact id or the recipients name
             return { id: recipient, name }
         })
+        const messages = conversation.messages.map(message => {
+           // get the contact for that individual contact
+           const contact = contacts.find(contact => {
+                // match the id with the messages sender to find the contact
+                return contact.id === message.sender
+            })
+            // get the contact name otherwise match it with the messages sender id
+            const name = (contact && contact.name) || message.sender
+            // check if the user is the one who sent the message
+            const fromMe = id === message.sender
+            // return all of the message information and set senderName to name and fromMe propety
+            return { ...message, senderName: name, fromMe }
+        })
+
         // figure out if the conversation is selected or not
         const selected = index === selectedConversationIndex
         // return a new object with our new formatted recipients with name and Ids
         // as well as a 'selected' true or false boolean for if it is selected or not
-        return { ...conversation, recipients, selected }
+        return { ...conversation, messages, recipients, selected }
     })
     // set conversations as formatted conversations and add create conversation
     const value = {
@@ -107,6 +121,7 @@ export function ConversationsProvider({ id, children }) {
     )
 }
 
+// check to see if the conversation arrays are equal
 // a and b = 2 different arrays
 function arrayEquality(a, b) {
     // if the arrays are not equal then return false
