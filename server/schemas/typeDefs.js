@@ -22,7 +22,7 @@ type User {
 
   type Mutation {
     login(email: String!, password: String!): User
-    addUser(name: String!, email: String!, password: String!, age: String!): User
+    addUser(name: String!, email: String!, password: String!, age: Int!): User
   }
  
 `;
