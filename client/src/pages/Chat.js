@@ -2,19 +2,25 @@ import React from 'react';
 
 // import the chat login form
 import ChatLogin from '../components/ChatLogin';
+// import the chat dashboard
+import Dash from '../components/ChatDash';
 // import the useLocalStorage hook we created
 import useLocalStorage from '../hooks/useLocalStorage';
 
 function Chat () {
     // useLocalStorage hook to set the manually created id to the application and save it to local storage
+    // that way, when the chat is refreshed the id is saved
     const [id, setId] = useLocalStorage('id') // ***** will have to use this to somehow get/set the token id for each user
 
     return (
         <div>
-            {/* print out id */}
-            {id}
+            {/* if you have an id go to the chat dashboard and pass in the id
+                otherwise create one with ChatLogin
+                ***** may not need the ChatLogin *****
+            */}
+            {id ? <Dash id={id} /> : <ChatLogin onIdSubmit={setId} />}
             {/* set the id on onIdSubmit and pass to ChatLogin form */}
-            <ChatLogin onIdSubmit={setId} />
+            
         </div>
     )
 };
