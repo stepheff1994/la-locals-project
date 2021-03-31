@@ -16,7 +16,7 @@ function Chat () {
     
     const dashboard = (
         <ContactsProvider>
-            <ConversationsProvider>
+            <ConversationsProvider id={id}>
                 <Dash id={id} />
             </ConversationsProvider>
         </ContactsProvider>
