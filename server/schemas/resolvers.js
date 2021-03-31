@@ -8,8 +8,8 @@ const resolvers = {
                 .populate('Photo')
         },
         // get a user by username
-        user: async (parent, { username }) => {
-            return User.findOne({ username })
+        user: async (parent, { name }) => {
+            return User.findOne({ name })
                 .select('-__v -password')
                 .populate('Photo')
         }

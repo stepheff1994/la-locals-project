@@ -1,7 +1,10 @@
 const faker = require('faker');
+var Fake = require("fake-things");
+
 
 const db = require('../config/connection');
 const { User } = require('../models');
+const { fake } = require('faker');
 
 db.once('open', async () => {
     await User.deleteMany({});
@@ -14,7 +17,7 @@ db.once('open', async () => {
         const email = faker.internet.email(name);
         const password = faker.internet.password();
         const age = faker.random.number({ min: 18, max: 90 });
-        const photos = [{ photoUrl: faker.image.image() }]
+        const photos = [{ photoUrl: Fake.Avatar()}]
         userData.push({ name, email, password, age, photos });
     }
 
