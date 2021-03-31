@@ -83,7 +83,7 @@ function Questionnaire () {
 
     <Form.Label>Enter your zipcode</Form.Label>
     <Form.Control  type="text" placeholder="90000" value={zipcode} onChange = {handleZipChange}/>
-    <Form.Text> {area} </Form.Text>
+    <Form.Text><h2><strong>{area}</strong></h2></Form.Text>
   </Form.Group>
   
   <Form.Group controlId="identity">
@@ -96,6 +96,68 @@ function Questionnaire () {
        <option>Non-binary</option>  
     </Form.Control> 
   </Form.Group>
+
+  <Form.Group controlId="preference">
+    <Form.Label>Interested In:</Form.Label>
+    <Form.Control as = 'select' value={preference} onChange={event => setPreference(event.target.value)} >
+       
+        <option>Select</option>
+        <option>Man</option>
+       <option>Woman</option>
+       <option>Non-binary</option>  
+    </Form.Control> 
+  </Form.Group>
+
+  <Form.Text><h2><strong>Intro Questionnaire</strong></h2></Form.Text>
+
+  <Form.Group controlId="question1">
+    <Form.Label>Why did you join LA LOCALS?</Form.Label>
+    <Form.Control as = 'select' value={question1} onChange={event => setQuestion1(event.target.value)} >
+       
+        <option>Select</option>
+        <option>a. I’m tired of the Tinder/Bumble scene</option>
+       <option>b. I want to meet someone with out having to go on the 405</option>
+       <option>c. I survived 2020 I can survive this app </option> 
+       <option>d. I love social experiments </option> 
+    </Form.Control> 
+  </Form.Group>
+
+  <Form.Group controlId="question2">
+    <Form.Label>Your Uncle has just posted something offensive on Facebook your next move is to:</Form.Label>
+    <Form.Control as = 'select' value={question2} onChange={event => setQuestion2(event.target.value)} >
+       
+        <option>Select</option>
+        <option>a. I don’t have Facebook</option>
+       <option>b. My uncle doesn’t have Facebook </option>
+       <option>c. If it is on my status I will delete the comment  </option> 
+       <option>d. Engage in a fight in the comment section because I like seeing the world the burn. </option> 
+    </Form.Control> 
+  </Form.Group>
+
+  <Form.Group controlId="question3">
+    <Form.Label>Instead of asking how old you are select which social media app you prefer?</Form.Label>
+    <Form.Control as = 'select' value={question3} onChange={event => setQuestion3(event.target.value)} >
+       
+        <option>Select</option>
+        <option>a. no socials because I’m the Unabomber </option>
+       <option>b. It’s a real toss up between instagram and snapchat </option>
+       <option>c. Tik Tok because of quarantine   </option> 
+       <option>d. Facebook because I’m Mark Zuckerberg </option> 
+    </Form.Control> 
+  </Form.Group>
+
+  <Form.Group controlId="question4">
+    <Form.Label>It is post pandemic in Los Angeles what is the first thing you do?</Form.Label>
+    <Form.Control as = 'select' value={question4} onChange={event => setQuestion4(event.target.value)} >
+       
+        <option>Select</option>
+        <option>a. Go to the Abbey  </option>
+       <option>b. The same thing I was doing before the pandemic: watching Netflix </option>
+       <option>c. Get out of LA   </option> 
+       <option>d. Scroll on the citizen app because I’ve already lost faith in humanity</option> 
+    </Form.Control> 
+  </Form.Group>
+
 
   <Button variant="primary" className="mt-5" type="submit">
     Submit
@@ -138,14 +200,14 @@ export default Questionnaire
 // Intro Questionnaire
 // Why did you join LA LOCALS? (select one answer): 
 // (a.) I’m tired of the TInder/Bumble scene 
-// (b.) I want to meet someone with out having to go on the 405 
-// (c.) I survived 2020 I can survive this app 
-// (d.) I love social experiments 
+// b. I want to meet someone with out having to go on the 405 
+// c. I survived 2020 I can survive this app 
+// d. I love social experiments 
 // Your Uncle has just posted something offensive on Facebook your next move is to: 
-// (a.) I don’t have Facebook 
-// (b.) My uncle doesn’t have Facebook 
-// (c.) If it is on my status I will delete the comment 
-// (d.) Engage in a fight in the comment section because I like seeing the world the burn. 
+// a. I don’t have Facebook 
+// b. My uncle doesn’t have Facebook 
+// c. If it is on my status I will delete the comment 
+// d. Engage in a fight in the comment section because I like seeing the world the burn. 
 // Instead of asking how old you are select which social media app you prefer? (select one answer):
 //  (a.) no socials because I’m the Unabomber 
 //  (b.) It’s a real toss up between instagram and snapchat 
