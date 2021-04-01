@@ -3,6 +3,9 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Stepper, Step, StepLabel, Typography, Button} from '@material-ui/core';
 //components imports
 import StepOne from './StepOne';
+import StepTwo from './StepTwo';
+
+
 const useStyles = makeStyles({
     root: {
         width: "50%",
@@ -37,7 +40,7 @@ const MultistepForm = () => {
         case 0:
             return <StepOne/>;
         case 1:
-            return "Step Two (INTRO)";
+            return <StepTwo />;
         case 2:
             return "Step Three (MYMATCH)";
         default: return "Unknow Step";

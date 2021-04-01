@@ -9,8 +9,6 @@ import {Typography,
 import Visibility from "@material-ui/icons/Visibility";
 import  VisibilityOff from "@material-ui/icons/VisibilityOff";  
 import  SendSharpIcon from "@material-ui/icons/SendSharp";  
-import useForm from './useForm';
-
 
 const useStyles = makeStyles ({
     mainContainer: {
@@ -22,7 +20,7 @@ const useStyles = makeStyles ({
 
     formContainer: {
        position: "relative",
-       width: "auto",
+       width: "28.125rem",
        height: "auto",
        padding: "2rem"
     },
@@ -37,52 +35,6 @@ const useStyles = makeStyles ({
     
 
 const StepOne = () => {
-//define state schema
-
-const stateSchema = {
-    firstname: {value:"", error:""},
-    lastname: {value:"", error:""},
-    email: {value:"", error:""},
-    password: {value:"", error:""},
-    confirmPassword: {value:"", error:""},
-}
-
-const stateValidatorSchema = {
-    firstname: {
-        required: true,
-        validator: {
-            func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-])*/.test(value),
-            error: "Please enter First Name"
-        }
-    },
-
-    lastname: {
-        required: true,
-        validator: {
-            func: value => /^([A-Za-z][A-Za-z'-])+([A-Za-z][A-Za-z'-]+)*/.test(value),
-            error: "Please enter Last Name"
-        }
-    },
-
-    email: {
-        required: true,
-        validator: {
-            func: value => /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(value),
-            error: "Invalid Email"
-        }
-    },
-
-    password: {
-        required: true,
-        validator: {
-            func: value => /^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(value),
-            error: "Minimum 6 characters abd at least one special character '@,$,!,%,#,?,&"
-        }
-    }
-}
-
- const {values, errors, dirty, handleOnChange} = useForm (stateSchema, stateValidatorSchema)
-
     const [showPasswordValue, setShowPasswordValue] = useState({
         showPassword: false
     });
@@ -103,8 +55,6 @@ const stateValidatorSchema = {
         })
     }
 
-     const {firstname, lastname, email, password, confirmPassword }=values;
-
     const classes = useStyles();
     return (
         <div className = {classes.mainContainer}>
@@ -119,50 +69,22 @@ const stateValidatorSchema = {
               <TextField style= {{width:"100%", margin: "1rem 0"}}
               label ="FirstName" 
               variant="outlined"
-              name = "firstname"
-              value={firstname}
-              onChange = {handleOnChange}
               /> 
-             {errors.firstname && dirty.firstname && (
-                <Typography
-                    style = {{marginTop: "0",color: "red", fontWeight: "200"  }}
-                >{errors.firstname}
-                 </Typography>
-            )} 
+
              <TextField style= {{width:"100%", marginBottom: "1rem"}}
               label ="LastName" 
               variant="outlined"
-              name ="lastname"
-              value={lastname}
-              onChange = {handleOnChange}
               /> 
-              {errors.lastname && dirty.lastname && (
-                <Typography
-                    style = {{marginTop: "0",color: "red", fontWeight: "200"  }}
-                >{errors.lastname}
-                 </Typography>
-              )}
+
                <TextField style= {{width:"100%", marginBottom: "1rem"}}
               label ="Email" 
               variant="outlined"
-              name = "email"
-              value = {email}
-              onChange = {handleOnChange}
-              /> 
-              {errors.email && dirty.email && (
-                <Typography
-                    style = {{marginTop: "0",color: "red", fontWeight: "200"  }}
-                >{errors.email}
-                 </Typography>
-              )} 
-              
+              />  
+
                <FormControl style= {{width:"100%", marginBottom: "1rem"}} variant="outlined" >
                   <InputLabel>Password</InputLabel>
                  <OutlinedInput
                  labelWidth={70}
-                 name = "password"
-                 value = {password}
-                 onChange = {handleOnChange}
                  type={showPasswordValue.showPassword ? "text" : "password"}
                  endAdornment={
                      <InputAdornment position ="end">
@@ -173,13 +95,8 @@ const stateValidatorSchema = {
                      </IconButton>
                      </InputAdornment>
                  }
-                />
-                {errors.password && dirty.email && (
-                <Typography
-                    style = {{marginTop: "0",color: "red", fontWeight: "200"  }}
-                >{errors.password}
-                 </Typography>
-              )}  
+                 
+                 /> 
               </FormControl> 
               <FormControl style= {{width:"100%", marginBottom: "1rem"}} variant="outlined" >
                   <InputLabel>Confirm Password</InputLabel>
@@ -196,7 +113,6 @@ const stateValidatorSchema = {
                      </InputAdornment>
                  }
                  /> 
-                 
               </FormControl>
               <>
                  <Button className={classes.btn}
