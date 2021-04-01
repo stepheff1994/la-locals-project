@@ -7,6 +7,33 @@ const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+// require socket.io to create connection
+const io = require('socket.io')(5000)
+
+io.on('connection', socket => {
+  // pass in the id of the user
+  // socket creates a new id every time the page is refreshed.
+  // this way we create our own static id
+  const id = socket.handshake.query.id
+  socket.join(id)
+  // get the recipients and text for the messages
+  socket.on('send-message', ({ recipients, text }) => {
+    // loop through all of the recipients
+    recipients.forEach(recipient => {
+      // remove the current recipient from the list of recipients
+      const newRecipients = recipients.filter(r => r !== recipient.current)
+      // take in the new recipients and push in the id of the person sending the message
+      // the sender is added to the list of recipients and the reciever is removed from that list
+      newRecipients.push(id)
+      socket.broadcast.to(recipient).emit('receive-message', {
+        recipients: newRecipients, sender: id, text
+      })
+    })
+  })
+})
+
+
+
 const server = new ApolloServer({
   typeDefs,
   resolvers

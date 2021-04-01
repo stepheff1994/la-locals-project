@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect, useCallback } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { useContacts } from './ContactsProvider'
+import { useSocket } from './SocketProvider'
 
 const ConversationsContext = React.createContext()
 
@@ -17,6 +18,8 @@ export function ConversationsProvider({ id, children }) {
     const [selectedConversationIndex, setSelectedConversationIndex] = useState(0)
     // get the contacts from useContacts from the contactsProvider
     const { contacts } = useContacts()
+    // get access to socket
+    const socket = useSocket()
     
     // take in the reciepients into the conversation
     function createConversation(recipients) {
@@ -27,8 +30,8 @@ export function ConversationsProvider({ id, children }) {
     }
 
     // message gets called from server as well as when we send
-    // this function will take messages from others as well as our own message
-    function addMessageToConversation({ recipients, text, sender }) {
+    // this variable will take messages from others as well as our own message
+    const addMessageToConversation = useCallback(({ recipients, text, sender }) => {
         // call the set conversations method and get the previousConversations
         setConversations(prevConversations => {
             //  determine if we made any changes
@@ -62,9 +65,21 @@ export function ConversationsProvider({ id, children }) {
                 ]
             }
         })
-    }
+        // this funtion will only change when setConversations does
+    }, [setConversations])
+    
+    useEffect(() => {
+        if (socket == null) return
+
+        socket.on('receive-message', addMessageToConversation)
+        // take the socket and remove the event listner
+        return () => socket.off('receive-message')
+    }, [socket, addMessageToConversation])
 
     function sendMessage(recipients, text){
+        // send the message to all of the different clients
+        socket.emit('send-message', { recipients, text })
+
         addMessageToConversation({ recipients, text, sender: id })
 
     }

@@ -8,6 +8,7 @@ import Dash from '../components/ChatDash';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { ContactsProvider } from '../contexts/ContactsProvider';
 import { ConversationsProvider } from '../contexts/ConversationsProvider';
+import { SocketProvider } from '../contexts/SocketProvider';
 
 function Chat () {
     // useLocalStorage hook to set the manually created id to the application and save it to local storage
@@ -15,11 +16,13 @@ function Chat () {
     const [id, setId] = useLocalStorage('id') // ***** will have to use this to somehow get/set the token id for each user
     
     const dashboard = (
-        <ContactsProvider>
-            <ConversationsProvider id={id}>
-                <Dash id={id} />
-            </ConversationsProvider>
-        </ContactsProvider>
+        <SocketProvider id={id}>
+            <ContactsProvider>
+                <ConversationsProvider id={id}>
+                    <Dash id={id} />
+                </ConversationsProvider>
+            </ContactsProvider>
+        </SocketProvider>
     )
     return (
         <div>
@@ -35,3 +38,8 @@ function Chat () {
 };
 
 export default Chat;
+
+
+
+// make sure to install on the server side: 
+    // npm i socket.io
