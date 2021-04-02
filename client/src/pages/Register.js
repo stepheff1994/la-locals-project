@@ -60,6 +60,7 @@ function Register({first,setFirst}) {
   }
   return (
     <div>
+      
       <Form.Text><h2><strong>Registration Questions</strong></h2></Form.Text>
 
       <Form onSubmit={handleSubmit}>

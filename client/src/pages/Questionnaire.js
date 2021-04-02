@@ -116,7 +116,7 @@ function Questionnaire () {
    const classes = useStyles();
    return (
     <>
-    <h1>THIS NOT THE REGISTRATION TAB ROUTE TO REGISTRATION INSTEAD</h1>       
+          
       
     <div className = {classes.root}>
         <Stepper activeStep={activeStep} alternativeLabel >

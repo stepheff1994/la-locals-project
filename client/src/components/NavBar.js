@@ -13,10 +13,11 @@ function NavBarPage () {
       <Nav.Link href="/Matches">Matches</Nav.Link>
       <Nav.Link href="/MyLikes">MyLikes</Nav.Link>
       <Nav.Link href="/Questionnaire">Questionnaire</Nav.Link>
+    
    
     </Nav>
     <Nav className="nav-text">
-      <Nav.Link href="/Register">Register</Nav.Link>
+    <Nav.Link href="/Register">Register</Nav.Link>
       <Nav.Link eventKey={2} href="/LogIn">
         Log In
       </Nav.Link>
