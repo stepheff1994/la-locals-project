@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap'
 
 
-function Questionnaire () {
+function Register () {
     const [area, setArea] = useState('');
     const [zipcode, setZipcode] = useState('');
     const [first, setFirst] = useState(' ');
@@ -21,7 +21,7 @@ function Questionnaire () {
 
 
     const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029','91309',  
-    '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}]
+    '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}, {'zip': ['90018', '90010', '90015',], 'area': 'Mid City/Downtown'}]
 
 
     function addressEntered (zip) {
@@ -58,7 +58,6 @@ function Questionnaire () {
     }
     return (
         <div>
-        <h1>THIS NOT THE REGISTRATION TAB ROUTE TO REGISTRATION INSTEAD</h1>    
          <Form.Text><h2><strong>Registration Questions</strong></h2></Form.Text> 
             
             <Form onSubmit = {handleSubmit}>
@@ -194,48 +193,4 @@ function Questionnaire () {
 
 
 
-export default Questionnaire
-
-
-// Registration: 
-// Please enter your name: first and last, enter email and password
-// Please upload a photo of yourself (3 photos max).
-
-// Enter your zip code or select which area of Los Angeles you are from (depending on entering zip code or interactive map).
-// How do you identify?
-// Man
-// Woman
-// Non-binary (for this we can have a drop down menu or write in)
-// 5. Interested in (select all that apply): 
-// Men
-// Women
-// Non-binary (for this we can have a drop down menu or write in) (edited) 
-
-
-
-// Intro Questionnaire
-// Why did you join LA LOCALS? (select one answer): 
-// (a.) I’m tired of the TInder/Bumble scene 
-// b. I want to meet someone with out having to go on the 405 
-// c. I survived 2020 I can survive this app 
-// d. I love social experiments 
-// Your Uncle has just posted something offensive on Facebook your next move is to: 
-// a. I don’t have Facebook 
-// b. My uncle doesn’t have Facebook 
-// c. If it is on my status I will delete the comment 
-// d. Engage in a fight in the comment section because I like seeing the world the burn. 
-// Instead of asking how old you are select which social media app you prefer? (select one answer):
-//  (a.) no socials because I’m the Unabomber 
-//  (b.) It’s a real toss up between instagram and snapchat 
-//  (c.) Tik Tok because of quarantine 
-//  (d.) Facebook because I’m Mark Zuckerberg
-// It is post pandemic in Los Angeles what is the first thing you do?: 
-// (a.) Go to the Abbey 
-// (b.) The same thing I was doing before the pandemic: watching Netflix 
-// (c.) Get out of LA 
-// (d.) Scroll on the citizen app because I’ve already lost faith in humanity
-// Lastly what’s your favorite delivery app?: 
-// (a.) Postmates 
-// (b.) Doordash 
-// (c.) I actually cook all of my meals at home so I can’t relate 
-// (d.) I don’t eat human food because I’m Mark Zuckerberg
+export default Register
