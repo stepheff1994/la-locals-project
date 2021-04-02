@@ -38,10 +38,10 @@ function NewConversatonModal({ closeModal }) {
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
                     {contacts.map(contact => (
-                        <Form.Group controllId={contact.id} key={contact.id}>
+                        <Form.Group controlId={contact.id} key={contact.id}>
                             <Form.Check 
                                 type='checkbox'
-                                vallue={selectedContactIds.includes(contact.id)}
+                                value={selectedContactIds.includes(contact.id)}
                                 label = {contact.name}
                                 onChange={() => handleCheckboxChange(contact.id)}
                             />
