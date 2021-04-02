@@ -12,6 +12,10 @@ type User {
     photoId: String
     photoUrl: String
   }
+  type Auth {
+    token: ID
+    user: User
+  }
   input PhotoInput {
     photoUrl: String
   }
@@ -22,8 +26,8 @@ type User {
     photos(name: String): [Photo]
   }
   type Mutation {
-    login(email: String!, password: String!): User
-    addUser(name: String!, email: String!, password: String!, age: Int!): User
+    login(email: String!, password: String!): Auth
+    addUser(name: String!, email: String!, password: String!, age: Int!): Auth
     addPhoto(_id:ID!, input: PhotoInput): User
   }
  

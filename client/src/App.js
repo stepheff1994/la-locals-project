@@ -1,4 +1,6 @@
 import React from "react";
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -14,23 +16,36 @@ import Register from "./pages/Register";
 import MyProfile from "./pages/MyProfile.js";
 import LogIn from "./pages/LogIn.js";
 function App() {
+  const client = new ApolloClient({
+    request: (operation) => {
+      const token = localStorage.getItem('id_token')
+      operation.setContext({
+        headers: {
+          authorization: token ? `Bearer ${token}` : ''
+        }
+      })
+    },
+    uri: '/graphql',
+  })
   return (
     <div >
-      <NavBar />
-      <Container>
-        text
+      <ApolloProvider client={client}>
+        <NavBar />
+        <Container>
+          text
         <Router>
-          <Route exact path="/" component={Home} />
-          {/* <Route exact path = "/Map" component = {Map} /> */}
-          <Route exact path="/MyProfile" component={MyProfile} />
-          <Route exact path="/Matches" component={Matches} />
-          <Route exact path="/MyLikes" component={MyLikes} />
-          {/* <Route exact path = "/NewMembers" component = {NewMembers} /> */}
-          <Route exact path="/Questionnaire" component={Questionnaire} />
-          <Route exact path="/Register" component={Register} />
-          <Route exact path="/LogIn" component={LogIn} />
-        </Router>
-      </Container>
+            <Route exact path="/" component={Home} />
+            {/* <Route exact path = "/Map" component = {Map} /> */}
+            <Route exact path="/MyProfile" component={MyProfile} />
+            <Route exact path="/Matches" component={Matches} />
+            <Route exact path="/MyLikes" component={MyLikes} />
+            {/* <Route exact path = "/NewMembers" component = {NewMembers} /> */}
+            <Route exact path="/Questionnaire" component={Questionnaire} />
+            <Route exact path="/Register" component={Register} />
+            <Route exact path="/LogIn" component={LogIn} />
+          </Router>
+        </Container>
+      </ApolloProvider>
     </div>
   );
 }
