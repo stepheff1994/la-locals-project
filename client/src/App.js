@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home"
 // import Map from "./pages/Map"
-import Matches from "./pages/Matches"
+import Matches from "./pages/Chat"
 import MyLikes from "./pages/MyLikes"
 // import NewMembers from "./pages/NewMembers"
 import Questionnaire from "./pages/Questionnaire"
@@ -13,6 +13,7 @@ import { Container } from "react-bootstrap"
 import Register from "./pages/Register";
 import MyProfile from "./pages/MyProfile.js";
 import LogIn from "./pages/LogIn.js";
+
 function App() {
   return (
     <div >
