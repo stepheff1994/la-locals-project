@@ -11,6 +11,7 @@ const resolvers = {
                     .populate('Photo')
                 return userData;
             }
+            throw new AuthenticationError('Not logged in');
         },
         // get all users
         users: async () => {

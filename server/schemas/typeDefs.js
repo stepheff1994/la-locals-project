@@ -26,6 +26,7 @@ type User {
     photos(name: String): [Photo]
   }
   type Mutation {
+    me: User
     login(email: String!, password: String!): Auth
     addUser(name: String!, email: String!, password: String!, age: Int!): Auth
     addPhoto(_id:ID!, input: PhotoInput): User
