@@ -18,7 +18,8 @@
     "bootstrap": "^4.6.0",
     "if-env": "^1.0.4",
     "react-bootstrap": "^1.5.2",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "socket.io-client": "^4.0.1"
   },
   "devDependencies": {
     "concurrently": "^5.1.0"
