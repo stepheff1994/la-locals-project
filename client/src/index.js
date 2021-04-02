@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+<<<<<<< HEAD:client/src/index.js
+=======
+import 'bootstrap/dist/css/bootstrap.min.css';
+>>>>>>> 547e726709d6a214b57988dba090d93fe047863f:project-folder/client/src/index.js
 
 ReactDOM.render(
   <React.StrictMode>
