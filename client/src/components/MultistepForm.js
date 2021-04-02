@@ -37,7 +37,8 @@ const MultistepForm = () => {
         case 0:
             return <StepOne/>;
         case 1:
-            return "Step Two (INTRO)";
+            return <h1>Step 2</h1>;
+
         case 2:
             return "Step Three (MYMATCH)";
         default: return "Unknow Step";

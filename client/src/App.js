@@ -27,7 +27,7 @@ function App() {
       <NavBar />
         <Container> 
           
-      <Route path = "/" component={MultistepForm} />
+      <Route path = "/" exact component ={MultistepForm} />
       <Route path = "/Questionnaire" component = {Questionnaire} />
       <TinderCards />
       <SwipeButtons />
