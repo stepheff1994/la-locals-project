@@ -48,7 +48,7 @@ db.once('open', () => {
       // loop through all of the recipients
       recipients.forEach(recipient => {
         // remove the current recipient from the list of recipients
-        const newRecipients = recipients.filter(r => r !== recipient.current)
+        const newRecipients = recipients.filter(r => r !== recipient)
         // take in the new recipients and push in the id of the person sending the message
         // the sender is added to the list of recipients and the reciever is removed from that list
         newRecipients.push(id)

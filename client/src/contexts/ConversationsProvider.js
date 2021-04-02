@@ -5,7 +5,7 @@ import { useSocket } from './SocketProvider'
 
 const ConversationsContext = React.createContext()
 
-// 
+
 export function useConversations() {
     return useContext(ConversationsContext)
 }
@@ -124,8 +124,8 @@ export function ConversationsProvider({ id, children }) {
         conversations: formattedConversations, 
         // export current selected conversation to be used at a later point
         selectedConversation: formattedConversations[selectedConversationIndex],
-        selectConversationIndex: setSelectedConversationIndex,
         sendMessage,
+        selectConversationIndex: setSelectedConversationIndex,
         createConversation
     }
 
