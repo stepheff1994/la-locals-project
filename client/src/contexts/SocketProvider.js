@@ -14,7 +14,7 @@ export function SocketProvider({ id, children }) {
     // create a new socket if the page refreshes or if there is a new id
     useEffect(() => {
         // create a new socket on the port 5000 and query the id
-        const newSocket = io('http://localhost:5000', { query: { id } })
+        const newSocket = io('/', { query: { id } })
         // set the socket to the new socket
         setSocket(newSocket)
 
