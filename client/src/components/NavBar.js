@@ -8,13 +8,11 @@ function NavBarPage() {
     Auth.logout();
   };
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="mr-auto nav-text" >
           <Nav.Link href="/">LA LOCALS</Nav.Link>
-
-          <Nav.Link href="/MyProfile">MyProfile</Nav.Link>
           <Nav.Link href="/Matches">Matches</Nav.Link>
           <Nav.Link href="/MyLikes">MyLikes</Nav.Link>
           <Nav.Link href="/Questionnaire">Questionnaire</Nav.Link>
@@ -39,5 +37,4 @@ function NavBarPage() {
     </Navbar>
   )
 }
-
 export default NavBarPage
