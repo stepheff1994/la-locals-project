@@ -3,10 +3,10 @@ import {Navbar, Nav} from "react-bootstrap";
 
 function NavBarPage () {
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="mr-auto">
+    <Nav className="mr-auto nav-text" >
       <Nav.Link href="/">LA LOCALS</Nav.Link>
       
       <Nav.Link href="/MyProfile">MyProfile</Nav.Link>
@@ -15,7 +15,7 @@ function NavBarPage () {
       <Nav.Link href="/Questionnaire">Questionnaire</Nav.Link>
    
     </Nav>
-    <Nav>
+    <Nav className="nav-text">
       <Nav.Link href="/Register">Register</Nav.Link>
       <Nav.Link eventKey={2} href="/LogIn">
         Log In
