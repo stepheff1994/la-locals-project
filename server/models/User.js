@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const userPhotoSchema = require('./Photo');
+const userRegisterQuestions = require('./Questions');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
@@ -38,7 +39,7 @@ const userSchema = new Schema({
     required: true
   },
   photos: [userPhotoSchema],
-  questions: [userQuestions]
+  questions: [userRegisterQuestions]
 });
 
 userSchema.pre('save', async function (next) {
