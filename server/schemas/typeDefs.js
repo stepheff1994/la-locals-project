@@ -42,14 +42,16 @@ type User {
   type Query {
     me: User
     users: [User]
-    user(name: String!): User
+    user(email: String!): User
     photos(name: String): [Photo]
+    questions(email:String):[Questions]
   }
   type Mutation {
     me: User
     login(email: String!, password: String!): Auth
-    addUser(firstName: String!, lastName: String!,email: String!, password: String!, age: Int!, area: String!,identity: String!,identity: String,preference: String!,input: QuestionsInput): Auth
+    addUser(firstName: String!, lastName: String!,email: String!, password: String!, age: Int!, area: String!,identity: String!,identity: String,preference: String!): Auth
     addPhoto(_id:ID!, input: PhotoInput): User
+    addQuestions(_id:ID!,input: QuestionsInput):User
   }
  
 `;

@@ -1,6 +1,7 @@
 const { User } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const { findOneAndUpdate } = require('../models/User');
 
 const resolvers = {
     Query: {
@@ -9,6 +10,7 @@ const resolvers = {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
                     .populate('Photo')
+                    .populate('Questions')
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
@@ -18,12 +20,15 @@ const resolvers = {
             return User.find()
                 .select('-__v -password')
                 .populate('Photo')
+                .populate('Questions')
+
         },
-        // get a user by username
-        user: async (parent, { name }) => {
-            return User.findOne({ name })
+        // get a user by email
+        user: async (parent, { email }) => {
+            return User.findOne({ email })
                 .select('-__v -password')
                 .populate('Photo')
+                .populate('Questions')
         }
     },
     Mutation: {
@@ -56,6 +61,17 @@ const resolvers = {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $push: { photos: input } },
+                    { new: true, runValidators: true }
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addQuestions: async (parent, { input }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { questions: input } },
                     { new: true, runValidators: true }
                 );
                 return updatedUser;
