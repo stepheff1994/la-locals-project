@@ -6,17 +6,22 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
     "@material-ui/core": "^4.11.3",
+<<<<<<< HEAD
     "@material-ui/icons": "^4.11.2",
+=======
+>>>>>>> 4020ac79975f7dd64cb48c8d465516f7b106ea95
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "apollo-boost": "^0.4.7",
+    "bootstrap": "^4.6.0",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.10.3",
     "install": "^0.13.0",
     "jwt-decode": "^2.2.0",
     "npm": "^7.7.6",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.5.2",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",

@@ -1,121 +1,155 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 // import {Form, Button} from 'react-bootstrap'
+import {makeStyles} from '@material-ui/core/styles';
+import {Stepper, Step, StepLabel, Typography, Button} from '@material-ui/core';
+import Register from './Register';
+import IntroQuestionnaire from './IntroQuestionnaire';
+
+const useStyles = makeStyles({
+    root: {
+        width: "50%",
+        padding: "20px",
+        margin: "6rem auto",
+        border: "10px solid #999",
+        "& .MuiStepIcon-root.MuiStepIcon-active": {
+            color: "red"
+        },
+        "& .MuiStepIcon-root.MuiStepIcon-completed": {
+            color: "red"
+        }
+    }
+    
+})
 
 
-// function Questionnaire () {
-//     const [area, setArea] = useState('');
-//     const [zipcode, setZipcode] = useState('');
-//     const [first, setFirst] = useState(' ');
-//     const [last, setLast] = useState(' ');
-//     const [email, setEmail] = useState(' ');
-//     const [password, setPassword] = useState(' ');
-//     const [photo, setPhoto] = useState(' ');
-//     const [identity, setIdentity] = useState(' ');
-//     const [preference, setPreference] = useState(' ');
-//     const [question1, setQuestion1] = useState(' ');
-//     const [question2, setQuestion2] = useState(' ');
-//     const [question3, setQuestion3] = useState(' ');
-//     const [question4, setQuestion4] = useState(' ');
-//     const [question5, setQuestion5] = useState(' ');
+
+
+function Questionnaire () {
+    const [area, setArea] = useState('');
+    const [zipcode, setZipcode] = useState('');
+    const [first, setFirst] = useState(' ');
+    const [last, setLast] = useState(' ');
+    const [email, setEmail] = useState(' ');
+    const [password, setPassword] = useState(' ');
+    const [photo, setPhoto] = useState(' ');
+    const [identity, setIdentity] = useState(' ');
+    const [preference, setPreference] = useState(' ');
+    const [question1, setQuestion1] = useState(' ');
+    const [question2, setQuestion2] = useState(' ');
+    const [question3, setQuestion3] = useState(' ');
+    const [question4, setQuestion4] = useState(' ');
+    const [question5, setQuestion5] = useState(' ');
 
 
 
-//     const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029','91309',  
-//     '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}]
+    const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029','91309',  
+    '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}]
 
 
-//     function addressEntered (zip) {
+
+    const [activeStep, setActiveStep] = useState(0);
+
+    function getSteps() {
+        return ["SIGNUP", "INTRO", "MYMATCH"];
+    }
+    const handleNext =() => {
+        setActiveStep(prevActiveStep => prevActiveStep +1)
+    }
+
+    function addressEntered (zip) {
         
-//         let found_area = ""
+        let found_area = ""
 
-//         for(var i = 0; i < available_areas.length; i++) {
-//             let currentAreaObj = available_areas[i]
-//             let currentAreaObjectZips = currentAreaObj.zip
-//             for(var j = 0; j < currentAreaObjectZips.length; j++) {
-//                 let currentZip = currentAreaObjectZips[j]
-//                 console.log('current zip', currentZip)
-//                 console.log('zip', zip)
-//                 if (currentZip === zip ) {
-//                     console.log('area matched', currentAreaObj.area)
-//                     found_area = currentAreaObj.area
-//                     break;
-//                 }
+        for(var i = 0; i < available_areas.length; i++) {
+            let currentAreaObj = available_areas[i]
+            let currentAreaObjectZips = currentAreaObj.zip
+            for(var j = 0; j < currentAreaObjectZips.length; j++) {
+                let currentZip = currentAreaObjectZips[j]
+                console.log('current zip', currentZip)
+                console.log('zip', zip)
+                if (currentZip === zip ) {
+                    console.log('area matched', currentAreaObj.area)
+                    found_area = currentAreaObj.area
+                    break;
+                }
                 
-//             }   
-//         }   
-//         setArea(found_area)
-//         console.log('area found is ',found_area)
+            }   
+        }   
+        setArea(found_area)
+        console.log('area found is ',found_area)
       
 
-//     }
-//     const handleZipChange = (event) => {
-//         setZipcode(event.target.value)
-//         addressEntered(event.target.value)
-//     }
-//     const handleSubmit = (event) => {
-//         event.preventDefault()
-//         console.log('submitted')
-//     }
-//     return (
-//         <div>
-//             <Form onSubmit = {handleSubmit}>
-//     <Form.Group controlId="first">
-//     <Form.Label>First Name</Form.Label>
-//     <Form.Control type="text" placeholder="First Name" value={first} onChange={event => setFirst(event.target.value)} />
-//   </Form.Group>
+    }
+    const handleZipChange = (event) => {
+        setZipcode(event.target.value)
+        addressEntered(event.target.value)
+    }
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        console.log('submitted')
+    }
 
-//   <Form.Group controlId="last">
-//     <Form.Label>Last Name</Form.Label>
-//     <Form.Control type="text" placeholder="Last Name" value={last} onChange={event => setLast(event.target.value)} />
-//   </Form.Group>
-  
-//   <Form.Group controlId="email">
-//     <Form.Label>Email address</Form.Label>
-//     <Form.Control type="email" placeholder="Enter Email" value={email} onChange={event => setEmail(event.target.value)}/> 
-//   </Form.Group>
+    const steps = getSteps();
 
-//   <Form.Group controlId="password">
-//     <Form.Label>password</Form.Label>
-//     <Form.Control type="password" placeholder="Enter Password" value={password} onChange={event => setPassword(event.target.value)}/> 
-//   </Form.Group>
+    function getStepsContent(stepIndex){
+        switch(stepIndex) {
+        case 0:
+            return <Register first = {first} setFirst = {setFirst}/>;
+        case 1:
+            return <IntroQuestionnaire 
+                question1 = {question1} 
+                setQuestion1 = {setQuestion1}
+                question2 = {question2} 
+                setQuestion2 = {setQuestion2}
+                question3 = {question3} 
+                setQuestion3 = {setQuestion3}
+                question4 = {question4} 
+                setQuestion4 = {setQuestion4}
+                question5 = {question5} 
+                setQuestion5 = {setQuestion5}     />;
+        case 2:
+            return "Step Three (MYMATCH)";
+        default: return "Unknow Step";
+    }
+    }
 
-//   <Form.Group controlId="area">
-
-//     <Form.Label>Enter your zipcode</Form.Label>
-//     <Form.Control  type="text" placeholder="90000" value={zipcode} onChange = {handleZipChange}/>
-//     <Form.Text> {area} </Form.Text>
-//   </Form.Group>
-  
-//   <Form.Group controlId="identity">
-//     <Form.Label>How do you identify?</Form.Label>
-//     <Form.Control as = 'select' value={identity} onChange={event => setIdentity(event.target.value)} >
-       
-//         <option>Select</option>
-//         <option>Man</option>
-//        <option>Woman</option>
-//        <option>Non-binary</option>  
-//     </Form.Control> 
-//   </Form.Group>
-
-//   <Button variant="primary" className="mt-5" type="submit">
-//     Submit
-//   </Button>
-
-
-
-// </Form>
-
-//             {/* <h1>
-//                 {area}
-//                <input type="text" onChange={event => { addressEntered(event.target.value)}} />
-//             </h1> */}
-//         </div>
-//     )
-// }
+   const classes = useStyles();
+   return (
+    <>
+          
+      
+    <div className = {classes.root}>
+        <Stepper activeStep={activeStep} alternativeLabel >
+            {steps.map(label => (
+              <Step key ={label}> 
+                  <StepLabel>
+                      {label}
+                 </StepLabel> 
+              </Step>
+            ))}
+        </Stepper>
+        <>
+        {activeStep ===steps.length ? "Welcome to LA locals": (
+        <>
+        {getStepsContent(activeStep)}  
+        <Button onClick={handleNext}>
+         {activeStep ===steps.length ? "Finish": "Next"}
+        </Button>
+        </>
+        )}
+    </>    
+    </div>
+    </>
+)
+}
 
 
+    
+   
 
-// export default Questionnaire
+
+
+export default Questionnaire
 
 
 // Registration: 
@@ -137,14 +171,14 @@
 // Intro Questionnaire
 // Why did you join LA LOCALS? (select one answer): 
 // (a.) I’m tired of the TInder/Bumble scene 
-// (b.) I want to meet someone with out having to go on the 405 
-// (c.) I survived 2020 I can survive this app 
-// (d.) I love social experiments 
+// b. I want to meet someone with out having to go on the 405 
+// c. I survived 2020 I can survive this app 
+// d. I love social experiments 
 // Your Uncle has just posted something offensive on Facebook your next move is to: 
-// (a.) I don’t have Facebook 
-// (b.) My uncle doesn’t have Facebook 
-// (c.) If it is on my status I will delete the comment 
-// (d.) Engage in a fight in the comment section because I like seeing the world the burn. 
+// a. I don’t have Facebook 
+// b. My uncle doesn’t have Facebook 
+// c. If it is on my status I will delete the comment 
+// d. Engage in a fight in the comment section because I like seeing the world the burn. 
 // Instead of asking how old you are select which social media app you prefer? (select one answer):
 //  (a.) no socials because I’m the Unabomber 
 //  (b.) It’s a real toss up between instagram and snapchat 
