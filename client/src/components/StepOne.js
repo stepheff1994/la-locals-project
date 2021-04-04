@@ -67,7 +67,6 @@ const stateValidatorSchema = {
     email: {
         required: true,
         validator: {
-            func: value => /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(value),
             error: "Invalid Email"
         }
     },

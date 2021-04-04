@@ -20,7 +20,7 @@ const useStyles = makeStyles ({
 
     formContainer: {
        position: "relative",
-       width: "28.125rem",
+       width: "auto",
        height: "auto",
        padding: "2rem"
     },
