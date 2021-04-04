@@ -4,6 +4,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Stepper, Step, StepLabel, Typography, Button} from '@material-ui/core';
 import Register from './Register';
 import IntroQuestionnaire from './IntroQuestionnaire';
+import PhotoUpload from './PhotoUpload'
 
 const useStyles = makeStyles({
     root: {
@@ -50,7 +51,7 @@ function Questionnaire () {
     const [activeStep, setActiveStep] = useState(0);
 
     function getSteps() {
-        return ["SIGNUP", "INTRO", "MYMATCH"];
+        return ["SIGNUP", "INTRO", "PHOTOS"];
     }
     const handleNext =() => {
         setActiveStep(prevActiveStep => prevActiveStep +1)
@@ -108,7 +109,11 @@ function Questionnaire () {
                 question5 = {question5} 
                 setQuestion5 = {setQuestion5}     />;
         case 2:
-            return "Step Three (MYMATCH)";
+           return <div>
+                Upload up to 3 images 
+                <PhotoUpload />
+            </div>
+
         default: return "Unknow Step";
     }
     }
