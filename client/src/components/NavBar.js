@@ -20,7 +20,7 @@ function NavBarPage() {
           <Nav.Link href="/Upgrade">Upgrade!</Nav.Link>
 
         </Nav>
-        <Nav >
+        <Nav className="nav-text" text-align="right">
           {Auth.loggedIn() ? (
             <>
               <Nav.Link href="/MyProfile">MyProfile</Nav.Link>
