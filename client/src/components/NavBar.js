@@ -13,7 +13,7 @@ function NavBarPage() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto nav-text" >
           <Nav.Link href="/">LA LOCALS</Nav.Link>
-          <Nav.Link href="/">MyProfile</Nav.Link>
+          <Nav.Link href="/MyProfile">MyProfile</Nav.Link>
           <Nav.Link href="/Matches">Matches</Nav.Link> 
           {/* lets call Matches Messages */}
           <Nav.Link href="/MyLikes">MyLikes</Nav.Link>
