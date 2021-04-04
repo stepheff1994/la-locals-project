@@ -7,8 +7,10 @@ function Register({first,setFirst}) {
   const [zipcode, setZipcode] = useState('');
 //   const [first, setFirst] = useState(' ');
   const [last, setLast] = useState(' ');
+  const [age, setAge] = useState(' ');
   const [email, setEmail] = useState(' ');
   const [password, setPassword] = useState(' ');
+  const [ConfirmPassword, setConfirmPassword] = useState(' ');
   const [photo, setPhoto] = useState(' ');
   const [identity, setIdentity] = useState(' ');
   const [preference, setPreference] = useState(' ');
@@ -74,15 +76,26 @@ function Register({first,setFirst}) {
           <Form.Control type="text" placeholder="Last Name" value={last} onChange={event => setLast(event.target.value)} />
         </Form.Group>
 
+        <Form.Group controlId="age">
+          <Form.Label>Age</Form.Label>
+          <Form.Control type="text" placeholder="Enter Age (must be at least 18yrs)" value={age} onChange={event => setAge(event.target.value)} />
+        </Form.Group>
+
         <Form.Group controlId="email">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter Email" value={email} onChange={event => setEmail(event.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label>password</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Enter Password" value={password} onChange={event => setPassword(event.target.value)} />
         </Form.Group>
+
+        <Form.Group controlId="ConfirmPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control type="password" placeholder="Re-enter Password" value={ConfirmPassword} onChange={event => setConfirmPassword(event.target.value)} />
+        </Form.Group>
+
 
         <Form.Group controlId="area">
 
@@ -98,7 +111,7 @@ function Register({first,setFirst}) {
             <option>Select</option>
             <option>Man</option>
             <option>Woman</option>
-            <option>Non-binary</option>
+            <option>Non-Binary</option>
           </Form.Control>
         </Form.Group>
 
@@ -107,9 +120,9 @@ function Register({first,setFirst}) {
           <Form.Control as='select' value={preference} onChange={event => setPreference(event.target.value)} >
 
             <option>Select</option>
-            <option>Man</option>
-            <option>Woman</option>
-            <option>Non-binary</option>
+            <option>Men</option>
+            <option>Women</option>
+            <option>Non-Binary</option>
           </Form.Control>
         </Form.Group>
 

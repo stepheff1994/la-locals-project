@@ -15,6 +15,7 @@ import { Container } from "react-bootstrap"
 import Register from "./pages/Questionnaire";
 import MyProfile from "./pages/MyProfile.js";
 import LogIn from "./pages/LogIn.js";
+import Upgrade from "./pages/Upgrade.js";
 function App() {
   const client = new ApolloClient({
     request: (operation) => {
@@ -32,7 +33,7 @@ function App() {
       <ApolloProvider client={client}>
         <NavBar />
         <Container>
-          text
+          
         <Router>
             <Route exact path="/" component={Home} />
             {/* <Route exact path = "/Map" component = {Map} /> */}
@@ -40,6 +41,7 @@ function App() {
             <Route exact path="/Matches" component={Matches} />
             <Route exact path="/MyLikes" component={MyLikes} />
             {/* <Route exact path = "/NewMembers" component = {NewMembers} /> */}
+            <Route exact path="/Upgrades\" component={Upgrade} />
             <Route exact path="/Questionnaire" component={Questionnaire} />
             <Route exact path="/Register" component={Register} />
             <Route exact path="/LogIn" component={LogIn} />
