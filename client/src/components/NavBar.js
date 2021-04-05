@@ -8,7 +8,8 @@ function NavBarPage() {
     Auth.logout();
   };
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+    
+    <Navbar className="color-nav" collapseOnSelect expand="lg" bg="light" variant="light">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto nav-text" >
@@ -37,6 +38,7 @@ function NavBarPage() {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
+    
   )
 }
 export default NavBarPage
