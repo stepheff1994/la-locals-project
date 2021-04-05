@@ -38,7 +38,11 @@ const MultistepForm = () => {
     function getStepsContent(stepIndex){
         switch(stepIndex) {
         case 0:
-            return <StepOne/>;
+            return <StepOne
+            handleNext={handleNext}
+            activeStep={activeStep}
+            steps = {steps}
+            />;
         case 1:
             return <StepTwo />;
         case 2:

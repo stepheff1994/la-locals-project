@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap'
 
+import { useMutation } from '@apollo/react-hooks';
+import Auth from "../utils/auth";
+import { ADD_USER } from "../utils/mutations";
 
-function Register({first,setFirst}) {
+function Register(props) {
+
+  const [activeStep, steps, handleNext] = useState('');
+  
+  
+
+  const [formState, setFormState] = useState({ email: '', password: '', first:'' });
+  const [addUser] = useMutation(ADD_USER);
+  
+  const [first, setFirst] = useState(' ');
   const [area, setArea] = useState('');
   const [zipcode, setZipcode] = useState('');
 //   const [first, setFirst] = useState(' ');
@@ -54,44 +66,69 @@ function Register({first,setFirst}) {
     setZipcode(event.target.value)
     addressEntered(event.target.value)
   }
-  const handleSubmit = (event) => {
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = async event => {
     event.preventDefault()
+    const mutationResponse = await addUser({
+      variables: {
+        email: formState.email, password: formState.password,
+        first: formState.first
+        
+      }
+    });
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
     console.log('submitted')
-  }
+  };
+   
+  
   return (
     <div>
       
       <Form.Text><h2><strong>Registration Questions</strong></h2></Form.Text>
 
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="first">
+        <Form.Group controlId="first" onChange={handleChange}>
           <Form.Label>First Name</Form.Label>
           <Form.Control type="text" placeholder="First Name" value={first} onChange={event => setFirst(event.target.value)} />
         </Form.Group>
 
-        <Form.Group controlId="last">
-          <Form.Label>Last Name</Form.Label>
+        <Form.Group controlId="last" onChange={handleChange}>
+          <Form.Label>Last Name</Form.Label >
           <Form.Control type="text" placeholder="Last Name" value={last} onChange={event => setLast(event.target.value)} />
         </Form.Group>
 
-        <Form.Group controlId="email">
+        <Form.Group controlId="email" onChange={handleChange}>
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter Email" value={email} onChange={event => setEmail(event.target.value)} />
         </Form.Group>
 
-        <Form.Group controlId="password">
-          <Form.Label>password</Form.Label>
+        <Form.Group controlId="password" onChange={handleChange}>
+          <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Enter Password" value={password} onChange={event => setPassword(event.target.value)} />
         </Form.Group>
 
-        <Form.Group controlId="area">
+        <Form.Group controlId="password" onChange={handleChange}>
+          <Form.Label>Age</Form.Label>
+          <Form.Control type="password" placeholder="Enter Password" value={password} onChange={event => setPassword(event.target.value)} />
+        </Form.Group>        
+
+        <Form.Group controlId="formGridZip">
 
           <Form.Label>Enter your zipcode</Form.Label>
           <Form.Control type="text" placeholder="90000" value={zipcode} onChange={handleZipChange} />
           <Form.Text><h2><strong>{area}</strong></h2></Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="identity">
+        <Form.Group controlId="identity" onChange={handleChange}>
           <Form.Label>How do you identify?</Form.Label>
           <Form.Control as='select' value={identity} onChange={event => setIdentity(event.target.value)} >
 
@@ -102,7 +139,7 @@ function Register({first,setFirst}) {
           </Form.Control>
         </Form.Group>
 
-        <Form.Group controlId="preference">
+        <Form.Group controlId="preference" onChange={handleChange}>
           <Form.Label>Interested In:</Form.Label>
           <Form.Control as='select' value={preference} onChange={event => setPreference(event.target.value)} >
 
@@ -114,7 +151,13 @@ function Register({first,setFirst}) {
         </Form.Group>
 
         
-
+        
+        <Button onClick={handleNext} variant="primary" className="mt-5" type="submit">
+         {activeStep ===steps.length ? "Finish": "Next"}
+        </Button>
+        
+        
+        
 
 
         <Button variant="primary" className="mt-5" type="submit">

@@ -31,12 +31,22 @@ const useStyles = makeStyles ({
         width:"100%",
         height: "3rem",
         background: "red",
-        color: "#fff"
+        color: "#fff",
+        "&:hover": {
+            background:"red",
+            opacity: ".7",
+            transition: ".3s erase-in-out"
+        }
+    },
+    disabledBtn: {
+        background: "rgba(0,0,0,0.38)",
+        width: "100%",
+        height: "3rem"
     }
 })
     
 
-const StepOne = () => {
+const StepOne = ({activeStep, steps, handleNext}) => {
 //define state schema
 
 const stateSchema = {
@@ -173,7 +183,7 @@ const stateValidatorSchema = {
                      </InputAdornment>
                  }
                 />
-                {errors.password && dirty.email && (
+                {errors.password && dirty.password && (
                 <Typography
                     style = {{marginTop: "0",color: "red", fontWeight: "200"  }}
                 >{errors.password}
@@ -195,15 +205,32 @@ const stateValidatorSchema = {
                      </InputAdornment>
                  }
                  /> 
-                 
+                 {confirmPassword !== password ? (
+                     <Typography style={{color: "red"}}>Password do not match</Typography>
+                 ):null}
               </FormControl>
-              <>
-                 <Button className={classes.btn}
-                 variant="contained" type="submit" endIcon={<SendSharpIcon/>}>
-                 SiGN UP
-                 </Button>
-              </>
-            </form>  
+              {
+                  !firstname ||
+                  !lastname ||
+                  !email ||
+                  !password ||
+                  !confirmPassword || confirmPassword !== password
+                   ?
+                   (<Button className={classes.disabledBtn}
+                    variant="contained" disabled type="submit" endIcon={<BlockSharpIcon/>}>
+                     {activeStep ===steps.length ? "Finish": "SiGN UP"}
+                    </Button>
+                    )
+                    :
+                    (
+                    <Button className={classes.btn}
+                    variant="contained"  type="submit" onClick={handleNext} endIcon={<SendSharpIcon/>}>
+                    {activeStep ===steps.length ? "Finish": "SiGN UP"}
+                    </Button>
+                    )
+
+              }
+              </form>  
             </div>  
         </div>
     )

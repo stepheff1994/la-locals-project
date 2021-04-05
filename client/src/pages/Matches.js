@@ -1,11 +1,13 @@
 import React from "react";
+import TinderCards from "./TinderCards";
+
+
 
 function Matches () {
     return (
         <div>
-            <h1>
-                Matches
-            </h1>
+            <TinderCards/>
+           
         </div>
     )
 }

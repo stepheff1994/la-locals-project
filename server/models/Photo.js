@@ -1,4 +1,4 @@
-  const { Schema, Types } = require('mongoose');
+const { Schema, Types } = require('mongoose');
 //subdocoument instead of own schema
 const userPhotoSchema = new Schema({
   photoId: {

@@ -6,10 +6,6 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
     "@material-ui/core": "^4.11.3",
-<<<<<<< HEAD
-    "@material-ui/icons": "^4.11.2",
-=======
->>>>>>> 4020ac79975f7dd64cb48c8d465516f7b106ea95
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",

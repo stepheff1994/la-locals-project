@@ -1,6 +1,7 @@
 
 import React, {useState} from 'react';
 import TinderCard from "react-tinder-card"
+// import SwipeButtons from './SwipeButtons';
 import "./TinderCards.css";
 
 const TinderCards= ()=> {
@@ -44,7 +45,9 @@ const TinderCards= ()=> {
                       <h3>{person.name}</h3>   
                     </div>
                 </TinderCard>
+                
             ))}
+          
             </div>
         </div>
     )
