@@ -1,18 +1,9 @@
 import React, {useState} from "react";
+import { propTypes } from "react-bootstrap/esm/Image";
 
-function PhotoUpload() {
+function PhotoUpload(props) {
 
-    const [imageAsFile, setImageAsFile] = useState('')
-    const [imageAsUrl, setImageAsUrl] = useState('')
-
-    console.log("image as file", imageAsFile)
-    console.log("image as url" , imageAsUrl)
-    
-    const handleImageAsFile = (e) => {
-        const image = e.target.files[0]
-        setImageAsFile(imageFile => (image))
-        setImageAsUrl(URL.createObjectURL(image))
-    }
+   
 
 //     for multiple images
 //     const storageRef = fire.storage().ref();
@@ -25,9 +16,10 @@ function PhotoUpload() {
 
     return (
         <div>
+           
             <form>
-                <img className= "photo-img" src={imageAsUrl} />
-                <input type="file" onChange={handleImageAsFile} />
+                <img className= "photo-img" src={props.imageAsUrl} />
+                <input type="file" onChange={props.handleImageAsFile} />
             </form>
         </div>
     )

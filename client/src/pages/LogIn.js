@@ -1,9 +1,9 @@
 import React from "react";
 
 import { Row, Col} from 'react-bootstrap';
-import LeftSide from "./LeftSide";
+import LeftSide from "../components/LeftSide";
 
-import RightSide from "./RightSide";
+import RightSide from "../components/RightSide";
 
 function LogIn () {
     return (
@@ -19,135 +19,6 @@ function LogIn () {
   }
 
   export default LogIn
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

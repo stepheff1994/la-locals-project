@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 // import {Form, Button} from 'react-bootstrap'
 import {makeStyles} from '@material-ui/core/styles';
 import {Stepper, Step, StepLabel, Typography, Button} from '@material-ui/core';
-import Register from './Register';
-import IntroQuestionnaire from './IntroQuestionnaire';
-import PhotoUpload from './PhotoUpload'
+import Register from '../components/Register';
+import IntroQuestionnaire from '../components/IntroQuestionnaire';
+import PhotoUpload from '../components/PhotoUpload'
 
 const useStyles = makeStyles({
     root: {
@@ -23,10 +23,11 @@ const useStyles = makeStyles({
 })
 
 
-
-
 function Questionnaire () {
+
     const [area, setArea] = useState('');
+    const [age, setAge] = useState(' ');
+    const [ConfirmPassword, setConfirmPassword] = useState (' ');
     const [zipcode, setZipcode] = useState('');
     const [first, setFirst] = useState(' ');
     const [last, setLast] = useState(' ');
@@ -41,7 +42,19 @@ function Questionnaire () {
     const [question4, setQuestion4] = useState(' ');
     const [question5, setQuestion5] = useState(' ');
 
+    const [imageAsFile, setImageAsFile] = useState('')
+    const [imageAsUrl, setImageAsUrl] = useState('')
 
+    console.log("image as file", imageAsFile)
+    console.log("image as url" , imageAsUrl)
+    
+    const handleImageAsFile = (e) => {
+        const image = e.target.files[0]
+        setImageAsFile(imageFile => (image))
+        setImageAsUrl(URL.createObjectURL(image))
+    }
+
+    
 
     const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029','91309',  
     '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}]
@@ -84,10 +97,34 @@ function Questionnaire () {
     const handleZipChange = (event) => {
         setZipcode(event.target.value)
         addressEntered(event.target.value)
+
     }
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log('submitted')
+
+        // const [area, setArea] = useState('');
+        // const [age, setAge] = useState(' ');
+        // const [ConfirmPassword, setConfirmPassword] = useState (' ');
+        // const [zipcode, setZipcode] = useState('');
+        // const [first, setFirst] = useState(' ');
+        // const [last, setLast] = useState(' ');
+        // const [email, setEmail] = useState(' ');
+        // const [password, setPassword] = useState(' ');
+        // const [photo, setPhoto] = useState(' ');
+        // const [identity, setIdentity] = useState(' ');
+        // const [preference, setPreference] = useState(' ');
+        // const [question1, setQuestion1] = useState(' ');
+        // const [question2, setQuestion2] = useState(' ');
+        // const [question3, setQuestion3] = useState(' ');
+        // const [question4, setQuestion4] = useState(' ');
+        // const [question5, setQuestion5] = useState(' ');
+    
+        // const [imageAsFile, setImageAsFile] = useState('')
+        // const [imageAsUrl, setImageAsUrl] = useState('')
+    
+        // console.log("image as file", imageAsFile)
+        // console.log("image as url" , imageAsUrl)
+        console.log('submitted',area,age,zipcode,first,last,email,password,ConfirmPassword,identity,preference,question1,question2,question3,question4,question5,imageAsFile,imageAsUrl )
     }
 
     const steps = getSteps();
@@ -95,7 +132,16 @@ function Questionnaire () {
     function getStepsContent(stepIndex){
         switch(stepIndex) {
         case 0:
-            return <Register first = {first} setFirst = {setFirst}/>;
+            return <Register first = {first} setFirst = {setFirst} 
+            last = {last} setLast  = {setLast} 
+            age = {age} setAge = {setAge}
+             email = {email} setEmail = {setEmail} 
+             password = {password} setPassword = {setPassword} 
+             ConfirmPassword = {ConfirmPassword} setConfirmPassword = {setConfirmPassword} 
+             identiy = {identity} setIdentity = {setIdentity} 
+             handleZipChange = {handleZipChange}
+             area = {area} 
+             preference = {preference} setPreference = {setPreference}/>;
         case 1:
             return <IntroQuestionnaire 
                 question1 = {question1} 
@@ -111,7 +157,11 @@ function Questionnaire () {
         case 2:
            return <div>
                 Upload up to 3 images 
-                <PhotoUpload />
+                <PhotoUpload imageAsUrl = {imageAsUrl} handleImageAsFile = {handleImageAsFile}/>
+               
+        <Button variant="primary" className="mt-5" type="submit" onClick = {handleSubmit}>
+          Submit
+  </Button>
             </div>
 
         default: return "Unknow Step";

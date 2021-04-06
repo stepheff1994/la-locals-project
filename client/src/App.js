@@ -10,12 +10,12 @@ import Home from "./pages/Home"
 import Matches from "./pages/Matches"
 import MyLikes from "./pages/MyLikes"
 // import NewMembers from "./pages/NewMembers"
-import Questionnaire from "./pages/Register"
+import Questionnaire from "./components/Register"
 import { Container } from "react-bootstrap"
 import Register from "./pages/Questionnaire";
 import MyProfile from "./pages/MyProfile.js";
 import LogIn from "./pages/LogIn.js";
-import Upgrade from "./pages/Upgrade.js";
+import Upgrade from "./components/Upgrade.js";
 function App() {
   const client = new ApolloClient({
     request: (operation) => {
