@@ -1,10 +1,10 @@
 import React from "react";
 
-function NewMembers () {
+function Upgrade () {
     return (
         <div>
             <h1>
-                NewMembers
+                Upgrade
             </h1>
         </div>
     )
@@ -12,4 +12,4 @@ function NewMembers () {
 
 
 
-export default NewMembers
+export default Upgrade

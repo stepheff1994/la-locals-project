@@ -12,7 +12,7 @@ db.once('open', async () => {
     // create user data
     const userData = [];
 
-    for (let i = 0; i < 25; i += 1) {
+    for (let i = 0; i < 10; i += 1) {
         const name = faker.name.firstName()
         const email = faker.internet.email(name);
         const password = faker.internet.password();

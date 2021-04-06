@@ -1,15 +1,18 @@
 const { User } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require('../utils/auth');
+const { findOneAndUpdate } = require('../models/User');
 
 const resolvers = {
     Query: {
-        me: async (parent, args) => {
-            if (args.user) {
-                const userData = await User.findOne({ _id: args.user._id })
+        me: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
                     .populate('Photo')
                 return userData;
             }
+            throw new AuthenticationError('Not logged in');
         },
         // get all users
         users: async () => {
@@ -17,18 +20,19 @@ const resolvers = {
                 .select('-__v -password')
                 .populate('Photo')
         },
-        // get a user by username
-        user: async (parent, { name }) => {
-            return User.findOne({ name })
+        // get a user by email
+        user: async (parent, { email }) => {
+            return User.findOne({ email })
                 .select('-__v -password')
                 .populate('Photo')
         }
     },
     Mutation: {
+        // find way to get args to use data from token payload???
         addUser: async (parent, args) => {
             const user = await User.create(args);
-
-            return user
+            const token = signToken(user);
+            return { token, user };
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
@@ -43,18 +47,9 @@ const resolvers = {
                 throw new AuthenticationError('Incorrect credentials');
             }
 
-            return user;
-        },
-        addPhoto: async (parent, { _id, input }, args) => {
-            if (args) {
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: _id },
-                    { $push: { photos: input } },
-                    { new: true, runValidators: true }
-                );
-                return updatedUser;
-            }
+            const token = signToken(user);
 
+            return { token, user };
         },
     }
 }

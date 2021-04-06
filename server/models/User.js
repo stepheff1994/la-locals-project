@@ -1,9 +1,14 @@
 const { Schema, model } = require('mongoose');
 const userPhotoSchema = require('./Photo');
+const userRegisterQuestions = require('./Questions');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
     type: String,
     required: true,
   },
@@ -21,15 +26,41 @@ const userSchema = new Schema({
     type: Number,
     required: true
   },
-  // location: {
-  //   type: String,
-  //   required: true
-  // },
-  // gender: {
-  //   type: String,
-  //   required: true
-  // },
-  photos: [userPhotoSchema]
+  area: {
+    type: String,
+    required: true
+  },
+  identity: {
+    type: String,
+    required: true
+  },
+  preference: {
+    type: String,
+    required: true
+  },
+  question1: {
+    type: String,
+    required: true
+  },
+
+  question2: {
+    type: String,
+    required: true
+  },
+  question3: {
+    type: String,
+    required: true
+  },
+  question4: {
+    type: String,
+    required: true
+  },
+  question5: {
+    type: String,
+    required: true
+  },
+  photos: [userPhotoSchema],
+  // questions: [userRegisterQuestions]
 });
 
 userSchema.pre('save', async function (next) {

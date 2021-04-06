@@ -1,9 +1,35 @@
 import React, { useState } from 'react';
-import {Form, Button} from 'react-bootstrap'
+// import {Form, Button} from 'react-bootstrap'
+import {makeStyles} from '@material-ui/core/styles';
+import {Stepper, Step, StepLabel, Typography, Button} from '@material-ui/core';
+import Register from '../components/Register';
+import IntroQuestionnaire from '../components/IntroQuestionnaire';
+import PhotoUpload from '../components/PhotoUpload';
+import {ADD_USER} from '../utils/mutations';
+import { useMutation } from '@apollo/react-hooks';
+
+const useStyles = makeStyles({
+    root: {
+        width: "50%",
+        padding: "20px",
+        margin: "6rem auto",
+        border: "10px solid #999",
+        "& .MuiStepIcon-root.MuiStepIcon-active": {
+            color: "red"
+        },
+        "& .MuiStepIcon-root.MuiStepIcon-completed": {
+            color: "red"
+        }
+    }
+    
+})
 
 
 function Questionnaire () {
+
     const [area, setArea] = useState('');
+    const [age, setAge] = useState(' ');
+    const [ConfirmPassword, setConfirmPassword] = useState (' ');
     const [zipcode, setZipcode] = useState('');
     const [first, setFirst] = useState(' ');
     const [last, setLast] = useState(' ');
@@ -18,11 +44,62 @@ function Questionnaire () {
     const [question4, setQuestion4] = useState(' ');
     const [question5, setQuestion5] = useState(' ');
 
+    // const [formState, setFormState] = useState({
+    //     // firstName: '',
+    //     // lastName: '',
+    //     age: '',
+    //     area: '',
+    //     ConfirmPassword: '',
+    //     password: '',
+    //     email: '',
+    //     identity:'',
+    //     preference: '',
+    //     question1: '',
+    //     question2: '',
+    //     question3: '',
+    //     question4: '',
+    //     question5: '',
 
+    
+    
+    
+    //   })
+
+    const [addUser] = useMutation(ADD_USER);
+    const handleSubmit = async event => {
+      event.preventDefault();
+      addUser({
+        variables:{email, first,last,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
+      })
+    };
+
+    const [imageAsFile, setImageAsFile] = useState('')
+    const [imageAsUrl, setImageAsUrl] = useState('')
+
+    console.log("image as file", imageAsFile)
+    console.log("image as url" , imageAsUrl)
+    
+    const handleImageAsFile = (e) => {
+        const image = e.target.files[0]
+        setImageAsFile(imageFile => (image))
+        setImageAsUrl(URL.createObjectURL(image))
+    }
+
+    
 
     const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029','91309',  
     '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}]
 
+
+
+    const [activeStep, setActiveStep] = useState(0);
+
+    function getSteps() {
+        return ["SIGNUP", "INTRO", "PHOTOS"];
+    }
+    const handleNext =() => {
+        setActiveStep(prevActiveStep => prevActiveStep +1)
+    }
 
     function addressEntered (zip) {
         
@@ -51,146 +128,89 @@ function Questionnaire () {
     const handleZipChange = (event) => {
         setZipcode(event.target.value)
         addressEntered(event.target.value)
+
     }
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log('submitted')
-    }
-    return (
-        <div>
-        <h1>THIS NOT THE REGISTRATION TAB ROUTE TO REGISTRATION INSTEAD</h1>    
-         <Form.Text><h2><strong>Registration Questions</strong></h2></Form.Text> 
-            
-            <Form onSubmit = {handleSubmit}>
-    <Form.Group controlId="first">
-    <Form.Label>First Name</Form.Label>
-    <Form.Control type="text" placeholder="First Name" value={first} onChange={event => setFirst(event.target.value)} />
-  </Form.Group>
+    // const handleSubmit = (event) => {
+    //     event.preventDefault()
 
-  <Form.Group controlId="last">
-    <Form.Label>Last Name</Form.Label>
-    <Form.Control type="text" placeholder="Last Name" value={last} onChange={event => setLast(event.target.value)} />
-  </Form.Group>
-  
-  <Form.Group controlId="email">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter Email" value={email} onChange={event => setEmail(event.target.value)}/> 
-  </Form.Group>
+        
+    //     console.log('submitted',area,age,zipcode,first,last,email,password,ConfirmPassword,identity,preference,question1,question2,question3,question4,question5,imageAsFile,imageAsUrl )
+    // }
 
-  <Form.Group controlId="password">
-    <Form.Label>password</Form.Label>
-    <Form.Control type="password" placeholder="Enter Password" value={password} onChange={event => setPassword(event.target.value)}/> 
-  </Form.Group>
+    const steps = getSteps();
 
-  <Form.Group controlId="area">
-
-    <Form.Label>Enter your zipcode</Form.Label>
-    <Form.Control  type="text" placeholder="90000" value={zipcode} onChange = {handleZipChange}/>
-    <Form.Text><h2><strong>{area}</strong></h2></Form.Text>
-  </Form.Group>
-  
-  <Form.Group controlId="identity">
-    <Form.Label>How do you identify?</Form.Label>
-    <Form.Control as = 'select' value={identity} onChange={event => setIdentity(event.target.value)} >
-       
-        <option>Select</option>
-        <option>Man</option>
-       <option>Woman</option>
-       <option>Non-binary</option>  
-    </Form.Control> 
-  </Form.Group>
-
-  <Form.Group controlId="preference">
-    <Form.Label>Interested In:</Form.Label>
-    <Form.Control as = 'select' value={preference} onChange={event => setPreference(event.target.value)} >
-       
-        <option>Select</option>
-        <option>Man</option>
-       <option>Woman</option>
-       <option>Non-binary</option>  
-    </Form.Control> 
-  </Form.Group>
-
-  <Form.Text><h2><strong>Intro Questionnaire</strong></h2></Form.Text>
-
-  <Form.Group controlId="question1">
-    <Form.Label>Why did you join LA LOCALS?</Form.Label>
-    <Form.Control as = 'select' value={question1} onChange={event => setQuestion1(event.target.value)} >
-       
-        <option>Select</option>
-        <option>a. I’m tired of the Tinder/Bumble scene</option>
-       <option>b. I want to meet someone with out having to go on the 405</option>
-       <option>c. I survived 2020 I can survive this app </option> 
-       <option>d. I love social experiments </option> 
-    </Form.Control> 
-  </Form.Group>
-
-  <Form.Group controlId="question2">
-    <Form.Label>Your Uncle has just posted something offensive on Facebook your next move is to:</Form.Label>
-    <Form.Control as = 'select' value={question2} onChange={event => setQuestion2(event.target.value)} >
-       
-        <option>Select</option>
-        <option>a. I don’t have Facebook</option>
-       <option>b. My uncle doesn’t have Facebook </option>
-       <option>c. If it is on my status I will delete the comment  </option> 
-       <option>d. Engage in a fight in the comment section because I like seeing the world the burn. </option> 
-    </Form.Control> 
-  </Form.Group>
-
-  <Form.Group controlId="question3">
-    <Form.Label>Instead of asking how old you are select which social media app you prefer?</Form.Label>
-    <Form.Control as = 'select' value={question3} onChange={event => setQuestion3(event.target.value)} >
-       
-        <option>Select</option>
-        <option>a. no socials because I’m the Unabomber </option>
-       <option>b. It’s a real toss up between instagram and snapchat </option>
-       <option>c. Tik Tok because of quarantine   </option> 
-       <option>d. Facebook because I’m Mark Zuckerberg </option> 
-    </Form.Control> 
-  </Form.Group>
-
-  <Form.Group controlId="question4">
-    <Form.Label>It is post pandemic in Los Angeles what is the first thing you do?</Form.Label>
-    <Form.Control as = 'select' value={question4} onChange={event => setQuestion4(event.target.value)} >
-       
-        <option>Select</option>
-        <option>a. Go to the Abbey  </option>
-       <option>b. The same thing I was doing before the pandemic: watching Netflix </option>
-       <option>c. Get out of LA   </option> 
-       <option>d. Scroll on the citizen app because I’ve already lost faith in humanity</option> 
-    </Form.Control> 
-  </Form.Group>
-
-  <Form.Group controlId="question5">
-    <Form.Label>Lastly what’s your favorite delivery app?: </Form.Label>
-    <Form.Control as = 'select' value={question5} onChange={event => setQuestion5(event.target.value)} >
-       
-        <option>Select</option>
-        <option>a. Postmates  </option>
-       <option>b. Doordash  </option>
-       <option>c. I actually cook all of my meals at home so I can’t relate</option> 
-       <option>d. I don’t eat human food because I’m Mark Zuckerberg</option> 
-    </Form.Control> 
-  </Form.Group>
-
-
-
-  <Button variant="primary" className="mt-5" type="submit">
-    Submit
+    function getStepsContent(stepIndex){
+        switch(stepIndex) {
+        case 0:
+            return <Register first = {first} setFirst = {setFirst} 
+            last = {last} setLast  = {setLast} 
+            age = {age} setAge = {setAge}
+             email = {email} setEmail = {setEmail} 
+             password = {password} setPassword = {setPassword} 
+             ConfirmPassword = {ConfirmPassword} setConfirmPassword = {setConfirmPassword} 
+             identiy = {identity} setIdentity = {setIdentity} 
+             handleZipChange = {handleZipChange}
+             area = {area} 
+             preference = {preference} setPreference = {setPreference}/>;
+        case 1:
+            return <IntroQuestionnaire 
+                question1 = {question1} 
+                setQuestion1 = {setQuestion1}
+                question2 = {question2} 
+                setQuestion2 = {setQuestion2}
+                question3 = {question3} 
+                setQuestion3 = {setQuestion3}
+                question4 = {question4} 
+                setQuestion4 = {setQuestion4}
+                question5 = {question5} 
+                setQuestion5 = {setQuestion5}     />;
+        case 2:
+           return <div>
+                Upload up to 3 images 
+                <PhotoUpload imageAsUrl = {imageAsUrl} handleImageAsFile = {handleImageAsFile}/>
+               
+        <Button variant="primary" className="mt-5" type="submit" onClick = {handleSubmit}>
+          Submit
   </Button>
+            </div>
 
+        default: return "Unknow Step";
+    }
+    }
 
-
-</Form>
-
-            {/* <h1>
-
-                {area}
-               <input type="text" onChange={event => { addressEntered(event.target.value)}} />
-            </h1> */}
-        </div>
-    )
+   const classes = useStyles();
+   return (
+    <>
+          
+      
+    <div className = {classes.root}>
+        <Stepper activeStep={activeStep} alternativeLabel >
+            {steps.map(label => (
+              <Step key ={label}> 
+                  <StepLabel>
+                      {label}
+                 </StepLabel> 
+              </Step>
+            ))}
+        </Stepper>
+        <>
+        {activeStep ===steps.length ? "Welcome to LA locals": (
+        <>
+        {getStepsContent(activeStep)}  
+        <Button onClick={handleNext}>
+         {activeStep ===steps.length ? "Finish": "Next"}
+        </Button>
+        </>
+        )}
+    </>    
+    </div>
+    </>
+)
 }
+
+
+    
+   
 
 
 
