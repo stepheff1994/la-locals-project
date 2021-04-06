@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap'
 
 
-function IntroQuestionnaire({question1, setQuestion1,question2, setQuestion2, question3, setQuestion3,question4,setQuestion4, question5, setQuestion5}) {
+function IntroQuestionnaire(props) {
  
   return (
 
@@ -11,7 +11,7 @@ function IntroQuestionnaire({question1, setQuestion1,question2, setQuestion2, qu
 
 <Form.Group controlId="question1">
   <Form.Label>Why did you join LA LOCALS?</Form.Label>
-  <Form.Control as='select' value={question1} onChange={event => setQuestion1(event.target.value)} >
+  <Form.Control as='select' value={props.question1} onChange={event => props.setQuestion1(event.target.value)} >
 
     <option>Select</option>
     <option value='1' >a. I’m tired of the Tinder/Bumble scene</option>
@@ -23,7 +23,7 @@ function IntroQuestionnaire({question1, setQuestion1,question2, setQuestion2, qu
 
 <Form.Group controlId="question2">
   <Form.Label>Your Uncle has just posted something offensive on Facebook your next move is to:</Form.Label>
-  <Form.Control as='select' value={question2} onChange={event => setQuestion2(event.target.value)} >
+  <Form.Control as='select' value={props.question2} onChange={event => props.setQuestion2(event.target.value)} >
 
     <option>Select</option>
     <option value='1 '>a. I don’t have Facebook</option>
@@ -35,7 +35,7 @@ function IntroQuestionnaire({question1, setQuestion1,question2, setQuestion2, qu
 
 <Form.Group controlId="question3">
   <Form.Label>Instead of asking how old you are select which social media app you prefer?</Form.Label>
-  <Form.Control as='select' value={question3} onChange={event => setQuestion3(event.target.value)} >
+  <Form.Control as='select' value={props.question3} onChange={event => props.setQuestion3(event.target.value)} >
 
     <option>Select</option>
     <option value='1'>a. no socials because I’m the Unabomber </option>
@@ -47,7 +47,7 @@ function IntroQuestionnaire({question1, setQuestion1,question2, setQuestion2, qu
 
 <Form.Group controlId="question4">
   <Form.Label>It is post pandemic in Los Angeles what is the first thing you do?</Form.Label>
-  <Form.Control as='select' value={question4} onChange={event => setQuestion4(event.target.value)} >
+  <Form.Control as='select' value={props.question4} onChange={event => props.setQuestion4(event.target.value)} >
 
     <option>Select</option>
     <option value='1'>a. Go to the Abbey  </option>
@@ -59,7 +59,7 @@ function IntroQuestionnaire({question1, setQuestion1,question2, setQuestion2, qu
 
 <Form.Group controlId="question5">
   <Form.Label>Lastly what’s your favorite delivery app?: </Form.Label>
-  <Form.Control as='select' value={question5} onChange={event => setQuestion5(event.target.value)} >
+  <Form.Control as='select' value={props.question5} onChange={event => props.setQuestion5(event.target.value)} >
 
     <option>Select</option>
     <option value='1'>a. Postmates  </option>

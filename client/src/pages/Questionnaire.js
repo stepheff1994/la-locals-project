@@ -4,7 +4,9 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Stepper, Step, StepLabel, Typography, Button} from '@material-ui/core';
 import Register from '../components/Register';
 import IntroQuestionnaire from '../components/IntroQuestionnaire';
-import PhotoUpload from '../components/PhotoUpload'
+import PhotoUpload from '../components/PhotoUpload';
+import {ADD_USER} from '../utils/mutations';
+import { useMutation } from '@apollo/react-hooks';
 
 const useStyles = makeStyles({
     root: {
@@ -41,6 +43,35 @@ function Questionnaire () {
     const [question3, setQuestion3] = useState(' ');
     const [question4, setQuestion4] = useState(' ');
     const [question5, setQuestion5] = useState(' ');
+
+    // const [formState, setFormState] = useState({
+    //     // firstName: '',
+    //     // lastName: '',
+    //     age: '',
+    //     area: '',
+    //     ConfirmPassword: '',
+    //     password: '',
+    //     email: '',
+    //     identity:'',
+    //     preference: '',
+    //     question1: '',
+    //     question2: '',
+    //     question3: '',
+    //     question4: '',
+    //     question5: '',
+
+    
+    
+    
+    //   })
+
+    const [addUser] = useMutation(ADD_USER);
+    const handleSubmit = async event => {
+      event.preventDefault();
+      addUser({
+        variables:{email, first,last,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
+      })
+    };
 
     const [imageAsFile, setImageAsFile] = useState('')
     const [imageAsUrl, setImageAsUrl] = useState('')
@@ -99,33 +130,12 @@ function Questionnaire () {
         addressEntered(event.target.value)
 
     }
-    const handleSubmit = (event) => {
-        event.preventDefault()
+    // const handleSubmit = (event) => {
+    //     event.preventDefault()
 
-        // const [area, setArea] = useState('');
-        // const [age, setAge] = useState(' ');
-        // const [ConfirmPassword, setConfirmPassword] = useState (' ');
-        // const [zipcode, setZipcode] = useState('');
-        // const [first, setFirst] = useState(' ');
-        // const [last, setLast] = useState(' ');
-        // const [email, setEmail] = useState(' ');
-        // const [password, setPassword] = useState(' ');
-        // const [photo, setPhoto] = useState(' ');
-        // const [identity, setIdentity] = useState(' ');
-        // const [preference, setPreference] = useState(' ');
-        // const [question1, setQuestion1] = useState(' ');
-        // const [question2, setQuestion2] = useState(' ');
-        // const [question3, setQuestion3] = useState(' ');
-        // const [question4, setQuestion4] = useState(' ');
-        // const [question5, setQuestion5] = useState(' ');
-    
-        // const [imageAsFile, setImageAsFile] = useState('')
-        // const [imageAsUrl, setImageAsUrl] = useState('')
-    
-        // console.log("image as file", imageAsFile)
-        // console.log("image as url" , imageAsUrl)
-        console.log('submitted',area,age,zipcode,first,last,email,password,ConfirmPassword,identity,preference,question1,question2,question3,question4,question5,imageAsFile,imageAsUrl )
-    }
+        
+    //     console.log('submitted',area,age,zipcode,first,last,email,password,ConfirmPassword,identity,preference,question1,question2,question3,question4,question5,imageAsFile,imageAsUrl )
+    // }
 
     const steps = getSteps();
 

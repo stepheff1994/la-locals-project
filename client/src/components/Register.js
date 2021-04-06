@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap';
+// import {ADD_USER} from '../utils/mutations';
 
 
 function Register(props) {
+ 
 //   const [area, setArea] = useState('');
 //   const [zipcode, setZipcode] = useState('');
 // //   const [first, setFirst] = useState(' ');
