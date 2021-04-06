@@ -38,8 +38,29 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  question1: {
+    type: String,
+    required: true
+  },
+
+  question2: {
+    type: String,
+    required: true
+  },
+  question3: {
+    type: String,
+    required: true
+  },
+  question4: {
+    type: String,
+    required: true
+  },
+  question5: {
+    type: String,
+    required: true
+  },
   photos: [userPhotoSchema],
-  questions: [userRegisterQuestions]
+  // questions: [userRegisterQuestions]
 });
 
 userSchema.pre('save', async function (next) {
