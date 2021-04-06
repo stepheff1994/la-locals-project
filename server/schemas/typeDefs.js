@@ -22,10 +22,6 @@ type User {
     photoId: String
     photoUrl: String
   }
-  type Questions{
-    _id:ID
-    
-  }
   type Auth {
     token: ID
     user: User
