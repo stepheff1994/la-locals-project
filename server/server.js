@@ -4,6 +4,7 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const path = require('path');
 const http= require('http');
+const Conversation= require('./models/Conversation')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -57,5 +58,12 @@ db.once('open', () => {
         })
       })
     })
-  })  
+
+    // socket.on('newConversation', convo, msg  => {
+    //   const conversation = new Conversation({convo});
+    //   conversation.save().then(() => {
+    //     io.emit('conversation', convo)
+    //   })
+    // })
+  }) 
 });
