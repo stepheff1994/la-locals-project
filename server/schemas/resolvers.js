@@ -36,9 +36,11 @@ const resolvers = {
     Mutation: {
         // find way to get args to use data from token payload???
         addUser: async (parent, args) => {
+            console.log(args)
             const user = await User.create(args);
             const token = signToken(user);
             return { token, user };
+
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
