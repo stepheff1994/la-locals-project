@@ -60,7 +60,12 @@ const userSchema = new Schema({
     required: true
   },
   photos: [userPhotoSchema],
-  // questions: [userRegisterQuestions]
+  userLikes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ]
 });
 
 userSchema.pre('save', async function (next) {

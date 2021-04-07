@@ -1,7 +1,6 @@
 const { User } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { findOneAndUpdate } = require('../models/User');
 
 const resolvers = {
     Query: {
@@ -9,7 +8,8 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                    .populate('Photo')
+                    .populate('photos')
+                    .populate('userLikes');
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
@@ -18,19 +18,21 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
-                .populate('Photo')
+                .populate('photos')
+                .populate('userLikes');
         },
-        // get users by location and preference
         user: async (parent, { location, preference }, context) => {
             return User.find({ location: context.user.location, identity: context.user.preference, preference: context.user.identity })
                 .select('-__v -password')
-                .populate('Photo')
+                .populate('photos')
+                .populate('userLikes');
         },
         // get a user by email
         user: async (parent, { email }) => {
             return User.findOne({ email })
                 .select('-__v -password')
-                .populate('Photo')
+                .populate('photos')
+                .populate('userLikes');
         }
     },
     Mutation: {
@@ -59,6 +61,19 @@ const resolvers = {
 
             return { token, user };
         },
+        addLikedFriend: async (parent, { friendId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { userLikes: friendId } },
+                    { new: true }
+                ).populate('userLikes');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        }
     }
 }
 module.exports = resolvers;
