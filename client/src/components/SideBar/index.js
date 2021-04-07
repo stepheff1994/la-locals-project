@@ -16,6 +16,8 @@ function SideBar ({ id }) {
     const [activeKey, setActiveKey] = useState(CONVERSATIONS_KEY);
     // set the useState to false so the modal doesn't automatically open
     const [modalOpen, setModalOpen] = useState(false);
+    
+    console.log(id)
 
     // if we are on the conversatios tab then it is equal to true
     const conversationsOpen =  activeKey === CONVERSATIONS_KEY

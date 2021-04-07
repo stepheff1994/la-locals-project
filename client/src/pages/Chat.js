@@ -25,18 +25,19 @@ function Chat () {
     const first = data?.me.firstName
     const last = data?.me.lastName
     // combine the first and last name into the id variable
-    const id = `${first} ${last}`
-    // console.log(id)
+    const name = `${first} ${last}`
+    const id = data?.me._id
+    console.log(id)
 
      // if you are logged in the loggedIn variable will be true
     const loggedIn = Auth.loggedIn();
 
 
     const dashboard = (
-        <SocketProvider id={id}>
+        <SocketProvider id={id, name}>
             <ContactsProvider>
-                <ConversationsProvider id={id}>
-                    <Dash id={id} />
+                <ConversationsProvider id={id, name}>
+                    <Dash id={id, name} />
                 </ConversationsProvider>
             </ContactsProvider>
         </SocketProvider>
