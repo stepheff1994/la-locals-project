@@ -50,7 +50,7 @@ function SideBar ({ id }) {
                 </Tab.Content>
                 <div className='p-2 border-top border-right small'>
                     {/* we will place the user's name here */}
-                    Your Id: <span className='text-muted'>{id}</span>
+                    Welcome <span className='text-muted'>{id}</span>
                 </div>
                 <Button onClick={() => setModalOpen(true)} className='rounded-0' style={{ fontSize: '20px' }} >
                     New {conversationsOpen ? 'Conversation' : 'Contact'}

@@ -1,6 +1,10 @@
 import React, { useContext } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 
+import { QUERY_ME } from '../utils/queries'
+import Auth from '../utils/auth'
+import { useQuery } from '@apollo/react-hooks'
+
 const ContactsContext = React.createContext()
 
 // 

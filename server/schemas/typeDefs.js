@@ -16,6 +16,7 @@ type User {
     question4: String
     question5: String
     photos: [Photo]
+    likes: [User]
 
   }
   type Photo {
@@ -29,7 +30,6 @@ type User {
   input PhotoInput {
     photoUrl: String
   }
-  
   type Query {
     me: User
     users: [User]

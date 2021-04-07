@@ -1,7 +1,6 @@
 const { User } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { findOneAndUpdate } = require('../models/User');
 
 const resolvers = {
     Query: {
@@ -10,6 +9,7 @@ const resolvers = {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
                     .populate('Photo')
+                    .populate('likes')
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
@@ -19,18 +19,21 @@ const resolvers = {
             return User.find()
                 .select('-__v -password')
                 .populate('Photo')
+                .populate('likes')
         },
         // get users by location and preference
-        user: async (parent, { location, preference }, context) => {
-            return User.find({ location: context.user.location, identity: context.user.preference, preference: context.user.identity })
+        users: async (parent, { area, preference }, context) => {
+            return User.find({ area: context.user.area, identity: context.user.preference, preference: context.user.identity })
                 .select('-__v -password')
                 .populate('Photo')
+                .populate('likes')
         },
         // get a user by email
         user: async (parent, { email }) => {
             return User.findOne({ email })
                 .select('-__v -password')
                 .populate('Photo')
+                .populate('likes')
         }
     },
     Mutation: {
