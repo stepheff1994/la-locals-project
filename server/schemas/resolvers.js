@@ -21,8 +21,8 @@ const resolvers = {
                 .populate('photos')
                 .populate('userLikes');
         },
-        user: async (parent, { location, preference }, context) => {
-            return User.find({ location: context.user.location, identity: context.user.preference, preference: context.user.identity })
+        users: async (parent, args , context) => {
+            return User.find({ area: context.user.area, identity: context.user.preference, preference: context.user.identity })
                 .select('-__v -password')
                 .populate('photos')
                 .populate('userLikes');
