@@ -31,49 +31,31 @@ const useStyles = makeStyles({
 
 function Questionnaire () {
 
-    const [area, setArea] = useState('');
-    const [age, setAge] = useState(' ');
-    const [ConfirmPassword, setConfirmPassword] = useState (' ');
-    const [zipcode, setZipcode] = useState('');
-    const [first, setFirst] = useState(' ');
-    const [last, setLast] = useState(' ');
-    const [email, setEmail] = useState(' ');
-    const [password, setPassword] = useState(' ');
+    const [area, setArea] = useState('The Valley');
+    const [age, setAge] = useState(' 28');
+    const [ConfirmPassword, setConfirmPassword] = useState (' Password123');
+    const [zipcode, setZipcode] = useState('91406');
+    const [firstName, setFirst] = useState(' Arlon');
+    const [lastName, setLast] = useState('tuazon ');
+    const [email, setEmail] = useState(' test123@test.com');
+    const [password, setPassword] = useState('Password123 ');
     const [photo, setPhoto] = useState(' ');
-    const [identity, setIdentity] = useState(' ');
-    const [preference, setPreference] = useState(' ');
-    const [question1, setQuestion1] = useState(' ');
-    const [question2, setQuestion2] = useState(' ');
-    const [question3, setQuestion3] = useState(' ');
-    const [question4, setQuestion4] = useState(' ');
-    const [question5, setQuestion5] = useState(' ');
+    const [identity, setIdentity] = useState(' Woman');
+    const [preference, setPreference] = useState('Men ');
+    const [question1, setQuestion1] = useState(' 2');
+    const [question2, setQuestion2] = useState(' 2');
+    const [question3, setQuestion3] = useState(' 2');
+    const [question4, setQuestion4] = useState(' 2');
+    const [question5, setQuestion5] = useState(' 2');
 
-    // const [formState, setFormState] = useState({
-    //     // firstName: '',
-    //     // lastName: '',
-    //     age: '',
-    //     area: '',
-    //     ConfirmPassword: '',
-    //     password: '',
-    //     email: '',
-    //     identity:'',
-    //     preference: '',
-    //     question1: '',
-    //     question2: '',
-    //     question3: '',
-    //     question4: '',
-    //     question5: '',
-
+        
     
     
-    
-    //   })
-
     const [addUser] = useMutation(ADD_USER);
     const handleSubmit = async event => {
       event.preventDefault();
       addUser({
-        variables:{email, first,last,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
+        variables:{email, firstName,lastName,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
       })
     };
 
@@ -146,8 +128,8 @@ function Questionnaire () {
     function getStepsContent(stepIndex){
         switch(stepIndex) {
         case 0:
-            return <Register first = {first} setFirst = {setFirst} 
-            last = {last} setLast  = {setLast} 
+            return <Register firstName = {firstName} setFirst = {setFirst} 
+            lastName = {lastName} setLast  = {setLast} 
             age = {age} setAge = {setAge}
              email = {email} setEmail = {setEmail} 
              password = {password} setPassword = {setPassword} 
