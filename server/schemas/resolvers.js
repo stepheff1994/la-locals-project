@@ -8,8 +8,13 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
+<<<<<<< HEAD
                     .populate('Photo')
                     .populate('likes')
+=======
+                    .populate('photos')
+                    .populate('userLikes');
+>>>>>>> f3b6bc22c8ab22df0f9ae812a18219725b583f5a
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
@@ -18,6 +23,7 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
+<<<<<<< HEAD
                 .populate('Photo')
                 .populate('likes')
         },
@@ -27,13 +33,23 @@ const resolvers = {
                 .select('-__v -password')
                 .populate('Photo')
                 .populate('likes')
+=======
+                .populate('photos')
+                .populate('userLikes');
+        },
+        user: async (parent, { location, preference }, context) => {
+            return User.find({ location: context.user.location, identity: context.user.preference, preference: context.user.identity })
+                .select('-__v -password')
+                .populate('photos')
+                .populate('userLikes');
+>>>>>>> f3b6bc22c8ab22df0f9ae812a18219725b583f5a
         },
         // get a user by email
         user: async (parent, { email }) => {
             return User.findOne({ email })
                 .select('-__v -password')
-                .populate('Photo')
-                .populate('likes')
+                .populate('photos')
+                .populate('userLikes');
         }
     },
     Mutation: {
@@ -62,6 +78,19 @@ const resolvers = {
 
             return { token, user };
         },
+        addLikedFriend: async (parent, { friendId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { userLikes: friendId } },
+                    { new: true }
+                ).populate('userLikes');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        }
     }
 }
 module.exports = resolvers;

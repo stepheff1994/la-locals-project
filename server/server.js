@@ -3,6 +3,7 @@ const { ApolloServer } = require('apollo-server-express');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const path = require('path');
+const { authMiddleware } = require('./utils/auth');
 const http= require('http');
 const Conversation= require('./models/Conversation')
 const { authMiddleware } = require('./utils/auth');
@@ -37,7 +38,7 @@ app.get('*', (req, res) => {
 db.once('open', () => {
   const server = app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlpath}`);
   });
   const io = require('socket.io')(server)
   io.on('connection', socket => {
