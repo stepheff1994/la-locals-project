@@ -12,16 +12,18 @@ function NavBarPage() {
     <Navbar className="color-nav" collapseOnSelect expand="lg" bg="light" variant="light">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto nav-text" >
-          <Nav.Link href="/">LA LOCALS</Nav.Link>
-          <Nav.Link href="/MyProfile">MyProfile</Nav.Link>
-          <Nav.Link href="/Chat">Chat</Nav.Link> 
-          {/* lets call Matches Messages */}
-          <Nav.Link href="/MyLikes">MyLikes</Nav.Link>
+        <Nav className="mr-auto nav-text" style={{ fontSize: '20px' }} >
+          <Nav.Link href="/"  style={{ fontWeight: 'bolder' }} >LA LOCALS</Nav.Link>
+          {Auth.loggedIn() ? (
+            <>
+             <Nav.Link href="/Chat">Messages</Nav.Link> 
+             <Nav.Link href="/MyLikes">MyLikes</Nav.Link>
+            </>
+          ) : null }
           <Nav.Link href="/Upgrade">Upgrade!</Nav.Link>
 
         </Nav>
-        <Nav className="nav-text" text-align="right">
+        <Nav className="nav-text" text-align="right" style={{ fontSize: '20px' }} >
           {Auth.loggedIn() ? (
             <>
               <Nav.Link href="/MyProfile">MyProfile</Nav.Link>
