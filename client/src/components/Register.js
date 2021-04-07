@@ -66,9 +66,9 @@ function Register(props) {
   return (
     <div>
       
-      <Form.Text className="text-white"><h2><strong>Registration Questions</strong></h2></Form.Text>
+      <Form.Text className="text-dark" ><h2><strong>Registration Questions</strong></h2></Form.Text>
 
-      <Form className="text-white" onSubmit={props.handleSubmit}>
+      <Form className="text-dark" onSubmit={props.handleSubmit}>
         <Form.Group controlId="first">
           <Form.Label>First Name</Form.Label>
           <Form.Control type="text" placeholder="First Name" value={props.first} onChange={event => props.setFirst(event.target.value)} />

@@ -23,7 +23,8 @@ const useStyles = makeStyles({
         },
         "& .MuiStepIcon-root.MuiStepIcon-completed": {
             color: "red"
-        }
+        },
+        backgroundColor: "white"
     }
     
 })
@@ -155,7 +156,7 @@ function Questionnaire () {
                 Upload up to 3 images 
                 <PhotoUpload imageAsUrl = {imageAsUrl} handleImageAsFile = {handleImageAsFile}/>
                
-        <Button variant="primary" className="mt-5" type="submit" onClick = {handleSubmit}>
+        <Button variant="contained" color="primary" className="mt-5" type="submit" onClick = {handleSubmit}>
           Submit
   </Button>
             </div>
