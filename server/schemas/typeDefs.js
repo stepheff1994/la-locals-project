@@ -42,6 +42,8 @@ type User {
     addUser(firstName: String!, lastName: String!,email: String!, password: String!, age: Int!, area: String!,identity: String!,identity: String!,preference: String!,question1: String!,question2: String!,question3: String!,question4: String!,question5: String!): Auth
     addPhoto(_id:ID!, input: PhotoInput): User
   }
+
+  
  
 `;
 

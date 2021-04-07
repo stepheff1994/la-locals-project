@@ -27,6 +27,7 @@ const resolvers = {
                 .populate('Photo')
         }
     },
+    
     Mutation: {
         // find way to get args to use data from token payload???
         addUser: async (parent, args) => {
