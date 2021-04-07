@@ -18,10 +18,14 @@ function Chat () {
     // useLocalStorage hook to set the manually created id to the application and save it to local storage
     // that way, when the chat is refreshed the id is saved
     // const [id, setId] = useLocalStorage('id') // ***** will have to use this to somehow get/set the token id for each user
-
+    
+    // get the user's data from the me query
     const { data } = useQuery(QUERY_ME)
-
-    const id = data?.me.firstName
+    // get the first and last name from the data
+    const first = data?.me.firstName
+    const last = data?.me.lastName
+    // combine the first and last name into the id variable
+    const id = `${first} ${last}`
     // console.log(id)
 
      // if you are logged in the loggedIn variable will be true
