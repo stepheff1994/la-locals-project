@@ -1,10 +1,11 @@
 import React from "react";
+import SampleProfile from "../components/SampleProf"
 
 function MyLikes () {
     return (
         <div>
             <h1>
-                MyLikes
+                <SampleProfile/>
             </h1>
         </div>
     )
