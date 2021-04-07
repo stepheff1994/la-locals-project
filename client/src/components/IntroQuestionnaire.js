@@ -6,8 +6,8 @@ function IntroQuestionnaire(props) {
  
   return (
 
-<Form>
-<Form.Text><h2><strong>Intro Questionnaire</strong></h2></Form.Text>
+<Form className="text-white">
+<Form.Text className="text-white"><h2><strong>Intro Questionnaire</strong></h2></Form.Text>
 
 <Form.Group controlId="question1">
   <Form.Label>Why did you join LA LOCALS?</Form.Label>
