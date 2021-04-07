@@ -1,17 +1,17 @@
 
 import React, {useState} from 'react';
 import TinderCard from "react-tinder-card"
-import "./TinderCards.css";
+import "../components/MatchCard.css";
 
-const TinderCards= ()=> {
+const MatchCards= ()=> {
     const [people, setPeople] = useState([
         {
-            name: 'Elon Musk',
+            name: 'Name',
             url: 'https://fitsmallbusiness.com/wp-content/uploads/2019/10/elon_musk_headshot.jpg',
         },
 
         {
-            name: 'Jeff Bezos',
+            name: 'Name',
             url: 'https://techcentral.co.za/wp-content/uploads/2017/05/jeff-bezos-2156-1120.jpg',
         },
     ]);
@@ -33,8 +33,8 @@ const TinderCards= ()=> {
                   className ="swipe"
                   key={person.name}
                   preventSwipe = {["up", "down"]}
-                  onSwipe = {(dir) => swiped(dir, person.name)}
-                  onCardLeftScreen = {() => outOfFrame(person.name)}
+                  onSwipe = {(dir) => swiped(dir, person.firstName)}
+                  onCardLeftScreen = {() => outOfFrame(person.firstName)}
                 >
                     <div
                     style = {{backgroundImage: `url (${person.url})`}}
@@ -49,4 +49,4 @@ const TinderCards= ()=> {
         </div>
     )
 }
-export default TinderCards;
+export default MatchCards;

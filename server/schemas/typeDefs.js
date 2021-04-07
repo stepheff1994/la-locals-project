@@ -42,6 +42,8 @@ type User {
     addPhoto(_id:ID!, input: PhotoInput): User
     addLikedFriend(friendId: ID!): User
   }
+
+  
  
 `;
 
