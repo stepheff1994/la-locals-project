@@ -1,24 +1,79 @@
-import React from 'react';
-   import {Form, Button, Badge} from 'react-bootstrap';
+import React, { useState } from "react";
+import { useMutation } from '@apollo/react-hooks';
+import { Link } from "react-router-dom";
+import { LOGIN } from "../utils/mutations"
+import Auth from "../utils/auth";
+import "../components/Leftside.css"
 
-const LeftSide = () => {
-    return (
-        <div>
-            <br/>
-            <h1><Badge variant="secondary">Welcome Back! Please Login.</Badge></h1>
-            <Form style={{width:"100%", marginLeft:"0%", marginTop:"10%"}}>
-                <Form.Group >
-                    <Form.Label style={{fontWeight:"200%", color: "blue", fontSize:"30px"}}>Enter your email</Form.Label>
-                    <Form.Control style={{height:"50px"}}type="email" placeholder="Enter your email" />
-                </Form.Group>
-                <Form.Group >
-                    <Form.Label style={{fontWeight:"200%", color: "blue", fontSize:"30px"}}>Enter your password</Form.Label>
-                    <Form.Control style={{height:"50px"}} type="password" placeholder="Enter your password" />
-                </Form.Group>
-                <Button style={{height:"50px", width: "20rem", fontSize:"20px"}}type="submit">Submit</Button>
-            </Form>
+function Login(props) {
+  const [formState, setFormState] = useState({ email: '', password: '' })
+  const [login, { error }] = useMutation(LOGIN);
+
+  const handleFormSubmit = async event => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await login({ variables: { email: formState.email, password: formState.password } })
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e)
+    }
+  };
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value
+    });
+  };
+
+  return (
+     
+    <div className="container my-1" >
+      <Link to="/signup">
+        <h2>← No Account? Go to Register</h2>
+      </Link>
+       <br/>
+       <br/>
+      <h2>Login</h2>
+      <form onSubmit={handleFormSubmit}>
+        <div className="flex-row space-between my-2" style={{width:"100%"}} >
+          <label htmlFor="email">Email address:</label>
+          <input
+            placeholder="youremail@test.com"
+            name="email"
+            type="email"
+            id="email"
+            
+            onChange={handleChange}
+          />
         </div>
-    )
+        <div className="flex-row space-between my-2">
+          <label htmlFor="pwd">Password:</label>
+          <input
+            placeholder="******"
+            name="password"
+            type="password"
+            id="pwd"
+            onChange={handleChange}
+          />
+        </div>
+        {
+          error ? <div>
+            <p className="error-text" >The provided credentials are incorrect</p>
+          </div> : null
+        }
+        <div className="flex-row flex-end">
+          <button type="submit" id="submit">
+            <h3>Submit</h3>
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
-export default LeftSide;
+
+export default Login;
+

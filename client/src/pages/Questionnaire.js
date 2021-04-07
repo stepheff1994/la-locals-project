@@ -41,11 +41,11 @@ function Questionnaire () {
     const [lastName, setLast] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [photo, setPhoto] = useState('');
+    const [photo, setPhoto] = useState(' ');
     const [identity, setIdentity] = useState('');
-    const [preference, setPreference] = useState('');
+    const [preference, setPreference] = useState(' ');
     const [question1, setQuestion1] = useState('');
-    const [question2, setQuestion2] = useState('');
+    const [question2, setQuestion2] = useState(' ');
     const [question3, setQuestion3] = useState('');
     const [question4, setQuestion4] = useState('');
     const [question5, setQuestion5] = useState('');
@@ -71,6 +71,14 @@ function Questionnaire () {
         } catch (e) {
             console.error(e);
         }
+    //   const mutationResponse = await
+    //   addUser({
+    //     variables:{email, firstName,lastName,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
+    //   });
+    //   const token = mutationResponse.data.addUser.token;
+    //   console.log(token);
+    //   Auth.login(token);
+      
     };
 
     const [imageAsFile, setImageAsFile] = useState('')
