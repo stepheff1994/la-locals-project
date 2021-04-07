@@ -1,12 +1,17 @@
 import React from "react";
+import '../index.css';
 
 function Home () {
     return (
-        <div>
-            <h1>
-                HOMEPAGE
-            </h1>
-        </div>
+        <>
+           
+            <h1></h1>
+            <div className="lalocals">
+            </div>   
+            
+
+            
+        </>
     )
 }
 

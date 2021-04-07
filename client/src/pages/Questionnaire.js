@@ -10,9 +10,13 @@ import { useMutation } from '@apollo/react-hooks';
 
 const useStyles = makeStyles({
     root: {
+
+
         width: "50%",
         padding: "20px",
         margin: "6rem auto",
+        textEmphasisColor: "white",
+        backgroundAttachment: "none",
         border: "10px solid #999",
         "& .MuiStepIcon-root.MuiStepIcon-active": {
             color: "red"
