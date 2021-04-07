@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 // import {ADD_USER} from '../utils/mutations';
+import {makeStyles} from '@material-ui/core/styles';
 
 
 function Register(props) {
@@ -65,9 +66,9 @@ function Register(props) {
   return (
     <div>
       
-      <Form.Text><h2><strong>Registration Questions</strong></h2></Form.Text>
+      <Form.Text className="text-white"><h2><strong>Registration Questions</strong></h2></Form.Text>
 
-      <Form onSubmit={props.handleSubmit}>
+      <Form className="text-white" onSubmit={props.handleSubmit}>
         <Form.Group controlId="first">
           <Form.Label>First Name</Form.Label>
           <Form.Control type="text" placeholder="First Name" value={props.first} onChange={event => props.setFirst(event.target.value)} />
