@@ -6,7 +6,6 @@ const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const http= require('http');
 const Conversation= require('./models/Conversation')
-const { authMiddleware } = require('./utils/auth');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
