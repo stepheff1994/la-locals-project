@@ -7,6 +7,7 @@ import IntroQuestionnaire from '../components/IntroQuestionnaire';
 import PhotoUpload from '../components/PhotoUpload';
 import {ADD_USER} from '../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';
+import Auth from '../utils/auth'
 
 const useStyles = makeStyles({
     root: {
@@ -32,22 +33,22 @@ const useStyles = makeStyles({
 
 function Questionnaire () {
 
-    const [area, setArea] = useState('The Valley');
-    const [age, setAge] = useState(' 28');
-    const [ConfirmPassword, setConfirmPassword] = useState (' Password123');
-    const [zipcode, setZipcode] = useState('91406');
-    const [firstName, setFirst] = useState(' Arlon');
-    const [lastName, setLast] = useState('tuazon ');
-    const [email, setEmail] = useState(' test123@test.com');
-    const [password, setPassword] = useState('Password123 ');
-    const [photo, setPhoto] = useState(' ');
-    const [identity, setIdentity] = useState(' Woman');
-    const [preference, setPreference] = useState('Men ');
-    const [question1, setQuestion1] = useState(' 2');
-    const [question2, setQuestion2] = useState(' 2');
-    const [question3, setQuestion3] = useState(' 2');
-    const [question4, setQuestion4] = useState(' 2');
-    const [question5, setQuestion5] = useState(' 2');
+    const [area, setArea] = useState('');
+    const [age, setAge] = useState('');
+    const [ConfirmPassword, setConfirmPassword] = useState ('');
+    const [zipcode, setZipcode] = useState('');
+    const [firstName, setFirst] = useState('');
+    const [lastName, setLast] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [photo, setPhoto] = useState('');
+    const [identity, setIdentity] = useState('');
+    const [preference, setPreference] = useState('');
+    const [question1, setQuestion1] = useState('');
+    const [question2, setQuestion2] = useState('');
+    const [question3, setQuestion3] = useState('');
+    const [question4, setQuestion4] = useState('');
+    const [question5, setQuestion5] = useState('');
 
         
     
@@ -55,10 +56,21 @@ function Questionnaire () {
     const [addUser] = useMutation(ADD_USER);
     const handleSubmit = async event => {
       event.preventDefault();
-      addUser({
-        variables:{email, firstName,lastName,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
-      })
-      
+    //   addUser({
+    //     variables:{email, firstName,lastName,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
+    //   })
+      // use try/catch instead of promises to handle errors
+        try {
+            // execute addUser mutation and pass in variable data from form
+            const { data } = await addUser({
+                variables:{email, firstName,lastName,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
+            });
+            // send the token info from addUser through to the login fucntion in Auth
+            // upon successful signup user will be redirected to the homepage
+            Auth.login(data.addUser.token);
+        } catch (e) {
+            console.error(e);
+        }
     };
 
     const [imageAsFile, setImageAsFile] = useState('')
