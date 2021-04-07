@@ -8,13 +8,8 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-<<<<<<< HEAD
-                    .populate('Photo')
-                    .populate('likes')
-=======
                     .populate('photos')
                     .populate('userLikes');
->>>>>>> f3b6bc22c8ab22df0f9ae812a18219725b583f5a
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
@@ -23,17 +18,6 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
-<<<<<<< HEAD
-                .populate('Photo')
-                .populate('likes')
-        },
-        // get users by location and preference
-        users: async (parent, { area, preference }, context) => {
-            return User.find({ area: context.user.area, identity: context.user.preference, preference: context.user.identity })
-                .select('-__v -password')
-                .populate('Photo')
-                .populate('likes')
-=======
                 .populate('photos')
                 .populate('userLikes');
         },
@@ -42,7 +26,6 @@ const resolvers = {
                 .select('-__v -password')
                 .populate('photos')
                 .populate('userLikes');
->>>>>>> f3b6bc22c8ab22df0f9ae812a18219725b583f5a
         },
         // get a user by email
         user: async (parent, { email }) => {
