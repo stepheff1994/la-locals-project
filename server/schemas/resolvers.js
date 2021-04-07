@@ -20,6 +20,12 @@ const resolvers = {
                 .select('-__v -password')
                 .populate('Photo')
         },
+        // get users by location and preference
+        user: async (parent, { location, preference }, context) => {
+            return User.find({ location: context.user.location, identity: context.user.preference, preference: context.user.identity })
+                .select('-__v -password')
+                .populate('Photo')
+        },
         // get a user by email
         user: async (parent, { email }) => {
             return User.findOne({ email })

@@ -8,7 +8,7 @@ function ChatDash({ id }) {
     // only render if we have a selected conversation
     const { selectedConversation } = useConversations()
     return (
-        <div className='d-flex' style={{ height: '100vh' }}>
+        <div className='d-flex' style={{ height: '80vh' }}>
             <SideBar id={id} />
             {/* if we have a selected conversation, then render the OpenConversation on the right */}
             {selectedConversation && <OpenConversation />}

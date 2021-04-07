@@ -15,7 +15,7 @@ function NavBarPage() {
         <Nav className="mr-auto nav-text" >
           <Nav.Link href="/">LA LOCALS</Nav.Link>
           <Nav.Link href="/MyProfile">MyProfile</Nav.Link>
-          <Nav.Link href="/Matches">Matches</Nav.Link> 
+          <Nav.Link href="/Chat">Chat</Nav.Link> 
           {/* lets call Matches Messages */}
           <Nav.Link href="/MyLikes">MyLikes</Nav.Link>
           <Nav.Link href="/Upgrade">Upgrade!</Nav.Link>
