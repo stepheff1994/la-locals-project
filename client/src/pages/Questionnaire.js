@@ -58,6 +58,7 @@ function Questionnaire () {
       addUser({
         variables:{email, firstName,lastName,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
       })
+      
     };
 
     const [imageAsFile, setImageAsFile] = useState('')
@@ -158,7 +159,7 @@ function Questionnaire () {
                
         <Button variant="contained" color="primary" className="mt-5" type="submit" onClick = {handleSubmit}>
           Submit
-  </Button>
+        </Button>
             </div>
 
         default: return "Unknow Step";

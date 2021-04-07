@@ -61,11 +61,11 @@ function OpenConversation() {
                         required
                         value={text}
                         onChange={e => setText(e.target.value)}
-                        style={{ height: '75px', resize: 'none' }}
+                        style={{ height: '75px', resize: 'none', fontSize: '20px' }}
                         />
                         {/* this InputGroup is used to append the button to the text area */}
                         <InputGroup.Append>
-                            <Button type="submit">Send</Button>
+                            <Button type="submit" style={{ fontSize: '20px' }} >Send</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </Form.Group>
