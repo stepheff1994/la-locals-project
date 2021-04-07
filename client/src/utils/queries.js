@@ -16,7 +16,7 @@ export const QUERY_USER = gql`
       question3
       question4
       question5
-      likes {
+      userlikes {
         _id
         firstName
         lastName
@@ -42,7 +42,7 @@ export const QUERY_ME = gql`
       question3
       question4
       question5
-      likes {
+      userlikes {
         _id
         firstName
         lastName
@@ -62,17 +62,10 @@ export const QUERY_MATCHES = gql`
       _id
       firstName
       lastName
-      email
-      age
       area
       identity
       preference
-      question1
-      question2
-      question3
-      question4
-      question5
-      likes {
+      userlikes {
         _id
         firstName
         lastName
