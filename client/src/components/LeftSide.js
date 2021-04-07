@@ -32,7 +32,7 @@ function Login(props) {
      
     <div className="container my-1" >
       <Link to="/signup">
-        <h2>← Go to Signup</h2>
+        <h2>← No Account? Go to Register</h2>
       </Link>
        <br/>
        <br/>
@@ -65,7 +65,7 @@ function Login(props) {
           </div> : null
         }
         <div className="flex-row flex-end">
-          <button type="submit">
+          <button type="submit" id="submit">
             <h3>Submit</h3>
           </button>
         </div>
