@@ -22,10 +22,14 @@ const resolvers = {
         //         .populate('userLikes');
         // },
         users: async (parent, args , context) => {
-            return User.find({ area: context.user.area, identity: context.user.preference, preference: context.user.identity })
-                .select('-__v -password')
-                .populate('photos')
-                .populate('userLikes');
+            if (context.user) {
+                const matchData = await User.find({ area: context.user.area, identity: context.user.preference, preference: context.user.identity })
+                    .select('-__v -password')
+                    .populate('photos')
+                    .populate('userLikes');
+                    return matchData;
+            }
+                throw new AuthenticationError('Not logged in');
         },
         // get a user by email
         user: async (parent, { email }) => {
