@@ -75,11 +75,13 @@ export const QUERY_ME = gql`
         _id
         firstName
         lastName
-        userLikes {
-          _id
-          firstName
-          lastName
-        }
+        area
+        age
+        question1
+        question2
+        question3
+        question4
+        question5
       }
     }
   }
