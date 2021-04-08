@@ -32,14 +32,14 @@
   }
 
   label {
-      color: whitesmoke;
+      /* color: whitesmoke; */
       font-size: large;
   }
 
   h2 {
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       font-size: large;
-      color: whitesmoke;
+      /* color: whitesmoke; */
   }
   .container my-1 {
       font-size: large;
