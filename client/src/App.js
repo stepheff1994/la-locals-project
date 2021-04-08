@@ -40,6 +40,7 @@ function App() {
             <Route exact path="/MyProfile" component={MyProfile} />
             <Route exact path="/Chat" component={Chat} />
             <Route exact path="/MyLikes" component={MyLikes} />
+            <Route exact path="/Upgrade"component={Upgrade} />
             {/* <Route exact path = "/NewMembers" component = {NewMembers} /> */}
             <Route exact path="/Questionnaire" component={Questionnaire} />
             <Route exact path="/Register" component={Register} />

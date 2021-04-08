@@ -7,7 +7,9 @@ import IntroQuestionnaire from '../components/IntroQuestionnaire';
 import PhotoUpload from '../components/PhotoUpload';
 import {ADD_USER} from '../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';
-import Auth from '../utils/auth'
+import Auth from '../utils/auth';
+import storage from '../components/Firebase';
+
 
 const useStyles = makeStyles({
     root: {
@@ -83,15 +85,53 @@ function Questionnaire () {
 
     const [imageAsFile, setImageAsFile] = useState('')
     const [imageAsUrl, setImageAsUrl] = useState('')
+    const [stateImage, setStateImage] = useState({
+        image: null,
+        url: "",
+        progress: 0
+    })
 
     console.log("image as file", imageAsFile)
     console.log("image as url" , imageAsUrl)
     
-    const handleImageAsFile = (e) => {
-        const image = e.target.files[0]
-        setImageAsFile(imageFile => (image))
-        setImageAsUrl(URL.createObjectURL(image))
+    const handleImage = (e) => {
+        // const image = e.target.files[0]
+        // setImageAsFile(imageFile => (image))
+        // setImageAsUrl(URL.createObjectURL(image))
+        if (e.target.files[0]) {
+            const image = e.target.files[0];
+            setStateImage(() => ({ image }));
+          }
     }
+
+    const handleUpload = () => {
+        const { image } = stateImage;
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        uploadTask.on(
+          "state_changed",
+          snapshot => {
+            // progress function ...
+            const progress = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            setStateImage({ progress });
+          },
+          error => {
+            // Error function ...
+            console.log(error);
+          },
+          () => {
+            // complete function ...
+            storage
+              .ref("images")
+              .child(image.name)
+              .getDownloadURL()
+              .then(url => {
+                setStateImage({ url });
+              });
+          }
+        );
+      };
 
     
 
@@ -175,7 +215,7 @@ function Questionnaire () {
         case 2:
            return <div>
                 Upload up to 3 images 
-                <PhotoUpload imageAsUrl = {imageAsUrl} handleImageAsFile = {handleImageAsFile}/>
+                <PhotoUpload stateImage = {stateImage} handleImage = {handleImage} handleUpload = {handleUpload} />
                
         <Button variant="contained" color="primary" className="mt-5" type="submit" onClick = {handleSubmit}>
           Submit
