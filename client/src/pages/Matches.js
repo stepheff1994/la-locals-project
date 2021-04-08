@@ -1,6 +1,6 @@
 import React from "react";
 import MatchCards from "../components/MatchCard";
-import SwipeButtons from "../components/SwipeButtons";
+
 import { QUERY_MATCHES, QUERY_ME } from "../utils/queries"
 import { useQuery } from "@apollo/react-hooks"
 // the Redirect component allows us to redirect the user to another route within the application
@@ -15,6 +15,7 @@ function Matches() {
     const userIdentity = userData?.me.preference
     // get the user's identity
     const userPreference = userData?.me.identity
+    console.log(userData)
 
     // insert the logged in user's parameters into the QUERY_MATCHES query
     const { loading, data } = useQuery(QUERY_MATCHES, {
@@ -28,7 +29,6 @@ function Matches() {
         <div>
             <h1>
                 <MatchCards matches={matches}/>
-                <SwipeButtons />
             </h1>
         </div>
     )

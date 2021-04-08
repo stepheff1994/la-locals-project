@@ -31,7 +31,7 @@ function Login(props) {
   return (
      
     <div className="container my-1" >
-      <Link to="/signup">
+      <Link to="/Register">
         <h2>← No Account? Go to Register</h2>
       </Link>
        <br/>

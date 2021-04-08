@@ -2,28 +2,53 @@
 import React from 'react';
 import TinderCard from "react-tinder-card"
 import "../components/MatchCard.css";
+import SwipeButtons from "../components/SwipeButtons";
+
+import "./SwipeButtons.css";
+import CloseIcon from "@material-ui/icons/Close";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import IconButton from "@material-ui/core/IconButton";
+import { ADD_MATCH } from '../utils/mutations';
+import { useMutation } from '@apollo/react-hooks';
+
 
 
 const MatchCards= ({ matches })=> {
 
     // destructure the mutation from ADD_FRIEND so we can use it in a click function
-    // const [addFriend] = useMutation(ADD_FRIEND);
+    const [addLikedFriend] = useMutation(ADD_MATCH);
 
     console.log(matches)
     if (!matches.length) {
         return <h3>No Matches Yet</h3>;
     }
 
-        const swiped = (direction, nameToDelete) => {
-            console.log("removing:"+nameToDelete);
-            //setLastDirection(direction);
-        };
-        const outOfFrame = (name) => {
-            console.log (name +"left the screen")
+    const swiped = (direction, nameToDelete, id) => {
+        console.log("removing:"+nameToDelete);
+        //setLastDirection(direction);
+    };
+    const outOfFrame = async (name, id) => {
+        console.log (name +"left the screen")
+        try {
+            await addLikedFriend({
+              variables: { id: id }
+            });
+          } catch (e) {
+            console.error(e);
+          }
             
-        }
+    }
+
+    const handleLeftClick = async () => {
+        return swiped;
+    }
+    const handleRightClick = async () => {
+          return outOfFrame;
+    }
+
 
     return (
+        <>
         <div className ="tinderCards text-dark rounded">
             <div className=" tinderCards_cardContainer">  
 
@@ -33,7 +58,7 @@ const MatchCards= ({ matches })=> {
                   key={match._id}
                   preventSwipe = {["up", "down"]}
                   onSwipe = {(dir) => swiped(dir, match.firstName)}
-                  onCardLeftScreen = {() => outOfFrame(match.firstName)}
+                  onCardLeftScreen = {() => outOfFrame(match.firstName, match._id)}
                 >
                     <div
                     style = {{backgroundImage: `url (${match.url})`}}
@@ -76,8 +101,21 @@ const MatchCards= ({ matches })=> {
                     </div>
                 </TinderCard>
             ))}
+
             </div>
         </div>
+        <div className="swipeButtons">
+             
+             <IconButton className="swipeButtons_left" onClick={handleLeftClick}>
+                 <CloseIcon fontSize="large" />
+             </IconButton>
+             
+             <IconButton className="swipeButtons_right" onClick={handleRightClick}>
+                 <FavoriteIcon fontSize="large" />
+             </IconButton>
+             
+        </div>
+        </>
     )
 }
 export default MatchCards;

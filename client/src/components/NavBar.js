@@ -16,8 +16,9 @@ function NavBarPage() {
           <Nav.Link href="/"  style={{ fontWeight: 'bolder' }} >LA LOCALS</Nav.Link>
           {Auth.loggedIn() ? (
             <>
+             <Nav.Link href="/Matches">Find Matches</Nav.Link>
+             <Nav.Link href="/MyLikes">My Likes</Nav.Link>
              <Nav.Link href="/Chat">Messages</Nav.Link> 
-             <Nav.Link href="/Matches">MyLikes</Nav.Link>
             </>
           ) : null }
           <Nav.Link href="/Upgrade">Upgrade!</Nav.Link>
@@ -26,7 +27,7 @@ function NavBarPage() {
         <Nav className="nav-text" text-align="right" style={{ fontSize: '20px' }} >
           {Auth.loggedIn() ? (
             <>
-              <Nav.Link href="/MyProfile">MyProfile</Nav.Link>
+              <Nav.Link href="/MyProfile">My Profile</Nav.Link>
               <Nav.Link href="/" onClick={logout}>
                 Logout
               </Nav.Link>

@@ -16,6 +16,7 @@ import Register from "./pages/Questionnaire";
 import MyProfile from "./pages/MyProfile.js";
 import Matches from "./pages/Matches"
 import LogIn from "./pages/LogIn.js";
+import LikeProfile from "./pages/LikeProfile";
 import Upgrade from "./components/Upgrade.js";
 function App() {
   const client = new ApolloClient({
@@ -41,6 +42,8 @@ function App() {
             <Route exact path="/MyProfile" component={MyProfile} />
             <Route exact path="/Chat" component={Chat} />
             <Route exact path="/Matches" component={Matches} />
+            <Route exact path="/MyLikes" component={MyLikes} />
+            <Route exact path="/LikeProfile" component={LikeProfile} />
             {/* <Route exact path = "/NewMembers" component = {NewMembers} /> */}
             <Route exact path="/Questionnaire" component={Questionnaire} />
             <Route exact path="/Register" component={Register} />

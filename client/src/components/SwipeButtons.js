@@ -1,10 +1,7 @@
 import React from 'react';
 import "./SwipeButtons.css";
-
 import CloseIcon from "@material-ui/icons/Close";
-
 import FavoriteIcon from "@material-ui/icons/Favorite";
-
 import IconButton from "@material-ui/core/IconButton";
 
 

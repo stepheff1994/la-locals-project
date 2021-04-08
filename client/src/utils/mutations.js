@@ -22,3 +22,18 @@ mutation addUser($firstName:String! $lastName:String!,$password:String!, $email:
  }  
 }
 `;
+
+export const ADD_MATCH = gql`
+  mutation addLikedFriend($id: ID!) {
+    addLikedFriend(friendId: $id) {
+      _id
+      firstName
+      lastName
+      userLikes {
+        _id
+        firstName
+        lastName
+      }
+    }
+  }
+`;
