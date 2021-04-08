@@ -1,9 +1,8 @@
 
-import React, {useState} from 'react';
-import { useQuery } from "@apollo/react-hooks"
+import React from 'react';
 import TinderCard from "react-tinder-card"
 import "../components/MatchCard.css";
-import { QUERY_MATCHES } from "../utils/queries"
+
 
 const MatchCards= ({ matches })=> {
 

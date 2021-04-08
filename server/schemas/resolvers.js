@@ -21,6 +21,15 @@ const resolvers = {
         //         .populate('photos')
         //         .populate('userLikes');
         // },
+        // users: async (parent, { area, identity, preference } , context) => {
+        //     if (context.user) {
+        //         return User.find({ area, identity, preference })
+        //             .select('-__v -password')
+        //             .populate('photos')
+        //             .populate('userLikes');
+        //     }
+            
+        // },
         users: async (parent, args , context) => {
             if (context.user) {
                 const matchData = await User.find({ area: context.user.area, identity: context.user.preference, preference: context.user.identity })
