@@ -15,17 +15,21 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
         // get all users
-        users: async () => {
-            return User.find()
-                .select('-__v -password')
-                .populate('photos')
-                .populate('userLikes');
-        },
-        user: async (parent, { location, preference }, context) => {
-            return User.find({ location: context.user.location, identity: context.user.preference, preference: context.user.identity })
-                .select('-__v -password')
-                .populate('photos')
-                .populate('userLikes');
+        // users: async () => {
+        //     return User.find()
+        //         .select('-__v -password')
+        //         .populate('photos')
+        //         .populate('userLikes');
+        // },
+        users: async (parent, args , context) => {
+            if (context.user) {
+                const matchData = await User.find({ area: context.user.area, identity: context.user.preference, preference: context.user.identity })
+                    .select('-__v -password')
+                    .populate('photos')
+                    .populate('userLikes');
+                    return matchData;
+            }
+                throw new AuthenticationError('Not logged in');
         },
         // get a user by email
         user: async (parent, { email }) => {

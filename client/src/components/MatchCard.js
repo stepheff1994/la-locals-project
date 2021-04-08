@@ -1,20 +1,17 @@
 
 import React, {useState} from 'react';
+import { useQuery } from "@apollo/react-hooks"
 import TinderCard from "react-tinder-card"
 import "../components/MatchCard.css";
+import { QUERY_MATCHES } from "../utils/queries"
 
-const MatchCards= ()=> {
-    const [people, setPeople] = useState([
-        {
-            name: 'Name',
-            url: 'https://fitsmallbusiness.com/wp-content/uploads/2019/10/elon_musk_headshot.jpg',
-        },
+const MatchCards= ({ matches })=> {
 
-        {
-            name: 'Name',
-            url: 'https://techcentral.co.za/wp-content/uploads/2017/05/jeff-bezos-2156-1120.jpg',
-        },
-    ]);
+    console.log(matches)
+    if (!matches.length) {
+        return <h3>No Matches Yet</h3>;
+    }
+
         const swiped = (direction, nameToDelete) => {
             console.log("removing:"+nameToDelete);
             //setLastDirection(direction);
@@ -28,20 +25,20 @@ const MatchCards= ()=> {
         <div className ="tinderCards">
             <div className=" tinderCards_cardContainer">  
 
-            {people.map (person => (
+            {matches && matches.map (match => (
                 <TinderCard
                   className ="swipe"
-                  key={person.name}
+                  key={match._id}
                   preventSwipe = {["up", "down"]}
-                  onSwipe = {(dir) => swiped(dir, person.firstName)}
-                  onCardLeftScreen = {() => outOfFrame(person.firstName)}
+                  onSwipe = {(dir) => swiped(dir, match.firstName)}
+                  onCardLeftScreen = {() => outOfFrame(match.firstName)}
                 >
                     <div
-                    style = {{backgroundImage: `url (${person.url})`}}
+                    style = {{backgroundImage: `url (${match.url})`}}
                     className ="card"
                     >
                         
-                      <h3>{person.name}</h3>   
+                      <h3>{match.name}</h3>   
                     </div>
                 </TinderCard>
             ))}

@@ -14,6 +14,7 @@ import Questionnaire from "./components/Register"
 import { Container } from "react-bootstrap"
 import Register from "./pages/Questionnaire";
 import MyProfile from "./pages/MyProfile.js";
+import Matches from "./pages/Matches"
 import LogIn from "./pages/LogIn.js";
 import Upgrade from "./components/Upgrade.js";
 function App() {
@@ -39,7 +40,7 @@ function App() {
             {/* <Route exact path = "/Map" component = {Map} /> */}
             <Route exact path="/MyProfile" component={MyProfile} />
             <Route exact path="/Chat" component={Chat} />
-            <Route exact path="/MyLikes" component={MyLikes} />
+            <Route exact path="/Matches" component={Matches} />
             {/* <Route exact path = "/NewMembers" component = {NewMembers} /> */}
             <Route exact path="/Questionnaire" component={Questionnaire} />
             <Route exact path="/Register" component={Register} />

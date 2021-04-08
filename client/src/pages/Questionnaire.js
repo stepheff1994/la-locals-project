@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         width: "50%",
         padding: "20px",
         margin: "6rem auto",
-        textEmphasisColor: "white",
+        textEmphasisColor: "black",
         backgroundAttachment: "none",
         border: "10px solid #999",
         "& .MuiStepIcon-root.MuiStepIcon-active": {
