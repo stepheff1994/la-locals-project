@@ -15,12 +15,12 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
         // get all users
-        // users: async () => {
-        //     return User.find()
-        //         .select('-__v -password')
-        //         .populate('photos')
-        //         .populate('userLikes');
-        // },
+        users: async () => {
+            return User.find()
+                .select('-__v -password')
+                .populate('photos')
+                .populate('userLikes');
+        },
         // users: async (parent, { area, identity, preference } , context) => {
         //     if (context.user) {
         //         return User.find({ area, identity, preference })

@@ -112,8 +112,8 @@ function Register(props) {
           <Form.Control as='select' value={props.identity} onChange={event => props.setIdentity(event.target.value)} >
 
             <option>Select</option>
-            <option>Man</option>
-            <option>Woman</option>
+            <option>Male</option>
+            <option>Female</option>
             <option>Non-Binary</option>
           </Form.Control>
         </Form.Group>
@@ -123,8 +123,8 @@ function Register(props) {
           <Form.Control as='select' value={props.preference} onChange={event => props.setPreference(event.target.value)} >
 
             <option>Select</option>
-            <option>Men</option>
-            <option>Women</option>
+            <option>Male</option>
+            <option>Female</option>
             <option>Non-Binary</option>
           </Form.Control>
         </Form.Group>

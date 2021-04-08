@@ -31,7 +31,6 @@ type User {
   }
   type Query {
     me: User
-
     users(area: String!, identity: String!, preference: String!): [User]
     user(email: String!): User
     photos(name: String): [Photo]

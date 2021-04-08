@@ -1,5 +1,34 @@
 import gql from 'graphql-tag';
 
+
+export const QUERY_USERS = gql`
+  query users {
+    users {
+      _id
+      firstName
+      lastName
+      email
+      age
+      area
+      identity
+      preference
+      question1
+      question2
+      question3
+      question4
+      question5
+      userLikes {
+        _id
+        firstName
+        lastName
+        }
+      }
+    }
+  
+`;
+
+
+
 export const QUERY_USER = gql`
   query user($email: String!) {
     user(email: $email) {
@@ -63,9 +92,15 @@ export const QUERY_MATCHES = gql`
       firstName
       lastName
       email
+      age
       area
       identity
       preference
+      question1
+      question2
+      question3
+      question4
+      question5
       userLikes {
         _id
         firstName
