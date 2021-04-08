@@ -11,7 +11,7 @@ const FriendList = ({ firstName, lastName, userLikes }) => {
   return (
     <div className="display-block align-content-center">
       <h5 className= "text-white" style={{ fontSize: '30px'}}>
-        {firstName} {lastName}'s Likes
+        Your Likes
       </h5>
       {userLikes.map(match => (
         

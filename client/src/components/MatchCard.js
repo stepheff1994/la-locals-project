@@ -29,6 +29,7 @@ const MatchCards= ({ matches })=> {
     };
     const outOfFrame = async (name, id) => {
         console.log (name +"left the screen")
+        // add the user to the logged in user's "likes" list
         try {
             await addLikedFriend({
               variables: { id: id }
@@ -38,7 +39,7 @@ const MatchCards= ({ matches })=> {
           }
             
     }
-
+    // handleClick functions for the buttons
     const handleLeftClick = async () => {
         return swiped;
     }
