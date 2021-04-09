@@ -1,13 +1,28 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
+import { useContacts } from '../../contexts/ContactsProvider';
 
 
 const FriendList = ({ firstName, lastName, userLikes }) => {
+  // use the useRef hook to create an id and name refrence variable
+  const idRef = useRef();
+  const nameRef = useRef();
+
+  // const { createContact } = useContacts()
+
   if (!userLikes || !userLikes.length) {
     return <p className="bg-dark text-light p-3">{firstName} {lastName} has no likes!</p>;
   }
   console.log(userLikes)
+
+  // function handleSubmit(e, id, name) {
+  //   e.preventDefault();
+  //   // call the onIdSubmit from Chat.js and pass it the current value of idRef
+  //   createContact(id, name)
+    
+  // }
+
   return (
     <Container>
       <h5 className="text-white" style={{ fontSize: '30px' }}>
@@ -19,6 +34,7 @@ const FriendList = ({ firstName, lastName, userLikes }) => {
           <div className=" card text-dark overflow-auto" key={match._id}>
             <div className='text-danger border-bottom border-grey'>
               <h2>{match.firstName} {match.lastName}</h2>
+              {/* <Button type='submit' onClick={(e) => handleSubmit(e, match._id, `${match.firstName} ${match.lastName}`)} className='mr-2'>Add To Chat</Button> */}
             </div>
             <div className='text-grey border-bottom border-grey py-2'>Images Here</div>
             <div className='border-bottom border-grey py-3'>

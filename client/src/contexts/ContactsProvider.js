@@ -15,21 +15,7 @@ export function useContacts() {
 // function to create a contact
 export function ContactsProvider({ children }) {
 
-     // get the user's data from the me query
-     const { data } = useQuery(QUERY_ME)
-     // get the first and last name from the data
-     const friends = [data?.me.userLikes]
-    //  let newFriends = friends.map(friend =>{
-    //      setContacts(prevContacts => {
-    //         return[...prevContacts, { friend._id, friend.name }]
-    //     })
-    //     return newFriends
-    //  })
-    // friends.forEach(friend => {
-        
-    // });
-    //  console.log(friends)
-    // //  console.log(name)
+     
     
     // take in contacts and an empty array if there are none
     const [contacts, setContacts] = useLocalStorage('contacts', [])
