@@ -48,3 +48,11 @@ code {
 .text-color-form {
   text-decoration-color: white;
 }
+
+.upgrade {
+  background-image: url("./images/premium.png" );
+}
+.dashboard {
+  
+  background-image: url("./images/dashboard.png" );
+}

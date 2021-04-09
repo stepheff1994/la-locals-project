@@ -10,11 +10,6 @@ const Conversation= require('./models/Conversation')
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-
-
-
-
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -37,7 +32,7 @@ app.get('*', (req, res) => {
 db.once('open', () => {
   const server = app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlpath}`);
+    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
   const io = require('socket.io')(server)
   io.on('connection', socket => {

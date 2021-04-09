@@ -1,20 +1,17 @@
 import React from "react";
 import '../index.css';
 
+
 function Home () {
     return (
         <>
            
             <h1></h1>
-            <div className="lalocals">
+            <div className="dashboard">
             </div>   
             
-
             
         </>
     )
 }
-
-
-
 export default Home

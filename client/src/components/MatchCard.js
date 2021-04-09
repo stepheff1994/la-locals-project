@@ -4,6 +4,8 @@ import TinderCard from "react-tinder-card"
 import "../components/MatchCard.css";
 
 const MatchCards= ()=> {
+    
+   
     const [people, setPeople] = useState([
         {
             name: 'Name',
