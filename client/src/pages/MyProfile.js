@@ -1,68 +1,41 @@
+import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
+import {Card } from 'react-bootstrap';
+import { Redirect, useParams } from 'react-router-dom';
 import { QUERY_ME} from '../utils/queries'
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import Button from '@material-ui/core/Button';
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import sample from '../images/sample.JPG'
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import Divider from '@material-ui/core/Divider'
-const useStyles = makeStyles({
-  root: {
-    maxWidth: "345",
-    width: "70vh",
-    padding: "20px",
-    margin: "6rem auto",
-    textEmphasisColor: "white",
-    backgroundAttachment: "none",
-    border: "10px solid #F9F9F9",
-    height: "70vh"
-  },
-  media: {
-    height: 250,
-  },
-});
- function MyProfile() {
-  const classes = useStyles();
-  const { loading, error, data } = useQuery(QUERY_ME)
-    const firstname = data?.me.firstName;
-    const age = data?.me.age;
-    const pref = data?.me.preference
-    const area = data?.me.area
-    if (error) return <h1>Something went wrong!</h1>
-    if (loading) return <h1>Loading...</h1>
-  return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography gutterBottom variant="h3" style={{color:"blue", fontWeight:"bolder"}} component="h2" >
-          {firstname}
-        </Typography>
-        <Typography variant="body2" style={{color:"red", fontWeight:"bold",fontSize: "15px"}}  component="p">
-         Age:  {age}
-        </Typography>
-        <Typography variant="body2"  style={{color:"red", fontWeight:"bold", fontSize: "15px"}}  component="p">
-         Preference: Looking for {pref}
-        </Typography>
-        <Typography variant="body2"  style={{color:"red", fontWeight:"bold", fontSize: "15px"}}  component="p">
-         Area: {area}
-        </Typography>
-        <Divider component="li" />
-      </CardContent>
-      <CardMedia
-          className={classes.media}
-          image = {sample}
-        />
-      <CardActions disableSpacing>
-      <Button variant="contained" color="secondary">
-       UPDATE PROFILE
-      </Button>
-      </CardActions>
-    </Card>
-  );
+import Auth from '../utils/auth';
+
+
+function MyProfile() {
+    const { firstName: userParam } = useParams();
+    const { data } = useQuery(QUERY_ME);
+    const userData = data?.me || {};
+
+    // redirect to personal profile page if username is the logged-in user's
+    if (Auth.loggedIn() && Auth.getProfile().data._id === userParam) {
+        return <Redirect to="/Myprofile" />;
+    }
+    // if data isn't here yet, say so
+    if (!userData) {
+        return <h2>LOADING...</h2>;
+    }
+    if (!userData?._id) {
+        return (
+            <h4>
+                You need to be logged in to see this page. Use the navigation links above to sign up or log in!
+            </h4>
+        );
+    }
+        return (
+          <Card key={userData._id} border='dark'>
+            {userData.lastName ? <Card.Img src={userData.lastName} alt={`The cover for ${userData.lastName}`} variant='top' /> : null}
+            <Card.Body>
+              <Card.Title>{userData.firstName}</Card.Title>
+              <p className='small'>Authors: {userData.question1}</p>
+              <Card.Text>{userData.question2}</Card.Text>
+            </Card.Body>
+          </Card>
+        );
 }
-export default MyProfile
+
+export default MyProfile;
