@@ -51,9 +51,6 @@ function Questionnaire () {
     const [question3, setQuestion3] = useState('');
     const [question4, setQuestion4] = useState('');
     const [question5, setQuestion5] = useState('');
-
-        
-    
     
     const [addUser] = useMutation(ADD_USER);
     const handleSubmit = async event => {
@@ -65,7 +62,9 @@ function Questionnaire () {
         try {
             // execute addUser mutation and pass in variable data from form
             const { data } = await addUser({
-                variables:{email, firstName,lastName,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
+                variables:{email, firstName,lastName,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5,
+                image:stateImage.url
+                }
             });
             // send the token info from addUser through to the login fucntion in Auth
             // upon successful signup user will be redirected to the homepage
@@ -100,7 +99,10 @@ function Questionnaire () {
         // setImageAsUrl(URL.createObjectURL(image))
         if (e.target.files[0]) {
             const image = e.target.files[0];
-            setStateImage(() => ({ image }));
+            setStateImage(() => ({ 
+                ...stateImage,
+                image
+            }));
           }
     }
 
@@ -114,7 +116,10 @@ function Questionnaire () {
             const progress = Math.round(
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             );
-            setStateImage({ progress });
+            setStateImage({ 
+                ...stateImage,
+                progress
+            });
           },
           error => {
             // Error function ...
@@ -127,21 +132,24 @@ function Questionnaire () {
               .child(image.name)
               .getDownloadURL()
               .then(url => {
-                setStateImage({ url });
-
+                setStateImage({ 
+                    ...stateImage,
+                    url
+                });
+                console.log("New Image State:", stateImage);
             
               });
           }
 
         );
-        const storageRef = firebase.storage().ref()
-        const imagesRef = storageRef('images')
-        const imageFromStorage = imagesRef.child(`images/${image.name}`)
-        const imagePath = imageFromStorage.fullPath
-        const imageName = imageFromStorage.imageName
+        // const storageRef = firebase.storage().ref()
+        // const imagesRef = storageRef('images')
+        // const imageFromStorage = imagesRef.child(`images/${image.name}`)
+        // const imagePath = imageFromStorage.fullPath
+        // const imageName = imageFromStorage.imageName
 
-        console.log(imagePath)
-        console.log(imageName)
+        // console.log(imagePath)
+        // console.log(imageName)
 
         
       };
@@ -235,9 +243,10 @@ function Questionnaire () {
                 Upload up to 3 images 
                 <PhotoUpload stateImage = {stateImage} handleImage = {handleImage} handleUpload = {handleUpload} />
                
-        <Button variant="contained" color="primary" className="mt-5" type="submit" onClick = {handleSubmit}>
-          Submit
-        </Button>
+               {stateImage.url.length>0?(
+                <Button variant="contained" color="primary" className="mt-5" type="submit" onClick={handleSubmit}>
+                Submit
+                </Button>):""}
             </div>
 
         default: return "Unknow Step";
