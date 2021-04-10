@@ -9,7 +9,7 @@ import {ADD_USER} from '../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';
 import Auth from '../utils/auth';
 import storage from '../components/Firebase';
-
+import {firebase} from '../components/Firebase';
 
 const useStyles = makeStyles({
     root: {
@@ -109,7 +109,7 @@ function Questionnaire () {
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
         uploadTask.on(
           "state_changed",
-          snapshot => {
+          snapshot=> {
             // progress function ...
             const progress = Math.round(
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100
@@ -128,12 +128,30 @@ function Questionnaire () {
               .getDownloadURL()
               .then(url => {
                 setStateImage({ url });
+
+            
               });
           }
+
         );
+        const storageRef = firebase.storage().ref()
+        const imagesRef = storageRef('images')
+        const imageFromStorage = imagesRef.child(`images/${image.name}`)
+        const imagePath = imageFromStorage.fullPath
+        const imageName = imageFromStorage.imageName
+
+        console.log(imagePath)
+        console.log(imageName)
+
+        
       };
 
     
+
+    //   storageRef.put(YOUR_FILENAME).then((snapshot) => {
+    //                         return snapshot.ref.getDownloadURL();
+    //                     })=> {
+    //         
 
     const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029','91309',  
     '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}]

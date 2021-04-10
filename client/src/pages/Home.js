@@ -3,15 +3,16 @@ import '../index.css';
 
 function Home () {
     return (
-        <>
+        
            
-            <h1></h1>
-            <div className="lalocals">
+            
+            <div >
+                <img src="/dashboard.png" style={{width: "100%"}}></img> 
             </div>   
             
 
             
-        </>
+       
     )
 }
 

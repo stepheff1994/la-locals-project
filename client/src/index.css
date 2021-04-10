@@ -1,6 +1,9 @@
+html {
+  width: 100%;
+}
 body {
   margin: 0;
-  background-image: url("./images/LALOCALS.png");
+  background-image: url("./images/LALOCALS.png"); 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -14,6 +17,7 @@ body {
   opacity: 100%;
   background-image: url("./images/gradient.png" );
   background-size:1200px 100px
+
 
  
   
@@ -41,10 +45,23 @@ code {
   max-height: 100px;
 }
 
-.lalocals {
+/* .lalocals {
   background-image: url("./images/LALOCALStext.png" );
-}
+} */
 
 .text-color-form {
   text-decoration-color: white;
+}
+
+.upgrade {
+  background-image: url("/premium.png" );
+}
+.dashboard {
+  
+  background-image: url("/dashboard.png" 
+  );
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }

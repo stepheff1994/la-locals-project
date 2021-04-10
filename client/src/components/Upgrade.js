@@ -3,9 +3,7 @@ import React from "react";
 function Upgrade () {
     return (
         <div>
-            <h1>
-                Upgrade
-            </h1>
+           <img src="/premium.png" style={{width: "100%"}}></img>  
         </div>
     )
 }

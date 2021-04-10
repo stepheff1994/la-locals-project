@@ -9,7 +9,8 @@ function NavBarPage() {
   };
   return (
     
-    <Navbar className="color-nav" collapseOnSelect expand="lg" bg="light" variant="light">
+    <Navbar className="color-nav mb-0 rounded-0" 
+     collapseOnSelect expand="lg" bg="light" variant="light">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto nav-text" style={{ fontSize: '20px' }} >
@@ -18,6 +19,7 @@ function NavBarPage() {
             <>
              <Nav.Link href="/Chat">Messages</Nav.Link> 
              <Nav.Link href="/MyLikes">MyLikes</Nav.Link>
+             
             </>
           ) : null }
           <Nav.Link href="/Upgrade">Upgrade!</Nav.Link>
