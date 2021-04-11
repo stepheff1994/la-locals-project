@@ -6,13 +6,9 @@ const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const http= require('http');
 const Conversation= require('./models/Conversation')
-
+require('dotenv').config();
 const PORT = process.env.PORT || 3001;
 const app = express();
-
-
-
-
 
 
 const server = new ApolloServer({
@@ -32,6 +28,35 @@ if (process.env.NODE_ENV === 'production') {
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+const Stripe = require('stripe');
+const stripe = Stripe(process.env.STRIPE);
+
+app.post('/create-checkout-session', async (req, res) => {
+
+  let { amount, product_data } = req.body 
+  amount *= 100
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: product_data,
+          },
+          unit_amount: amount,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: 'https://example.com/success',
+    cancel_url: 'https://example.com/cancel',
+  });
+
+  res.json({ id: session.id });
 });
 
 db.once('open', () => {

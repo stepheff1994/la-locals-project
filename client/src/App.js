@@ -45,6 +45,7 @@ function App() {
             <Route exact path="/Questionnaire" component={Questionnaire} />
             <Route exact path="/Register" component={Register} />
             <Route exact path="/LogIn" component={LogIn} />
+            <Route exact path='/Upgrade' component={Upgrade} />
           </Router>
         </Container>
       </ApolloProvider>
