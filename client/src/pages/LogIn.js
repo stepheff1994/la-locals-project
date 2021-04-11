@@ -11,7 +11,7 @@ function LogIn () {
     return (
         <div className="LogIn">
         
-        <Row className="landing">
+        <Row className="landing text-white">
           <Col ><LeftSide /></Col>
           
           <Col ><RightSide /></Col>

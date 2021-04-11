@@ -14,10 +14,10 @@ function IntroQuestionnaire(props) {
   <Form.Control as='select' value={props.question1} onChange={event => props.setQuestion1(event.target.value)} style={{height: "40px", fontSize: '10px'}}>
 
     <option>Select</option>
-    <option value='1' >a. I’m tired of the Tinder/Bumble scene</option>
-    <option value='2'>b. I want to meet someone with out having to go on the 405</option>
-    <option value='3'>c. I survived 2020 I can survive this app </option>
-    <option value='4'>d. I love social experiments </option>
+    <option value='I’m tired of the Tinder/Bumble scene' >a. I’m tired of the Tinder/Bumble scene</option>
+    <option value='I want to meet someone with out having to go on the 405'>b. I want to meet someone with out having to go on the 405</option>
+    <option value='I survived 2020 I can survive this app'>c. I survived 2020 I can survive this app </option>
+    <option value='I love social experiments'>d. I love social experiments </option>
   </Form.Control>
 </Form.Group>
 
@@ -26,10 +26,10 @@ function IntroQuestionnaire(props) {
   <Form.Control as='select' value={props.question2} onChange={event => props.setQuestion2(event.target.value)} style={{height: "40px", fontSize: '10px'}}>
 
     <option>Select</option>
-    <option value='1 '>a. I don’t have Facebook</option>
-    <option value='2'>b. My uncle doesn’t have Facebook </option>
-    <option value='3'>c. If it is on my status I will delete the comment  </option>
-    <option value='4'>d. Engage in a fight in the comment section because I like seeing the world the burn. </option>
+    <option value='I don’t have Facebook'>a. I don’t have Facebook</option>
+    <option value='My uncle doesn’t have Facebook'>b. My uncle doesn’t have Facebook </option>
+    <option value='If it is on my status I will delete the comment'>c. If it is on my status I will delete the comment  </option>
+    <option value='Engage in a fight in the comment section because I like seeing the world the burn.'>d. Engage in a fight in the comment section because I like seeing the world the burn. </option>
   </Form.Control>
 </Form.Group>
 
@@ -38,10 +38,10 @@ function IntroQuestionnaire(props) {
   <Form.Control as='select' value={props.question3} onChange={event => props.setQuestion3(event.target.value)} style={{height: "40px", fontSize: '10px'}} >
 
     <option>Select</option>
-    <option value='1'>a. no socials because I’m the Unabomber </option>
-    <option value='2'>b. It’s a real toss up between instagram and snapchat </option>
-    <option value='3'>c. Tik Tok because of quarantine   </option>
-    <option value='4'>d. Facebook because I’m Mark Zuckerberg </option>
+    <option value='no socials because I’m the Unabomber'>a. no socials because I’m the Unabomber </option>
+    <option value='It’s a real toss up between instagram and snapchat'>b. It’s a real toss up between instagram and snapchat </option>
+    <option value='Tik Tok because of quarantine'>c. Tik Tok because of quarantine   </option>
+    <option value='Facebook because I’m Mark Zuckerberg'>d. Facebook because I’m Mark Zuckerberg </option>
   </Form.Control>
 </Form.Group>
 
@@ -50,10 +50,10 @@ function IntroQuestionnaire(props) {
   <Form.Control as='select' value={props.question4} onChange={event => props.setQuestion4(event.target.value)} style={{height: "40px", fontSize: '10px'}}>
 
     <option>Select</option>
-    <option value='1'>a. Go to the Abbey  </option>
-    <option value='2'>b. The same thing I was doing before the pandemic: watching Netflix </option>
-    <option value='3'>c. Get out of LA   </option>
-    <option value='4'>d. Scroll on the citizen app because I’ve already lost faith in humanity</option>
+    <option value='Go to the Abbey'>a. Go to the Abbey  </option>
+    <option value='The same thing I was doing before the pandemic: watching Netflix'>b. The same thing I was doing before the pandemic: watching Netflix </option>
+    <option value='Get out of LA '>c. Get out of LA   </option>
+    <option value='Scroll on the citizen app because I’ve already lost faith in humanity'>d. Scroll on the citizen app because I’ve already lost faith in humanity</option>
   </Form.Control>
 </Form.Group>
 
@@ -62,10 +62,10 @@ function IntroQuestionnaire(props) {
   <Form.Control as='select' value={props.question5} onChange={event => props.setQuestion5(event.target.value)} style={{height: "40px", fontSize: '10px'}} >
 
     <option>Select</option>
-    <option value='1'>a. Postmates  </option>
-    <option value='2'>b. Doordash  </option>
-    <option value='3'>c. I actually cook all of my meals at home so I can’t relate</option>
-    <option value='4'>d. I don’t eat human food because I’m Mark Zuckerberg</option>
+    <option value='Postmates'>a. Postmates  </option>
+    <option value='Doordash'>b. Doordash  </option>
+    <option value='I actually cook all of my meals at home so I can’t relate'>c. I actually cook all of my meals at home so I can’t relate</option>
+    <option value='I don’t eat human food because I’m Mark Zuckerberg'>d. I don’t eat human food because I’m Mark Zuckerberg</option>
   </Form.Control>
 </Form.Group>
 </Form>

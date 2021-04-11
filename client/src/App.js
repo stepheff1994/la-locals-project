@@ -14,6 +14,7 @@ import Questionnaire from "./components/Register"
 import { Container } from "react-bootstrap"
 import Register from "./pages/Questionnaire";
 import MyProfile from "./pages/MyProfile.js";
+import Matches from "./pages/Matches"
 import LogIn from "./pages/LogIn.js";
 import Upgrade from "./components/Upgrade.js";
 import Footer from "./components/Footer"

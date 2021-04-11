@@ -17,7 +17,7 @@ function NavBarPage() {
           {Auth.loggedIn() ? (
             <>
              <Nav.Link href="/Chat">Messages</Nav.Link> 
-             <Nav.Link href="/MyLikes">MyLikes</Nav.Link>
+             <Nav.Link href="/Matches">MyLikes</Nav.Link>
             </>
           ) : null }
           <Nav.Link href="/Upgrade">Upgrade!</Nav.Link>

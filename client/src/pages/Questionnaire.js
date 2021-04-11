@@ -9,6 +9,7 @@ import {ADD_USER} from '../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';
 import Auth from '../utils/auth';
 import storage from '../components/Firebase';
+<<<<<<< HEAD
 import firebase from '../components/Firebase';
    import {Link } from "react-router-dom";
 
@@ -18,6 +19,11 @@ const useStyles = makeStyles({
 
 
         width: "70%",
+=======
+const useStyles = makeStyles({
+    root: {
+        width: "50%",
+>>>>>>> cisco-develop
         padding: "20px",
         margin: "6rem auto",
         textEmphasisColor: "black",
@@ -41,10 +47,7 @@ const useStyles = makeStyles({
     }
     
 })
-
-
 function Questionnaire () {
-
     const [area, setArea] = useState('');
     const [age, setAge] = useState('');
     const [ConfirmPassword, setConfirmPassword] = useState ('');
@@ -61,6 +64,11 @@ function Questionnaire () {
     const [question3, setQuestion3] = useState('');
     const [question4, setQuestion4] = useState('');
     const [question5, setQuestion5] = useState('');
+<<<<<<< HEAD
+=======
+        
+    
+>>>>>>> cisco-develop
     
     const [addUser] = useMutation(ADD_USER);
     const handleSubmit = async event => {
@@ -91,7 +99,6 @@ function Questionnaire () {
     //   Auth.login(token);
       
     };
-
     const [imageAsFile, setImageAsFile] = useState('')
     const [imageAsUrl, setImageAsUrl] = useState('')
     const [stateImage, setStateImage] = useState({
@@ -99,7 +106,10 @@ function Questionnaire () {
         url: "",
         progress: 0
     })
+<<<<<<< HEAD
 
+=======
+>>>>>>> cisco-develop
     console.log("image as file", imageAsFile)
     console.log("image as url" , imageAsUrl)
     
@@ -109,6 +119,7 @@ function Questionnaire () {
         // setImageAsUrl(URL.createObjectURL(image))
         if (e.target.files[0]) {
             const image = e.target.files[0];
+<<<<<<< HEAD
             setStateImage(() => ({ 
                 ...stateImage,
                 image
@@ -116,20 +127,33 @@ function Questionnaire () {
           }
     }
 
+=======
+            setStateImage(() => ({ image }));
+          }
+    }
+>>>>>>> cisco-develop
     const handleUpload = () => {
         const { image } = stateImage;
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
         uploadTask.on(
           "state_changed",
+<<<<<<< HEAD
           snapshot=> {
+=======
+          snapshot => {
+>>>>>>> cisco-develop
             // progress function ...
             const progress = Math.round(
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             );
+<<<<<<< HEAD
             setStateImage({ 
                 ...stateImage,
                 progress
             });
+=======
+            setStateImage({ progress });
+>>>>>>> cisco-develop
           },
           error => {
             // Error function ...
@@ -142,6 +166,7 @@ function Questionnaire () {
               .child(image.name)
               .getDownloadURL()
               .then(url => {
+<<<<<<< HEAD
                 setStateImage({ 
                     ...stateImage,
                     url
@@ -171,24 +196,26 @@ function Questionnaire () {
     //                     })=> {
     //         
 
+=======
+                setStateImage({ url });
+              });
+          }
+        );
+      };
+    
+>>>>>>> cisco-develop
     const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029','91309',  
     '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}]
-
-
-
     const [activeStep, setActiveStep] = useState(0);
-
     function getSteps() {
         return ["SIGNUP", "INTRO", "PHOTOS"];
     }
     const handleNext =() => {
         setActiveStep(prevActiveStep => prevActiveStep +1)
     }
-
     function addressEntered (zip) {
         
         let found_area = ""
-
         for(var i = 0; i < available_areas.length; i++) {
             let currentAreaObj = available_areas[i]
             let currentAreaObjectZips = currentAreaObj.zip
@@ -207,22 +234,17 @@ function Questionnaire () {
         setArea(found_area)
         console.log('area found is ',found_area)
       
-
     }
     const handleZipChange = (event) => {
         setZipcode(event.target.value)
         addressEntered(event.target.value)
-
     }
     // const handleSubmit = (event) => {
     //     event.preventDefault()
-
         
     //     console.log('submitted',area,age,zipcode,first,last,email,password,ConfirmPassword,identity,preference,question1,question2,question3,question4,question5,imageAsFile,imageAsUrl )
     // }
-
     const steps = getSteps();
-
     function getStepsContent(stepIndex){
         switch(stepIndex) {
         case 0:
@@ -250,7 +272,11 @@ function Questionnaire () {
                 setQuestion5 = {setQuestion5}     />;
         case 2:
            return <div>
+<<<<<<< HEAD
                 Upload your favorite Photo!
+=======
+                Upload up to 3 images 
+>>>>>>> cisco-develop
                 <PhotoUpload stateImage = {stateImage} handleImage = {handleImage} handleUpload = {handleUpload} />
                
                {stateImage.url.length>0?(
@@ -259,11 +285,9 @@ function Questionnaire () {
                 Submit
                 </Button>):""}
             </div>
-
         default: return "Unknow Step";
     }
     }
-
    const classes = useStyles();
    return (
     <>
@@ -293,9 +317,14 @@ function Questionnaire () {
     </>
 )
 }
+<<<<<<< HEAD
 
   
 
 
 
+=======
+    
+   
+>>>>>>> cisco-develop
 export default Questionnaire

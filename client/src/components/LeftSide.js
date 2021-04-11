@@ -45,7 +45,7 @@ function Login(props) {
             name="email"
             type="email"
             id="email"
-            
+            className="text-dark"
             onChange={handleChange}
           />
         </div>
@@ -57,6 +57,7 @@ function Login(props) {
             type="password"
             id="pwd"
             onChange={handleChange}
+            className="text-dark"
           />
         </div>
         {
