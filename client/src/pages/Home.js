@@ -1,17 +1,22 @@
 import React from "react";
-import '../index.css';
 
+import dash from '../images/dashboard.png'
 
 function Home () {
     return (
-        <>
+        
            
-            <h1></h1>
-            <div className="dashboard">
-            </div>   
             
+        <div >
+        <img src={dash} style={{width: "100%"}}></img> 
+    </div>   
             
-        </>
+
+            
+       
     )
 }
+
+
+
 export default Home

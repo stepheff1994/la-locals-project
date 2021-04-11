@@ -1,90 +1,46 @@
-import React, { Component } from "react";
-import storage from "./firebase";
+import React, { useState } from "react";
+import { propTypes } from "react-bootstrap/esm/Image";
+import firebase from "firebase/app";
+import "firebase/storage";
+import storage from "./Firebase";
 
-class ImageUpload extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      image: null,
-      url: "",
-      progress: 0
-    };
-  }
 
-  handleChange = e => {
-    if (e.target.files[0]) {
-      const image = e.target.files[0];
-      this.setState(() => ({ image }));
-    }
-  };
+function PhotoUpload(props) {
 
-  handleUpload = () => {
-    const { image } = this.state;
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    uploadTask.on(
-      "state_changed",
-      snapshot => {
-        // progress function ...
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        this.setState({ progress });
-      },
-      error => {
-        // Error function ...
-        console.log(error);
-      },
-      () => {
-        // complete function ...
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then(url => {
-            this.setState({ url });
-          });
-      }
-    );
-  };
-  render() {
     return (
-      <div className="center">
-          <br/>
-          <h2 className="green-text">Upload your favorite photo!!</h2>
-          <br/>
-          <br/>
-        <div className="row">
-          <progress value={this.state.progress} max="100" className="progress" />
-        </div>
-        <br />
-        <br />
-        <br />
-        <div className="file-field input-field">
-          <div className="btn">
-            <span>File</span>
-            <input type="file" onChange={this.handleChange} />
+        <div>
+             <progress value={props.stateImage.progress} max="100" className="progress" style={{width: '100px', height: '20px', backgroundColor:'green'}}/>
+  
+              <div className="file-field input-field">
+          <div className="btn" style={{fontSize:'15px'}}>
+            <span style={{fontSize: '15px'}}>File</span>
+            <input type="file" onChange={props.handleImage} />
           </div>
           <div className="file-path-wrapper">
-            <input className="file-path validate" type="text" />
+            {/* <input className="file-path validate" type="text"/> */}
           </div>
         </div>
-        <button
-          onClick={this.handleUpload}
+        <div>
+        <button style={{backgroundColor:'red', fontSize: '15px', fontWeight:'bolder', width:'10rem'
+
+        
+        }}
+          onClick={props.handleUpload}
           className="waves-effect waves-light btn"
         >
           Upload
         </button>
-        <br />
-        <br />
+        </div>
+        <br/>
         <img
-          src={this.state.url || "https://via.placeholder.com/400x300"}
+          src={props.stateImage.url || "https://via.placeholder.com/400x300"}
           alt="Uploaded Images"
           height="300"
           width="400"
         />
-      </div>
-    );
-  }
+        <br/>
+        </div>
+    )
 }
 
-export default ImageUpload;
+export default PhotoUpload;

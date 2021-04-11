@@ -13,8 +13,8 @@ mutation login($email: String!, $password: String!) {
 
 
 export const ADD_USER = gql`
-mutation addUser($firstName:String! $lastName:String!,$password:String!, $email:String!,$age:Int!,$area:String!,$identity:String!,$preference:String!,$question1:String!,$question2:String!,$question3:String!,$question4:String!,$question5:String!){
-  addUser(firstName:$firstName, lastName:$lastName,password:$password, email:$email,age:$age,area:$area,identity:$identity,preference:$preference,question1:$question1,question2:$question2,question3:$question3,question4:$question4,question5:$question5) {
+mutation addUser($firstName:String! $lastName:String!,$password:String!, $email:String!,$age:Int!,$area:String!,$identity:String!,$preference:String!,$question1:String!,$question2:String!,$question3:String!,$question4:String!,$question5:String!,$image:String!){
+  addUser(firstName:$firstName, lastName:$lastName,password:$password, email:$email,age:$age,area:$area,identity:$identity,preference:$preference,question1:$question1,question2:$question2,question3:$question3,question4:$question4,question5:$question5,image:$image) {
     token
     user{
        _id
@@ -22,3 +22,4 @@ mutation addUser($firstName:String! $lastName:String!,$password:String!, $email:
  }  
 }
 `;
+
