@@ -72,45 +72,45 @@ function Register(props) {
       <Form className="text-dark"  style={{fontSize:"20px"}}  onSubmit={props.handleSubmit}>
         <Form.Group controlId="first">
           <Form.Label >First Name</Form.Label>
-          <Form.Control style={{height: "40px", fontSize: '10px'}} type="text" placeholder="First Name" value={props.first} onChange={event => props.setFirst(event.target.value)} />
+          <Form.Control style={{height: "40px", fontSize: '15px'}} type="text" placeholder="First Name" value={props.first} onChange={event => props.setFirst(event.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="last">
           <Form.Label>Last Name</Form.Label>
-          <Form.Control  style={{height: "40px", fontSize: '10px'}} type="text" placeholder="Last Name" value={props.last} onChange={event => props.setLast(event.target.value)} />
+          <Form.Control  style={{height: "40px", fontSize: '15px'}} type="text" placeholder="Last Name" value={props.last} onChange={event => props.setLast(event.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="age">
           <Form.Label>Age</Form.Label>
-          <Form.Control  style={{height: "40px", fontSize: '10px'}} type="text" placeholder="Enter Age (must be at least 18yrs)" value={props.age} onChange={event => props.setAge(event.target.value)} />
+          <Form.Control  style={{height: "40px", fontSize: '15px'}} type="text" placeholder="Enter Age (must be at least 18yrs)" value={props.age} onChange={event => props.setAge(event.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="email">
           <Form.Label>Email address</Form.Label>
-          <Form.Control  style={{height: "40px", fontSize: '10px'}} type="email" placeholder="Enter Email" value={props.email} onChange={event => props.setEmail(event.target.value)} />
+          <Form.Control  style={{height: "40px", fontSize: '15px'}} type="email" placeholder="Enter Email" value={props.email} onChange={event => props.setEmail(event.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
-          <Form.Control  style={{height: "40px", fontSize: '10px'}} type="password" placeholder="Enter Password" value={props.password} onChange={event => props.setPassword(event.target.value)} />
+          <Form.Control  style={{height: "40px", fontSize: '15px'}} type="password" placeholder="Enter Password" value={props.password} onChange={event => props.setPassword(event.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="ConfirmPassword">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control  style={{height: "40px", fontSize: '10px'}} type="password" placeholder="Re-enter Password" value={props.ConfirmPassword} onChange={event => props.setConfirmPassword(event.target.value)} />
+          <Form.Control  style={{height: "40px", fontSize: '15px'}} type="password" placeholder="Re-enter Password" value={props.ConfirmPassword} onChange={event => props.setConfirmPassword(event.target.value)} />
         </Form.Group>
 
 
         <Form.Group controlId="area">
 
           <Form.Label>Enter your zipcode</Form.Label>
-          <Form.Control  style={{height: "40px", fontSize: '10px'}} type="text" placeholder="90000" value={props.zipcode} onChange={props.handleZipChange} />
+          <Form.Control  style={{height: "40px", fontSize: '15px'}} type="text" placeholder="90000" value={props.zipcode} onChange={props.handleZipChange} />
           <Button><h2><strong>{props.area}</strong></h2></Button>
         </Form.Group>
 
         <Form.Group controlId="identity">
           <Form.Label>How do you identify?</Form.Label>
-          <Form.Control style={{height: "40px", fontSize: '10px'}} as='select' value={props.identity} onChange={event => props.setIdentity(event.target.value)} >
+          <Form.Control style={{height: "40px", fontSize: '15px'}} as='select' value={props.identity} onChange={event => props.setIdentity(event.target.value)} >
 
             <option>Select</option>
             <option>Male</option>
@@ -121,7 +121,7 @@ function Register(props) {
 
         <Form.Group controlId="preference">
           <Form.Label>Interested In:</Form.Label>
-          <Form.Control style={{height: "40px", fontSize: '10px'}} as='select' value={props.preference} onChange={event => props.setPreference(event.target.value)} >
+          <Form.Control style={{height: "40px", fontSize: '15px'}} as='select' value={props.preference} onChange={event => props.setPreference(event.target.value)} >
 
             <option>Select</option>
             <option>Male</option>

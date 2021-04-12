@@ -27,14 +27,14 @@ const FriendList = ({ firstName, lastName, userLikes }) => {
     console.log(userLikes)
   
     return (
-      <Container style={{ height: '150rem', alignContent: 'center'}}>
+      <Container style={{height: 'auto', alignContent: 'center'}}>
         <h5 className="text-white" style={{ fontSize: '30px' }}>
           Your Likes
         </h5>
         
-          <div>
+          <div className='d=flex'>
           {userLikes.map(match => (
-            <div className=" card text-dark overflow-auto" style={{ height: 'auto', width: '55rem'}} key={match._id}>
+            <div className=" card text-dark overflow-auto" style={{ height: '60rem', width: '55rem', marginBottom: '20px'}} key={match._id}>
               <div className='text-danger border-bottom border-grey'>
                 <h2 style={{ fontSize: "60px"}}>{match.firstName} {match.lastName}</h2>
                 <Button style={{ fontSize: '20px'}} variant='danger' type='submit' onClick={() => handleSubmit(`${match.firstName} ${match.lastName}`, `${match.firstName} ${match.lastName}`)} className='mr-2'>Add To Chat</Button>

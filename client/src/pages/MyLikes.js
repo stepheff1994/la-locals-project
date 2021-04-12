@@ -12,7 +12,7 @@ function MyLikes () {
 
 
     return (
-        <div className="col-12 col-lg-3 mb-3">
+        <div className='d-flex align-content-center'>
           <LikeList
             firstName={data?.me.firstName}
             lastName={data?.me.lastName}

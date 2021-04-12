@@ -3,7 +3,7 @@ import {Container, Row, Col} from "react-bootstrap";
 
 function Footer () {
     return (
-        <footer style={{width:"100%"}} className="color-nav nav-text fixed-bottom py-10" >
+        <footer  className="color-nav nav-text" >
             <Container>
                 <Row>
                     <Col className="text-center py-3">

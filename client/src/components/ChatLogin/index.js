@@ -4,11 +4,12 @@ import { Container, Form, Button } from 'react-bootstrap';
 import { QUERY_ME } from '../../utils/queries'
 import Auth from '../../utils/auth'
 import { useQuery } from '@apollo/react-hooks'
+import { useContacts } from '../../contexts/ContactsProvider';
 
 
 // take in the onIdSubmit from Chat.js useState id function
 function ChatLogin({ onIdSubmit }) {
-
+    
     // get the user's data from the me query
     const { data } = useQuery(QUERY_ME)
     // get the first and last name from the data
@@ -19,6 +20,7 @@ function ChatLogin({ onIdSubmit }) {
     const userId = data?.me._id
     console.log(userId)
     console.log(name)
+
 
 
 

@@ -54,10 +54,10 @@ function App() {
             
             <Route exact path="/Register" component={Register} />
             <Route exact path="/LogIn" component={LogIn} />
-          <Footer />
 
           </Router>
         </Container>
+        <Footer />
       </ApolloProvider>
     </div>
   );
