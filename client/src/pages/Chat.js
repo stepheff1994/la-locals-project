@@ -15,7 +15,7 @@ import { SocketProvider } from '../contexts/SocketProvider';
 function Chat () {
     // useLocalStorage hook to set the manually created id to the application and save it to local storage
     // that way, when the chat is refreshed the id is saved
-    const [id, setId] = useLocalStorage('id') // ***** will have to use this to somehow get/set the token id for each user
+    const [id, setId] = useLocalStorage('id', "") // ***** will have to use this to somehow get/set the token id for each user
     
    
 
@@ -35,6 +35,7 @@ function Chat () {
         </SocketProvider>
     )
     return (
+        <div style = {{position: 'relative', minHeight: '100vh'}}>
         <div>
             {/* if you have an id go to the chat dashboard and pass in the id
                 otherwise create one with ChatLogin
@@ -42,9 +43,9 @@ function Chat () {
             */}
             {id ? dashboard : <ChatLogin onIdSubmit={setId} />}
             {/* set the id on onIdSubmit and pass to ChatLogin form */}
-            
+            </div>   
         </div>
-    )
+    )   
 };
 
 export default Chat;

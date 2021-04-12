@@ -104,7 +104,7 @@ function Register(props) {
         <Form.Group controlId="area">
 
           <Form.Label>Enter your zipcode</Form.Label>
-          <Form.Control  style={{height: "40px", fontSize: '15px'}} type="text" placeholder="90000" value={props.zipcode} onChange={props.handleZipChange} />
+          <Form.Control  style={{height: "40px", fontSize: '15px'}} type="text" placeholder="PLEASE ENTER 91406 FOR DEMO PURPOSES" value={props.zipcode} onChange={props.handleZipChange} />
           <Button><h2><strong>{props.area}</strong></h2></Button>
         </Form.Group>
 

@@ -166,8 +166,10 @@ function Questionnaire () {
     //                     })=> {
     //         
 
-    const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029','91309',  
-    '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}]
+    const available_areas = [{'zip': ['90210', '90038', '90038','90046','90048'], 'area': 'Beverly Hills/WeHo'}, {'zip': ['91406', '90029','91309',  
+    '91310','91311','91313'], 'area': 'The Valley'},{'zip': ['90018', '90026','90006',  
+    '90027','90019','90048','90014','90012'], 'area': 'Mid-City/Downtown'}, {'zip': ['90401', '90265', '90731','90713', '90731', '90740', '90755', '90802',], 'area': 'The Beach'}]
+
     const [activeStep, setActiveStep] = useState(0);
     function getSteps() {
         return ["SIGNUP", "INTRO", "PHOTOS"];
@@ -242,6 +244,7 @@ function Questionnaire () {
                 <Button variant="contained" color="primary" size='large' className="mt-5" type="submit" onClick={handleSubmit} >
                 Submit
                 </Button>):""}
+                
             </div>
         default: return "Unknow Step";
     }

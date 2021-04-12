@@ -5,7 +5,7 @@ import { QUERY_ME } from '../../utils/queries'
 import Auth from '../../utils/auth'
 import { useQuery } from '@apollo/react-hooks'
 import { useContacts } from '../../contexts/ContactsProvider';
-
+import { Link } from "react-router-dom";
 
 // take in the onIdSubmit from Chat.js useState id function
 function ChatLogin({ onIdSubmit }) {
@@ -33,7 +33,9 @@ function ChatLogin({ onIdSubmit }) {
 
     return (
         <Container className='align-items-center d-flex' style={{ height: '100vh', fontSize: '20px' }}>
+            
             <Button variant="danger" style={{ fontSize: '50px', alignSelf: "center" }} type="submit" onClick={handleSubmit} className="mr-2">Begin Chatting!</Button>
+           
         </Container>
     )
 };

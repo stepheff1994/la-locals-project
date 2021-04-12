@@ -12,12 +12,14 @@ function MyLikes () {
 
 
     return (
-        <div className='d-flex align-content-center'>
+       <div style = {{position: 'relative', minHeight: '100vh'}}>
+        <div className='d-flex align-content-center'  >
           <LikeList
             firstName={data?.me.firstName}
             lastName={data?.me.lastName}
             userLikes={data?.me.userLikes}
           />
+        </div>
         </div>
         
     )

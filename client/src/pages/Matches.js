@@ -26,6 +26,7 @@ function Matches() {
     // console.log(matches)
 
     return (
+        <div style = {{position: 'relative', minHeight: '100vh'}}>
         <div className='align-items-center text-white' style={{ alignItems: 'center' }}>
             
                 <div>
@@ -41,7 +42,7 @@ function Matches() {
                 <div>
                     <MatchCards matches={matches}/>
                 </div>
-
+            </div>
         </div>
     )
 }
