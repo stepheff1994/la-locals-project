@@ -84,7 +84,7 @@ LA Locals is the dating app you can join to view singles in your area and potent
 
       
 ### Upgrade
-![Chat](./assets/images/upgrade.png)
+![Chat](./assets/images/chat.png)
 
       
 ### Chat
