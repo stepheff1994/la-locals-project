@@ -34,7 +34,7 @@ function App() {
     uri: '/graphql',
   })
   return (
-    <div >
+    <div>
       <ApolloProvider client={client}>
         <NavBar />
           <Container>

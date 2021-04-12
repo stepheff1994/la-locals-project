@@ -54,15 +54,19 @@ function SideBar ({ id }) {
                     {/* we will place the user's name here */}
                     Welcome <span className='text-muted'>{id}</span>
                 </div>
+                
+                {conversationsOpen ? 
                 <Button onClick={() => setModalOpen(true)} className='rounded-0' style={{ fontSize: '20px' }} >
-                    New {conversationsOpen ? 'Conversation' : 'Contact'}
+                New Conversation
                 </Button>
+                : null}
+                
            </Tab.Container>
 
            <Modal show={modalOpen} onHide={closeModal}>
                {conversationsOpen ? 
                     <NewConversationModal closeModal={closeModal} /> :
-                    <NewContactModal closeModal={closeModal} />
+                    null
                 }
            </Modal>
         </div>

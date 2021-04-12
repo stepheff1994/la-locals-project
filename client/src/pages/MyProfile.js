@@ -13,7 +13,7 @@ import Auth from "../utils/auth";
 
 const User = ({ user: { firstName, age, area, image, preference } }) => (
   
-  <Card style={{ width: '45rem', height: 'auto'  }}>
+  <Card style={{ width: '45rem', height: '100rem'  }} className="py-3">
       <Card.Img variant="top" src={image} />
       <Card.Body>
         <Card.Title style = {{fontSize: '30px', color:'blue'}}>{firstName}</Card.Title>

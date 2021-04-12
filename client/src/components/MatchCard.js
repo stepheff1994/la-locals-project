@@ -44,6 +44,7 @@ const MatchCards= ({ matches })=> {
           } catch (e) {
             console.error(e);
           }
+          
     }
 
 
