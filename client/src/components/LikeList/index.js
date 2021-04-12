@@ -37,7 +37,7 @@ const FriendList = ({ firstName, lastName, userLikes }) => {
             <div className=" card text-dark overflow-auto" style={{ height: 'auto', width: '55rem'}} key={match._id}>
               <div className='text-danger border-bottom border-grey'>
                 <h2 style={{ fontSize: "60px"}}>{match.firstName} {match.lastName}</h2>
-                <Button style={{ fontSize: '20px'}} type='submit' onClick={() => handleSubmit(`${match.firstName} ${match.lastName}`, `${match.firstName} ${match.lastName}`)} className='mr-2'>Add To Chat</Button>
+                <Button style={{ fontSize: '20px'}} variant='danger' type='submit' onClick={() => handleSubmit(`${match.firstName} ${match.lastName}`, `${match.firstName} ${match.lastName}`)} className='mr-2'>Add To Chat</Button>
               </div>
             <div className='text-grey border-bottom border-grey py-2'>
               <img style={{ width: "500px" }} src={match.image}></img>

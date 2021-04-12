@@ -39,7 +39,7 @@ function SideBar ({ id }) {
                         <Nav.Link eventKey={CONVERSATIONS_KEY}>Conversations</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey={CONTACTS_KEY}>Contacts</Nav.Link>
+                        <Nav.Link eventKey={CONTACTS_KEY}>Matches</Nav.Link>
                     </Nav.Item>
                 </Nav>
                 <Tab.Content className='border-right overflow-auto flex-grow-1'>
@@ -56,7 +56,7 @@ function SideBar ({ id }) {
                 </div>
                 
                 {conversationsOpen ? 
-                <Button onClick={() => setModalOpen(true)} className='rounded-0' style={{ fontSize: '20px' }} >
+                <Button onClick={() => setModalOpen(true)} variant="danger" className='rounded-0' style={{ fontSize: '20px' }} >
                 New Conversation
                 </Button>
                 : null}

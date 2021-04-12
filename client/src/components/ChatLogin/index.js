@@ -31,7 +31,7 @@ function ChatLogin({ onIdSubmit }) {
 
     return (
         <Container className='align-items-center d-flex' style={{ height: '100vh', fontSize: '20px' }}>
-            <Button style={{ fontSize: '20px', alignSelf: "center" }} type="submit" onClick={handleSubmit} className="mr-2">Begin Chatting!</Button>
+            <Button variant="danger" style={{ fontSize: '50px', alignSelf: "center" }} type="submit" onClick={handleSubmit} className="mr-2">Begin Chatting!</Button>
         </Container>
     )
 };

@@ -41,7 +41,7 @@ function OpenConversation() {
                                 key={index}
                                 className={`my-1 d-flex flex-column ${message.fromMe ? 'align-self-end align-items-end' : 'align-items-start'}`}
                             >
-                                <div className={`rounded px-2 py-1 ${message.fromMe ? 'bg-primary text-white' : 'border'}`}>
+                                <div className={`rounded px-2 py-1 ${message.fromMe ? 'bg-danger text-white' : 'border'}`}>
                                     {message.text}
                                 </div>
                                 {/* conditional statement checking to see if the message is from you or another sender and then displays the name accordingly */}
@@ -65,7 +65,7 @@ function OpenConversation() {
                         />
                         {/* this InputGroup is used to append the button to the text area */}
                         <InputGroup.Append>
-                            <Button type="submit" style={{ fontSize: '20px' }} >Send</Button>
+                            <Button variant='danger' type="submit" style={{ fontSize: '20px' }} >Send</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </Form.Group>

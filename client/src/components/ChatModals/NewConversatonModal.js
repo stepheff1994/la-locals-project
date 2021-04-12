@@ -34,20 +34,21 @@ function NewConversatonModal({ closeModal }) {
 
     return (
         <>
-            <Modal.Header closeButton>Create Conversation</Modal.Header>
+            <Modal.Header style={{fontSize: '20px'}} closeButton>Create Conversation</Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
                     {contacts.map(contact => (
                         <Form.Group controlId={contact.id} key={contact.id}>
                             <Form.Check 
-                                type='checkbox'
+                                type='radio'
                                 value={selectedContactIds.includes(contact.id)}
                                 label = {contact.name}
                                 onChange={() => handleCheckboxChange(contact.id)}
+                                style={{fontSize: '20px', padding: '10px'}}
                             />
                         </Form.Group>
                     )) }
-                    <Button type='submit'>Create</Button>
+                    <Button type='submit' style={{ fontSize: "20px"}} variant="danger">Create</Button>
                 </Form>
             </Modal.Body>
         </>
