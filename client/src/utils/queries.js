@@ -79,6 +79,7 @@ export const QUERY_ME = gql`
         lastName
         area
         age
+        image
         question1
         question2
         question3
@@ -98,6 +99,7 @@ export const QUERY_MATCHES = gql`
       email
       age
       area
+      image
       identity
       preference
       question1

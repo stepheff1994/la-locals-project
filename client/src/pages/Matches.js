@@ -19,17 +19,29 @@ function Matches() {
 
     // insert the logged in user's parameters into the QUERY_MATCHES query
     const { loading, data } = useQuery(QUERY_MATCHES, {
-        variables: { area: user.area, identity: user.identity, preference: user.preference }
+        variables: { area: userArea, identity: userPreference, preference: userIdentity }
     });
     // set the matches returned from the query to an array, otherwise return a blank array
     const matches = data?.users || [];
     // console.log(matches)
 
     return (
-        <div>
-            <h1>
-                <MatchCards matches={matches}/>
-            </h1>
+        <div className='align-items-center text-white' style={{ alignItems: 'center' }}>
+            
+                <div>
+                    <h1 style={{ fontSize: '30px'}}>
+                        Your Possible Matches
+                    </h1>
+                </div>
+                <div>
+                    <h3>If you want to get to know your match better click the heart!
+                        <p>Otherwise, swipe to say goodbye!</p>
+                    </h3>
+                </div>
+                <div>
+                    <MatchCards matches={matches}/>
+                </div>
+
         </div>
     )
 }

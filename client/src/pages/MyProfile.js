@@ -13,7 +13,7 @@ import Auth from "../utils/auth";
 
 const User = ({ user: { firstName, age, area, image, preference } }) => (
   
-  <Card style={{ width: '45rem'  }}>
+  <Card style={{ width: '45rem', height: 'auto'  }}>
       <Card.Img variant="top" src={image} />
       <Card.Body>
         <Card.Title style = {{fontSize: '30px', color:'blue'}}>{firstName}</Card.Title>
@@ -51,7 +51,7 @@ if (error) return <h1>Something went wrong!</h1>
 
 if (loading) 
     return <h1>Loading...</h1>
-else
+else 
     return (
         <div style={{marginBlock:'2rem'}}>
             <h1 style={{fontFamily:'fantasy', fontSize:'8rem', color: "gray"}}>MY PROFILE</h1>
