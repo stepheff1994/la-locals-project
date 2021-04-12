@@ -12,9 +12,9 @@ import Auth from "../utils/auth";
 
 
 const User = ({ user: { firstName, age, area, image, preference } }) => (
-  
-  <Card style={{ width: '45rem'  }}>
-      <Card.Img variant="top" src={image} />
+  <div  style = {{position: 'relative', minHeight: '100vh' }}>
+  <Card style={{ width: '50rem'  }}>
+      <Card.Img variant="top" src={image} height="300" width="400" />
       <Card.Body>
         <Card.Title style = {{fontSize: '30px', color:'blue'}}>{firstName}</Card.Title>
         <Card.Title style = {{fontSize: '20px'}}>Age: </Card.Title>
@@ -29,9 +29,13 @@ const User = ({ user: { firstName, age, area, image, preference } }) => (
         <Card.Text style = {{fontSize: '2rem'}}>
           {preference}
         </Card.Text>
-        <Button style={{width:'20rem', fontSize:'2rem'}}variant="primary">Update Profile</Button>
+        <Button style={{width:'15rem', fontSize:'1rem'}}variant="primary">Update Profile</Button>
       </Card.Body>
     </Card>
+    
+
+    
+        </div>
 )
 
 

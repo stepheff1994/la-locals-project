@@ -1,14 +1,12 @@
 import React from "react";
-import upgrade from '../images/premium.png'
+import Stripe from "../components/Stripe";
 
-function Upgrade () {
+const Upgrade = () => {
+
     return (
-        <div>
-           <img src={upgrade}style={{width: "100%"}}></img>  
-        </div>
-    )
-}
+        <Stripe />
+    );
+};
 
+export default Upgrade;
 
-
-export default Upgrade
