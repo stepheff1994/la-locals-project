@@ -32,7 +32,7 @@ const FriendList = ({ firstName, lastName, userLikes }) => {
           Your Likes
         </h5>
         
-          <div className='d=flex'>
+          <div className='d=flex'cols={2}>
           {userLikes.map(match => (
             <div className=" card text-dark overflow-auto" style={{ height: '60rem', width: '55rem', marginBottom: '20px'}} key={match._id}>
               <div className='text-danger border-bottom border-grey'>

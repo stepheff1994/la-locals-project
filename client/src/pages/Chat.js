@@ -15,7 +15,7 @@ import { SocketProvider } from '../contexts/SocketProvider';
 function Chat () {
     // useLocalStorage hook to set the manually created id to the application and save it to local storage
     // that way, when the chat is refreshed the id is saved
-    const [id, setId] = useLocalStorage('id') // ***** will have to use this to somehow get/set the token id for each user
+    const [id, setId] = useLocalStorage('id', "") // ***** will have to use this to somehow get/set the token id for each user
     
    
 
