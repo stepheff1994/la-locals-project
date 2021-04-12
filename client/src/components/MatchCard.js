@@ -30,6 +30,13 @@ const MatchCards= ({ matches })=> {
     const outOfFrame = async (name, id) => {
         console.log (name +"left the screen")
         // add the user to the logged in user's "likes" list
+        
+            
+    }
+    // handleClick functions for the buttons
+
+    const handleRightClick = async (id) => {
+        console.log(id)
         try {
             await addLikedFriend({
               variables: { id: id }
@@ -37,14 +44,7 @@ const MatchCards= ({ matches })=> {
           } catch (e) {
             console.error(e);
           }
-            
-    }
-    // handleClick functions for the buttons
-    const handleLeftClick = async () => {
-        return swiped;
-    }
-    const handleRightClick = async () => {
-          return outOfFrame;
+          
     }
 
 
@@ -53,7 +53,7 @@ const MatchCards= ({ matches })=> {
         <div className ="tinderCards text-dark rounded">
             <div className=" tinderCards_cardContainer">  
 
-            {matches && matches.map (match => (
+            {matches.map (match => (
                 <TinderCard
                   className ="swipe"
                   key={match._id}
@@ -62,13 +62,19 @@ const MatchCards= ({ matches })=> {
                   onCardLeftScreen = {() => outOfFrame(match.firstName, match._id)}
                 >
                     <div
-                    style = {{backgroundImage: `url (${match.url})`}}
+                    style = {{backgroundImage: `url (${match.image})`}}
                     className ="card text-dark overflow-auto"
                     >
-                        <div className='text-danger border-bottom border-grey'>
-                            <h2>{match.firstName} {match.lastName}</h2>
+                        <div className='text-danger border-bottom border-grey d-flex'>
+                        <IconButton className="swipeButtons_right" onClick={() => handleRightClick(match._id)}>
+                            <FavoriteIcon fontSize="large" />
+                        </IconButton>
+                            
+                            <h1 style={{ fontSize: "60px"}}>{match.firstName} {match.lastName}</h1>
                         </div>
-                        <div className='text-grey border-bottom border-grey py-2'>Images Here</div>
+                        <div className='text-grey border-bottom border-grey py-2' style={{ alignSelf: "center"}}>
+                            <img style={{ width: "500px" }} src={match.image}></img>
+                        </div>
                         <div className='border-bottom border-grey py-3'>
                             <div style={{ fontSize: '20px' }}>
                                 <b>Location:</b> {match.area}
@@ -105,17 +111,7 @@ const MatchCards= ({ matches })=> {
 
             </div>
         </div>
-        <div className="swipeButtons">
-             
-             <IconButton className="swipeButtons_left" onClick={handleLeftClick}>
-                 <CloseIcon fontSize="large" />
-             </IconButton>
-             
-             <IconButton className="swipeButtons_right" onClick={handleRightClick}>
-                 <FavoriteIcon fontSize="large" />
-             </IconButton>
-             
-        </div>
+       
         </>
     )
 }

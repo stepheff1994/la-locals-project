@@ -8,6 +8,7 @@ import { QUERY_ME } from '../utils/queries';
 function MyLikes () {
     // set the data variable for the QUERY_ME query
     const { data } = useQuery(QUERY_ME)
+    console.log(data)
 
 
     return (

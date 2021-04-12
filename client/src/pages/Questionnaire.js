@@ -9,19 +9,33 @@ import {ADD_USER} from '../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';
 import Auth from '../utils/auth';
 import storage from '../components/Firebase';
+import firebase from '../components/Firebase';
+   import {Link } from "react-router-dom";
+
+
 const useStyles = makeStyles({
     root: {
-        width: "50%",
+
+
+        width: "70%",
         padding: "20px",
         margin: "6rem auto",
-        textEmphasisColor: "white",
+        textEmphasisColor: "black",
         backgroundAttachment: "none",
         border: "10px solid #999",
+        fontSize: "15px",
         "& .MuiStepIcon-root.MuiStepIcon-active": {
             color: "red"
         },
         "& .MuiStepIcon-root.MuiStepIcon-completed": {
             color: "red"
+        },
+
+        "& .MuiStepLabel-label.MuiStepLabel-alternativeLabel": {
+            fontSize:'20px'
+        },
+        "$ ..MuiButton-label": {
+            fontSize:'large'
         },
         backgroundColor: "white"
     }
@@ -44,8 +58,6 @@ function Questionnaire () {
     const [question3, setQuestion3] = useState('');
     const [question4, setQuestion4] = useState('');
     const [question5, setQuestion5] = useState('');
-        
-    
     
     const [addUser] = useMutation(ADD_USER);
     const handleSubmit = async event => {
@@ -57,7 +69,9 @@ function Questionnaire () {
         try {
             // execute addUser mutation and pass in variable data from form
             const { data } = await addUser({
-                variables:{email, firstName,lastName,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5}
+                variables:{email, firstName,lastName,password, age: parseInt(age, 10), area, identity, preference, question1,question2,question3,question4,question5,
+                image:stateImage.url
+                }
             });
             // send the token info from addUser through to the login fucntion in Auth
             // upon successful signup user will be redirected to the homepage
@@ -90,20 +104,27 @@ function Questionnaire () {
         // setImageAsUrl(URL.createObjectURL(image))
         if (e.target.files[0]) {
             const image = e.target.files[0];
-            setStateImage(() => ({ image }));
+            setStateImage(() => ({ 
+                ...stateImage,
+                image
+            }));
           }
     }
+
     const handleUpload = () => {
         const { image } = stateImage;
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
         uploadTask.on(
           "state_changed",
-          snapshot => {
+          snapshot=> {
             // progress function ...
             const progress = Math.round(
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             );
-            setStateImage({ progress });
+            setStateImage({ 
+                ...stateImage,
+                progress
+            });
           },
           error => {
             // Error function ...
@@ -116,12 +137,35 @@ function Questionnaire () {
               .child(image.name)
               .getDownloadURL()
               .then(url => {
-                setStateImage({ url });
+                setStateImage({ 
+                    ...stateImage,
+                    url
+                });
+                console.log("New Image State:", stateImage);
+            
               });
           }
+
         );
+        // const storageRef = firebase.storage().ref()
+        // const imagesRef = storageRef('images')
+        // const imageFromStorage = imagesRef.child(`images/${image.name}`)
+        // const imagePath = imageFromStorage.fullPath
+        // const imageName = imageFromStorage.imageName
+
+        // console.log(imagePath)
+        // console.log(imageName)
+
+        
       };
+
     
+
+    //   storageRef.put(YOUR_FILENAME).then((snapshot) => {
+    //                         return snapshot.ref.getDownloadURL();
+    //                     })=> {
+    //         
+
     const available_areas = [{'zip': ['90210', '90038'], 'area': 'Bev Hills'}, {'zip': ['91406', '90029','91309',  
     '91310','91311','91313'], 'area': 'The Valley'}, {'zip': ['90401', '90265', '90731'], 'area': 'The Beach'}]
     const [activeStep, setActiveStep] = useState(0);
@@ -190,12 +234,14 @@ function Questionnaire () {
                 setQuestion5 = {setQuestion5}     />;
         case 2:
            return <div>
-                Upload up to 3 images 
+                Upload your favorite Photo!
                 <PhotoUpload stateImage = {stateImage} handleImage = {handleImage} handleUpload = {handleUpload} />
                
-        <Button variant="contained" color="primary" className="mt-5" type="submit" onClick = {handleSubmit}>
-          Submit
-        </Button>
+               {stateImage.url.length>0?(
+               
+                <Button variant="contained" color="primary" size='large' className="mt-5" type="submit" onClick={handleSubmit} >
+                Submit
+                </Button>):""}
             </div>
         default: return "Unknow Step";
     }
@@ -209,7 +255,7 @@ function Questionnaire () {
         <Stepper activeStep={activeStep} alternativeLabel >
             {steps.map(label => (
               <Step key ={label}> 
-                  <StepLabel>
+                  <StepLabel >
                       {label}
                  </StepLabel> 
               </Step>
@@ -219,7 +265,7 @@ function Questionnaire () {
         {activeStep ===steps.length ? "Welcome to LA locals": (
         <>
         {getStepsContent(activeStep)}  
-        <Button onClick={handleNext}>
+        <Button onClick={handleNext} style={{width: '80px', fontSize: "20px"}}>
          {activeStep ===steps.length ? "Finish": "Next"}
         </Button>
         </>
@@ -229,6 +275,9 @@ function Questionnaire () {
     </>
 )
 }
-    
-   
+
+  
+
+
+
 export default Questionnaire

@@ -1,15 +1,11 @@
 import React from "react";
+import Stripe from "../components/Stripe";
 
-function Upgrade () {
+const Upgrade = () => {
+
     return (
-        <div>
-            <h1 className="text-white">
-                Upgrade
-            </h1>
-        </div>
-    )
-}
+        <Stripe />
+    );
+};
 
-
-
-export default Upgrade
+export default Upgrade;

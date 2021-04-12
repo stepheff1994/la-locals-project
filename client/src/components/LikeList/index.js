@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
 import { useContacts } from '../../contexts/ContactsProvider';
+<<<<<<< HEAD
 
 
 const FriendList = ({ firstName, lastName, userLikes }) => {
@@ -35,8 +36,48 @@ const FriendList = ({ firstName, lastName, userLikes }) => {
             <div className='text-danger border-bottom border-grey'>
               <h2>{match.firstName} {match.lastName}</h2>
               {/* <Button type='submit' onClick={(e) => handleSubmit(e, match._id, `${match.firstName} ${match.lastName}`)} className='mr-2'>Add To Chat</Button> */}
+=======
+import useLocalStorage from '../../hooks/useLocalStorage';
+
+
+const FriendList = ({ firstName, lastName, userLikes }) => {
+    // const { createContact } = useContacts()
+    // get the createcontact function from useContacts
+    // const { createContact } = useContacts()
+    const [contacts, setContacts] = useLocalStorage('contacts', [])
+
+    function handleSubmit(id, name) {
+        // e.preventDefault();
+        // pass through the name and id values into the createContact function
+        setContacts(prevContacts => {
+          return[...prevContacts, { id, name }]
+      })
+        
+    }
+
+
+    if (!userLikes || !userLikes.length) {
+      return <p className="bg-dark text-light p-3">{firstName} {lastName} has no likes!</p>;
+    }
+    console.log(userLikes)
+  
+    return (
+      <Container style={{ height: '150rem', alignContent: 'center'}}>
+        <h5 className="text-white" style={{ fontSize: '30px' }}>
+          Your Likes
+        </h5>
+        
+          <div>
+          {userLikes.map(match => (
+            <div className=" card text-dark overflow-auto" style={{ height: 'auto', width: '55rem'}} key={match._id}>
+              <div className='text-danger border-bottom border-grey'>
+                <h2 style={{ fontSize: "60px"}}>{match.firstName} {match.lastName}</h2>
+                <Button style={{ fontSize: '20px'}} variant='danger' type='submit' onClick={() => handleSubmit(`${match.firstName} ${match.lastName}`, `${match.firstName} ${match.lastName}`)} className='mr-2'>Add To Chat</Button>
+              </div>
+            <div className='text-grey border-bottom border-grey py-2'>
+              <img style={{ width: "500px" }} src={match.image}></img>
+>>>>>>> erica-newmerge
             </div>
-            <div className='text-grey border-bottom border-grey py-2'>Images Here</div>
             <div className='border-bottom border-grey py-3'>
               <div style={{ fontSize: '20px' }}>
                 <b>Location:</b> {match.area}

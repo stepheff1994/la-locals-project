@@ -45,6 +45,7 @@ export const QUERY_USER = gql`
       question3
       question4
       question5
+      image
       userLikes {
         _id
         firstName
@@ -71,12 +72,14 @@ export const QUERY_ME = gql`
       question3
       question4
       question5
+      image
       userLikes {
         _id
         firstName
         lastName
         area
         age
+        image
         question1
         question2
         question3
@@ -96,6 +99,7 @@ export const QUERY_MATCHES = gql`
       email
       age
       area
+      image
       identity
       preference
       question1

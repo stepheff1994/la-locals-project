@@ -29,12 +29,15 @@ function ChatLogin({ onIdSubmit }) {
         e.preventDefault();
         // call the onIdSubmit from Chat.js and pass it the current value of idRef
         onIdSubmit(name)
+<<<<<<< HEAD
         
+=======
+>>>>>>> erica-newmerge
     }
 
     return (
         <Container className='align-items-center d-flex' style={{ height: '100vh', fontSize: '20px' }}>
-            <Button style={{ fontSize: '20px' }} type="submit" onClick={handleSubmit} className="mr-2">Begin Chatting!</Button>
+            <Button variant="danger" style={{ fontSize: '50px', alignSelf: "center" }} type="submit" onClick={handleSubmit} className="mr-2">Begin Chatting!</Button>
         </Container>
     )
 };

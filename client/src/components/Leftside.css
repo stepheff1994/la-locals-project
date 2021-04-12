@@ -16,7 +16,7 @@
     margin: 8px 0;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
+    
   }
   
   #submit {
@@ -34,7 +34,7 @@
   label {
       /* color: whitesmoke; */
       font-size: large;
-  }
+  } 
 
   h2 {
       font-family: Verdana, Geneva, Tahoma, sans-serif;

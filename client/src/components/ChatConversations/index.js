@@ -17,6 +17,7 @@ function ChatConversations () {
                 onClick={() => selectConversationIndex(index)}
                 // activate the selected conversation
                 active={conversation.selected}
+                variant='danger'
                 >
                     {/* take all of the names of those recipients and join them  */}
                     {conversation.recipients.map(r => r.name).join(', ')}
