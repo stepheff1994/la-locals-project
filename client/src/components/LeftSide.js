@@ -61,7 +61,7 @@ function Login(props) {
         </div>
         {
           error ? <div>
-            <p className="error-text" >The provided credentials are incorrect</p>
+            <p className="error-text" style ={{color:"white"}} >The provided credentials are incorrect</p>
           </div> : null
         }
         <div className="flex-row flex-end">
