@@ -45,6 +45,7 @@ export const QUERY_USER = gql`
       question3
       question4
       question5
+      image
       userLikes {
         _id
         firstName
@@ -71,6 +72,7 @@ export const QUERY_ME = gql`
       question3
       question4
       question5
+      image
       userLikes {
         _id
         firstName

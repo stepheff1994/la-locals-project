@@ -26,7 +26,7 @@ function ChatLogin({ onIdSubmit }) {
     function handleSubmit(e) {
         e.preventDefault();
         // call the onIdSubmit from Chat.js and pass it the current value of idRef
-        onIdSubmit(userId)
+        onIdSubmit(name)
     }
 
     return (

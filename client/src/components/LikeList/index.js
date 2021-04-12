@@ -5,7 +5,7 @@ import { useContacts } from '../../contexts/ContactsProvider';
 
 
 const FriendList = ({ firstName, lastName, userLikes }) => {
-    const { createContact } = useContacts()
+    // const { createContact } = useContacts()
 
     if (!userLikes || !userLikes.length) {
       return <p className="bg-dark text-light p-3">{firstName} {lastName} has no likes!</p>;
@@ -15,7 +15,9 @@ const FriendList = ({ firstName, lastName, userLikes }) => {
     function handleSubmit(id, name) {
       // e.preventDefault();
       // call the onIdSubmit from Chat.js and pass it the current value of idRef
-      createContact(id, name)
+      // createContact(id, name)
+      console.log(id)
+      console.log(name)
       
     }
   

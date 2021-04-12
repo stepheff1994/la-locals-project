@@ -18,6 +18,9 @@ import Matches from "./pages/Matches"
 import LogIn from "./pages/LogIn.js";
 import LikeProfile from "./pages/LikeProfile";
 import Upgrade from "./components/Upgrade.js";
+import Footer from "./components/Footer"
+
+
 function App() {
   const client = new ApolloClient({
     request: (operation) => {
@@ -44,10 +47,15 @@ function App() {
             <Route exact path="/Matches" component={Matches} />
             <Route exact path="/MyLikes" component={MyLikes} />
             <Route exact path="/LikeProfile" component={LikeProfile} />
-            {/* <Route exact path = "/NewMembers" component = {NewMembers} /> */}
             <Route exact path="/Questionnaire" component={Questionnaire} />
+            {/* <Route exact path = "/NewMembers" component = {NewMembers} /> */}
+            
+            <Route exact path="/Upgrade"component={Upgrade} />
+            
             <Route exact path="/Register" component={Register} />
             <Route exact path="/LogIn" component={LogIn} />
+          <Footer />
+
           </Router>
         </Container>
       </ApolloProvider>

@@ -53,7 +53,7 @@ const MatchCards= ({ matches })=> {
         <div className ="tinderCards text-dark rounded">
             <div className=" tinderCards_cardContainer">  
 
-            {matches && matches.map (match => (
+            {matches.map (match => (
                 <TinderCard
                   className ="swipe"
                   key={match._id}

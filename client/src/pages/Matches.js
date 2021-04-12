@@ -19,7 +19,7 @@ function Matches() {
 
     // insert the logged in user's parameters into the QUERY_MATCHES query
     const { loading, data } = useQuery(QUERY_MATCHES, {
-        variables: { area: userArea, identity: userIdentity, preference: userPreference }
+        variables: { area: user.area, identity: user.identity, preference: user.preference }
     });
     // set the matches returned from the query to an array, otherwise return a blank array
     const matches = data?.users || [];
