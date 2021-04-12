@@ -1,25 +1,37 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
+import { useContacts } from '../../contexts/ContactsProvider';
 
 
 const FriendList = ({ firstName, lastName, userLikes }) => {
-  if (!userLikes || !userLikes.length) {
-    return <p className="bg-dark text-light p-3">{firstName} {lastName} has no likes!</p>;
-  }
-  console.log(userLikes)
-  return (
-    <Container>
-      <h5 className="text-white" style={{ fontSize: '30px' }}>
-        Your Likes
-      </h5>
+    const { createContact } = useContacts()
+
+    if (!userLikes || !userLikes.length) {
+      return <p className="bg-dark text-light p-3">{firstName} {lastName} has no likes!</p>;
+    }
+    console.log(userLikes)
+  
+    function handleSubmit(id, name) {
+      // e.preventDefault();
+      // call the onIdSubmit from Chat.js and pass it the current value of idRef
+      createContact(id, name)
       
-        <div>
-        {userLikes.map(match => (
-          <div className=" card text-dark overflow-auto" key={match._id}>
-            <div className='text-danger border-bottom border-grey'>
-              <h2>{match.firstName} {match.lastName}</h2>
-            </div>
+    }
+  
+    return (
+      <Container>
+        <h5 className="text-white" style={{ fontSize: '30px' }}>
+          Your Likes
+        </h5>
+        
+          <div>
+          {userLikes.map(match => (
+            <div className=" card text-dark overflow-auto" key={match._id}>
+              <div className='text-danger border-bottom border-grey'>
+                <h2>{match.firstName} {match.lastName}</h2>
+                <Button type='submit' onClick={() => handleSubmit(match._id, `${match.firstName} ${match.lastName}`)} className='mr-2'>Add To Chat</Button>
+              </div>
             <div className='text-grey border-bottom border-grey py-2'>Images Here</div>
             <div className='border-bottom border-grey py-3'>
               <div style={{ fontSize: '20px' }}>
